@@ -6,61 +6,126 @@ import { motion, useReducedMotion } from "framer-motion";
 export default function Lifestyle() {
   const reduce = useReducedMotion();
 
+  const EASE = [0.22, 1, 0.36, 1] as const;
+  const reveal = (delay = 0) =>
+    reduce
+      ? { initial: { opacity: 0 }, whileInView: { opacity: 1 }, viewport: { once: true, margin: "-50px" }, transition: { duration: 0.4 } }
+      : { initial: { opacity: 0, y: 18 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-50px" }, transition: { duration: 0.75, ease: EASE, delay } };
+
   return (
     <section className="relative bg-paper py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
-          {/* Editorial caption */}
-          <motion.div
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="md:col-span-4 md:order-1 order-2"
-          >
-            <div className="flex items-center gap-4 mb-8">
-              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-ink/45">
-                Interludio
-              </span>
-              <span className="h-px w-16 bg-ink/20" />
-            </div>
 
-            <p className="display text-ink text-[clamp(1.8rem,3vw,2.6rem)] leading-[1.05] max-w-[18ch]">
+        {/* ── Top rule + section tag ── */}
+        <motion.div
+          {...reveal(0)}
+          className="flex items-center justify-between mb-16 md:mb-20 border-t border-ink/10 pt-6"
+        >
+          <span className="eyebrow text-ink/45">Interludio</span>
+          <span className="eyebrow text-ink/30">Ed. 01 · 2026</span>
+        </motion.div>
+
+        {/* ── Main grid: text left, dual-image composition right ── */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+
+          {/* Editorial caption — col 1–4 */}
+          <motion.div
+            {...reveal(0.1)}
+            className="md:col-span-4 md:order-1 order-2 md:pt-8 md:sticky md:top-28"
+          >
+            <p className="display text-ink text-[clamp(1.9rem,3.2vw,2.8rem)] leading-[1.02] max-w-[16ch]">
               Hecha para la{" "}
               <span className="editorial text-h2pro font-normal">mesa,</span>{" "}
               no para el botiquín.
             </p>
 
-            <p className="mt-8 max-w-sm text-[0.95rem] leading-relaxed text-ink/65">
+            <p className="mt-8 max-w-xs text-[0.95rem] leading-relaxed text-ink/65">
               Donde vivas tu día — la oficina, el café, después del pilates —
-              cabe una botella clara con 20 g de proteína. Sin preparar nada,
-              sin diluir nada.
+              cabe una botella clara con 20&nbsp;g de proteína. Sin preparar
+              nada, sin diluir nada.
             </p>
+
+            {/* Small proof points */}
+            <ul className="mt-10 space-y-3 border-t border-ink/10 pt-8">
+              {[
+                "20 g proteína aislada",
+                "0 g azúcar · 0 g grasa",
+                "Sin lactosa · Sin espesantes",
+                "Lista para tomar",
+              ].map((item, i) => (
+                <motion.li
+                  key={item}
+                  {...reveal(0.3 + i * 0.06)}
+                  className="flex items-center gap-3 text-[0.82rem] text-ink/70"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-h2pro flex-shrink-0" />
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
 
-          {/* Photograph */}
-          <motion.figure
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="md:col-span-8 md:order-2 order-1 relative"
-          >
-            <div className="relative aspect-[3/2] w-full overflow-hidden">
-              <Image
-                src="/lifestyle/bodegon.jpg"
-                alt="Dos botellas H2PRO sobre una mesa de madera con un libro de Annie Leibovitz, lentes y una taza de café"
-                fill
-                sizes="(max-width: 768px) 100vw, 70vw"
-                priority={false}
-                style={{ objectFit: "cover" }}
-              />
+          {/* Dual-image editorial composition — col 5–12 */}
+          <div className="md:col-span-8 md:order-2 order-1">
+
+            {/* Primary image — full width, editorial product shot */}
+            <motion.figure {...reveal(0.15)}>
+              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                <Image
+                  src="/lifestyle/hero-product.jpg"
+                  alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con agua y fruta fresca"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                  priority={false}
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                />
+              </div>
+              <figcaption className="mt-3 flex items-baseline justify-between text-[0.62rem] tracking-[0.28em] uppercase text-ink/35">
+                <span>Limonada · Blueberry — Los dos sabores</span>
+                <span>Fotografía de producto</span>
+              </figcaption>
+            </motion.figure>
+
+            {/* Secondary row: bodegón real + pull quote */}
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 items-end">
+
+              {/* Bodegón — the intimate real photo */}
+              <motion.figure {...reveal(0.25)}>
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                  <Image
+                    src="/lifestyle/bodegon.jpg"
+                    alt="Botellas H2PRO sobre una mesa con libro, lentes y taza de café"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                </div>
+                <figcaption className="mt-3 text-[0.62rem] tracking-[0.28em] uppercase text-ink/35">
+                  Producto en contexto
+                </figcaption>
+              </motion.figure>
+
+              {/* Pull quote block */}
+              <motion.blockquote
+                {...reveal(0.35)}
+                className="pb-2"
+              >
+                <span className="block text-[2.6rem] leading-none text-ink/10 font-serif select-none mb-3" aria-hidden>
+                  "
+                </span>
+                <p className="editorial text-ink text-[clamp(1.15rem,1.8vw,1.4rem)] leading-snug">
+                  Proteína clara, fresca y honesta que cuida tu cuerpo.
+                </p>
+                <footer className="mt-5 flex items-center gap-3">
+                  <span className="h-px w-8 bg-ink/30" />
+                  <span className="text-[0.65rem] tracking-[0.28em] uppercase text-ink/45">
+                    Esencia H2PRO
+                  </span>
+                </footer>
+              </motion.blockquote>
             </div>
-            <figcaption className="mt-4 flex items-baseline justify-between text-[0.65rem] tracking-[0.28em] uppercase text-ink/40">
-              <span>Producto en contexto</span>
-              <span>Ed. 01 · 2026</span>
-            </figcaption>
-          </motion.figure>
+
+          </div>
         </div>
       </div>
     </section>

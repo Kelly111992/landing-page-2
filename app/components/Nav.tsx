@@ -57,17 +57,17 @@ export default function Nav() {
             >
               H<span className="text-h2pro">2</span>PRO
             </span>
-            <span className="hidden md:inline-block text-[0.6rem] tracking-[0.32em] uppercase text-ink/50 mt-1">
+            <span className="hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase text-ink/50 mt-1">
               Clear&nbsp;Protein
             </span>
           </a>
 
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-4 lg:gap-7">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="text-[0.78rem] tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors"
+                  className="text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors whitespace-nowrap"
                 >
                   {l.label}
                 </a>
@@ -77,7 +77,7 @@ export default function Nav() {
 
           <a
             href="#contacto"
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-paper text-[0.74rem] tracking-[0.2em] uppercase hover:bg-h2pro transition-colors"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ink text-paper text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase hover:bg-h2pro transition-colors whitespace-nowrap"
           >
             Pedidos
             <span aria-hidden>→</span>

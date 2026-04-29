@@ -30,11 +30,11 @@ const personas: Persona[] = [
       "Necesito algo práctico y ligero que me ayude a cuidar mi salud sin interrumpir mi rutina.",
     routine: ["Oficina + remoto", "Corre por la mañana", "Gym 2× semana"],
     color: "limonada",
-    image: "/lifestyle/juan-pablo.jpg",
+    image: "/lifestyle/hero-juan-pablo-run.jpg",
     imageAlt:
-      "Juan Pablo, mexicano de 28 años, en su oficina con una botella H2PRO Limonada sobre el escritorio",
+      "Juan Pablo, mexicano de 28 años, corriendo por CDMX al amanecer con una botella H2PRO Limonada",
     align: "left",
-    orientation: "portrait",
+    orientation: "landscape",
   },
   {
     n: "02",
