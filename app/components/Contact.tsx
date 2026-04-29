@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
@@ -95,28 +94,6 @@ export default function Contact() {
               </a>
             </div>
 
-            {/* Retail context — proof of distribution */}
-            <motion.figure
-              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="mt-12 max-w-xl"
-            >
-              <div className="relative aspect-[3/2] w-full overflow-hidden">
-                <Image
-                  src="/lifestyle/retail.jpg"
-                  alt="Botellas H2PRO Limonada y Blueberry en estantería refrigerada de tienda especialidad mexicana"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 580px"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <figcaption className="mt-3 flex items-baseline justify-between text-[0.62rem] tracking-[0.28em] uppercase text-paper/45">
-                <span>Punto de venta · CDMX</span>
-                <span>Ed. 01</span>
-              </figcaption>
-            </motion.figure>
           </div>
 
           {/* Form */}
