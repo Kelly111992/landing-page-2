@@ -3,8 +3,9 @@
 @theme {
   --color-ink: #0a0e12;
   --color-ink-soft: #101820;
-  --color-paper: #f5f7f8;
-  --color-paper-warm: #fafbf8;
+  --color-paper: #f0ede8;
+  --color-paper-warm: #ece8e1;
+  --color-paper-blue: color-mix(in srgb, var(--color-h2pro) 7%, var(--color-paper));
   --color-ice: #d3d9dc;
   --color-mist: #e8edf0;
   --color-h2pro: #0086d6;

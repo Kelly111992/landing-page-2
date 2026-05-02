@@ -15,10 +15,6 @@ type Flavor = {
   video: string;
   notes: string[];
   description: string;
-  contextPhoto: string;
-  contextAlt: string;
-  contextCaption: string;
-  contextTime: string;
   bg: string;
   text: string;
   accent: string;
@@ -36,11 +32,6 @@ const flavors: Flavor[] = [
     notes: ["Cáscara de limón", "Acidez ligera", "Final limpio"],
     description:
       "El clásico que abre el apetito y refresca después del entrenamiento. Cítrico nítido, sin notas dulces falsas.",
-    contextPhoto: "/lifestyle/flavor-limonada.jpg",
-    contextAlt:
-      "Botella H2PRO Limonada sobre una mesa de madera al amanecer con un limón cortado, hielos y una taza de café",
-    contextCaption: "Mesa de la mañana",
-    contextTime: "07:00 a.m.",
     bg: "linear-gradient(135deg, #fdf6c4 0%, #f4e04d 65%, #d9c130 100%)",
     text: "#1a1505",
     accent: "#7a6510",
@@ -56,11 +47,6 @@ const flavors: Flavor[] = [
     notes: ["Mora azul", "Ligero toque dulce", "Profundidad violácea"],
     description:
       "Un perfil más redondo, casi de postre. Blueberry de verdad, sin caer en el caramelo artificial.",
-    contextPhoto: "/lifestyle/flavor-blueberry.jpg",
-    contextAlt:
-      "Botella H2PRO Blueberry sobre una mesa oscura al atardecer con un cuaderno abierto, una pluma y un bowl de moras",
-    contextCaption: "Pausa de tarde",
-    contextTime: "05:00 p.m.",
     bg: "linear-gradient(135deg, #c9d0e8 0%, #5b6fb8 70%, #3a4a93 100%)",
     text: "#f5f7f8",
     accent: "#cdd5f0",
@@ -251,61 +237,6 @@ function FlavorBlock({ flavor }: { flavor: Flavor }) {
             </motion.button>
           </div>
         </motion.div>
-      </div>
-
-      {/* Contextual editorial photograph */}
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pb-20 md:pb-32">
-        <motion.figure
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className={`grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-end ${
-            isLeft ? "" : "[&>figcaption]:md:order-1"
-          }`}
-        >
-          <div
-            className={`relative aspect-[3/2] w-full overflow-hidden md:col-span-9 ${
-              isLeft ? "md:order-1" : "md:order-2"
-            }`}
-          >
-            <Image
-              src={flavor.contextPhoto}
-              alt={flavor.contextAlt}
-              fill
-              sizes="(max-width: 768px) 100vw, 75vw"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <figcaption
-            className={`md:col-span-3 ${
-              isLeft ? "md:order-2 md:pl-2" : "md:order-1 md:pr-2"
-            }`}
-            style={{ color: flavor.text }}
-          >
-            <div
-              className="flex items-center gap-3 text-[0.62rem] tracking-[0.32em] uppercase mb-3"
-              style={{ color: flavor.accent }}
-            >
-              <span className="block h-px w-8 bg-current opacity-50" />
-              <span>{flavor.contextTime}</span>
-            </div>
-            <p
-              className="editorial leading-snug text-[clamp(1.2rem,1.8vw,1.5rem)]"
-              style={{ color: flavor.text }}
-            >
-              {flavor.contextCaption}.
-            </p>
-            <p
-              className="mt-2 text-[0.78rem] leading-relaxed opacity-75"
-              style={{ color: flavor.text }}
-            >
-              {flavor.id === "limonada"
-                ? "Antes de salir, cuando el día apenas empieza."
-                : "El descanso del día. Pluma, libreta, mora."}
-            </p>
-          </figcaption>
-        </motion.figure>
       </div>
 
       <Bottle360Modal

@@ -48,7 +48,7 @@ export default function Claims() {
   };
 
   return (
-    <section className="relative bg-paper py-28 md:py-40 overflow-hidden">
+    <section className="relative bg-paper-blue py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
 
         {/* Section header */}

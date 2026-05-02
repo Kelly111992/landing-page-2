@@ -24,14 +24,6 @@ const SLIDES = [
   },
   {
     id: 2,
-    bg: "/lifestyle/hero-carlos-gym.jpg",
-    eyebrow: "Post-entreno, limpio y ligero",
-    headline: ["Disponible", "ahora."],
-    sub: "Recuperación real con proteína que el cuerpo absorbe fácil.",
-    accent: "blueberry" as const,
-  },
-  {
-    id: 3,
     bg: "/lifestyle/hero-desk.jpg",
     eyebrow: "H2PRO · Clear Protein · Ed. 01",
     headline: ["Proteína para", "todos los días."],

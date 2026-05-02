@@ -12,11 +12,6 @@ export default function Lifestyle() {
   const { scrollYProgress: primaryProgress } = useScroll({ target: primaryRef, offset: ["start end", "end start"] });
   const primaryY = useTransform(primaryProgress, [0, 1], reduce ? [0, 0] : [-50, 50]);
 
-  const bodegonRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: bodegonProgress } = useScroll({ target: bodegonRef, offset: ["start end", "end start"] });
-  const bodegonY = useTransform(bodegonProgress, [0, 1], reduce ? [0, 0] : [-35, 35]);
-
-  const EASE = [0.22, 1, 0.36, 1] as const;
   const reveal = (delay = 0) =>
     reduce
       ? { initial: { opacity: 0 }, whileInView: { opacity: 1 }, viewport: { once: true, margin: "-50px" }, transition: { duration: 0.4 } }
@@ -117,64 +112,24 @@ export default function Lifestyle() {
               </figcaption>
             </motion.figure>
 
-            {/* Secondary row */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 items-end">
-
-              {/* Bodegón — with parallax */}
-              <motion.figure
-                {...reveal(0.15)}
-              >
-                <div
-                  ref={bodegonRef}
-                  className="relative w-full overflow-hidden"
-                  style={{ aspectRatio: "4/3" }}
-                >
-                  <motion.div
-                    className="parallax-img"
-                    style={{
-                      y: bodegonY,
-                      position: "absolute",
-                      top: "-15%",
-                      bottom: "-15%",
-                      left: 0,
-                      right: 0,
-                    }}
-                  >
-                    <div className="relative w-full h-full">
-                      <Image
-                        src="/bottles/photo-limonada-1.jpg"
-                        alt="Botella H2PRO Limonada — producto real, 500 ml, 20 g de proteína aislada"
-                        fill
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        style={{ objectFit: "contain", objectPosition: "center", background: "var(--color-paper)" }}
-                      />
-                    </div>
-                  </motion.div>
-                </div>
-                <figcaption className="mt-3 text-[0.62rem] tracking-[0.28em] uppercase text-ink/35">
-                  Producto real · 500 ml
-                </figcaption>
-              </motion.figure>
-
-              {/* Pull quote */}
-              <motion.blockquote
-                {...reveal(0.25)}
-                className="pb-2"
-              >
-                <span className="block text-[2.6rem] leading-none text-ink/10 font-serif select-none mb-3" aria-hidden>
-                  "
+            {/* Pull quote */}
+            <motion.blockquote
+              {...reveal(0.25)}
+              className="mt-6 pb-2 max-w-lg"
+            >
+              <span className="block text-[2.6rem] leading-none text-ink/10 font-serif select-none mb-3" aria-hidden>
+                "
+              </span>
+              <p className="editorial text-ink text-[clamp(1.15rem,1.8vw,1.4rem)] leading-snug">
+                Proteína clara, fresca y honesta que cuida tu cuerpo.
+              </p>
+              <footer className="mt-5 flex items-center gap-3">
+                <span className="h-px w-8 bg-ink/30" />
+                <span className="text-[0.65rem] tracking-[0.28em] uppercase text-ink/45">
+                  Esencia H2PRO
                 </span>
-                <p className="editorial text-ink text-[clamp(1.15rem,1.8vw,1.4rem)] leading-snug">
-                  Proteína clara, fresca y honesta que cuida tu cuerpo.
-                </p>
-                <footer className="mt-5 flex items-center gap-3">
-                  <span className="h-px w-8 bg-ink/30" />
-                  <span className="text-[0.65rem] tracking-[0.28em] uppercase text-ink/45">
-                    Esencia H2PRO
-                  </span>
-                </footer>
-              </motion.blockquote>
-            </div>
+              </footer>
+            </motion.blockquote>
           </div>
         </div>
       </div>
