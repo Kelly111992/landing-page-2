@@ -4,6 +4,7 @@ import Manifesto from "./components/Manifesto";
 import TactileBanner from "./components/TactileBanner";
 import Lifestyle from "./components/Lifestyle";
 import Claims from "./components/Claims";
+import NutrientRevealVideo from "./components/NutrientRevealVideo";
 import Flavors from "./components/Flavors";
 import NutritionLabel from "./components/NutritionLabel";
 import Personas from "./components/Personas";
@@ -18,6 +19,7 @@ export default function Home() {
       <TactileBanner />
       <Lifestyle />
       <Claims />
+      <NutrientRevealVideo />
       <Flavors />
       <NutritionLabel />
       <Personas />
