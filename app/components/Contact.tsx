@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
+import { spring } from "../lib/springs";
 
 export default function Contact() {
   const reduce = useReducedMotion();
@@ -60,9 +61,10 @@ export default function Contact() {
                   initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.55, delay: reduce ? 0 : 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ backgroundColor: "var(--color-h2pro-deep)" }}
-                  className="group bg-ink p-6 transition-colors"
+                  whileHover={{ backgroundColor: "var(--color-h2pro-deep)", y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ ...spring.smooth, delay: reduce ? 0 : 0.08 * i }}
+                  className="group bg-ink p-6"
                 >
                   <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-paper/45 mb-2">
                     {card.label}
@@ -137,12 +139,15 @@ export default function Contact() {
               </div>
             </div>
 
-            <button
+            <motion.button
               type="submit"
-              className="mt-10 w-full px-7 py-4 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.22em] uppercase hover:bg-h2pro transition-colors"
+              className="mt-10 w-full px-7 py-4 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.22em] uppercase"
+              whileHover={{ scale: 1.02, backgroundColor: "var(--color-h2pro)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={spring.snappy}
             >
               Enviar correo →
-            </button>
+            </motion.button>
 
             <p className="mt-5 text-[0.78rem] leading-relaxed text-ink/60">
               {submitted ? (

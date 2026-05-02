@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { spring } from "../lib/springs";
 
 const links = [
   { href: "#manifiesto", label: "Manifiesto" },
@@ -65,23 +66,28 @@ export default function Nav() {
           <ul className="hidden md:flex items-center gap-4 lg:gap-7">
             {links.map((l) => (
               <li key={l.href}>
-                <a
+                <motion.a
                   href={l.href}
-                  className="text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors whitespace-nowrap"
+                  className="text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors whitespace-nowrap inline-block"
+                  whileHover={scrolled ? { x: 2 } : {}}
+                  transition={spring.snappy}
                 >
                   {l.label}
-                </a>
+                </motion.a>
               </li>
             ))}
           </ul>
 
-          <a
+          <motion.a
             href="#contacto"
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ink text-paper text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase hover:bg-h2pro transition-colors whitespace-nowrap"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ink text-paper text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase whitespace-nowrap"
+            whileHover={{ scale: 1.03, backgroundColor: "var(--color-h2pro)" }}
+            whileTap={{ scale: 0.97 }}
+            transition={spring.snappy}
           >
             Pedidos
             <span aria-hidden>→</span>
-          </a>
+          </motion.a>
 
           <button
             type="button"

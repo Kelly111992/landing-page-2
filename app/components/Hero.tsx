@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { spring } from "../lib/springs";
 
 const SLIDES = [
   {
@@ -254,18 +255,23 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: reduce ? 0 : 0.88, duration: 0.6 }}
             >
-              <a
+              <motion.a
                 href="#sabores"
-                className="px-7 py-3.5 rounded-full bg-paper text-ink text-[0.76rem] tracking-[0.22em] uppercase hover:bg-h2pro hover:text-paper transition-colors duration-300"
+                className="px-7 py-3.5 rounded-full bg-paper text-ink text-[0.76rem] tracking-[0.22em] uppercase"
+                whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
+                whileTap={reduce ? {} : { scale: 0.97 }}
+                transition={spring.snappy}
               >
                 Conoce los sabores
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#manifiesto"
                 className="text-[0.76rem] tracking-[0.22em] uppercase text-paper/60 hover:text-paper transition-colors flex items-center gap-2.5"
+                whileHover={reduce ? {} : { x: 4 }}
+                transition={spring.snappy}
               >
                 <span className="w-7 h-px bg-current" /> Manifiesto
-              </a>
+              </motion.a>
             </motion.div>
           </motion.div>
         </AnimatePresence>
@@ -292,24 +298,30 @@ export default function Hero() {
       </div>
 
       {/* ─── Arrow navigation ─── */}
-      <button
+      <motion.button
         aria-label="Slide anterior"
         onClick={() => goTo((current - 1 + SLIDES.length) % SLIDES.length, -1)}
-        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 items-center justify-center rounded-full border border-paper/20 text-paper/50 hover:border-paper/60 hover:text-paper transition-all duration-300 hover:scale-110"
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 items-center justify-center rounded-full border border-paper/20 text-paper/50 hover:border-paper/60 hover:text-paper transition-colors"
+        whileHover={reduce ? {} : { scale: 1.15 }}
+        whileTap={reduce ? {} : { scale: 0.9 }}
+        transition={spring.snappy}
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
           <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </button>
-      <button
+      </motion.button>
+      <motion.button
         aria-label="Slide siguiente"
         onClick={() => goTo((current + 1) % SLIDES.length, 1)}
-        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 items-center justify-center rounded-full border border-paper/20 text-paper/50 hover:border-paper/60 hover:text-paper transition-all duration-300 hover:scale-110"
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 items-center justify-center rounded-full border border-paper/20 text-paper/50 hover:border-paper/60 hover:text-paper transition-colors"
+        whileHover={reduce ? {} : { scale: 1.15 }}
+        whileTap={reduce ? {} : { scale: 0.9 }}
+        transition={spring.snappy}
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
           <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </button>
+      </motion.button>
 
       {/* ─── Bottom colophon ─── */}
       <motion.div

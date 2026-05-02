@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { spring } from "../lib/springs";
 
 const HEADLINE = [
   { text: "La proteína no", style: "" },
@@ -67,7 +68,7 @@ export default function Manifesto() {
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={spring.smooth}
         >
           <span className="eyebrow text-h2pro-glow">[ 01 ] Manifiesto</span>
         </motion.div>
@@ -99,7 +100,7 @@ export default function Manifesto() {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.75, delay: reduce ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
           >
             <p>
               Después de 20 años en el mundo de los suplementos naturistas vimos
@@ -122,7 +123,7 @@ export default function Manifesto() {
           initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={spring.gentle}
         >
           <div
             ref={bottleRef}

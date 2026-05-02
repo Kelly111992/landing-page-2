@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { spring } from "../lib/springs";
 
 export default function Lifestyle() {
   const reduce = useReducedMotion();
@@ -19,7 +20,7 @@ export default function Lifestyle() {
   const reveal = (delay = 0) =>
     reduce
       ? { initial: { opacity: 0 }, whileInView: { opacity: 1 }, viewport: { once: true, margin: "-50px" }, transition: { duration: 0.4 } }
-      : { initial: { opacity: 0, y: 18 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-50px" }, transition: { duration: 0.75, ease: EASE, delay } };
+      : { initial: { opacity: 0, y: 18 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-50px" }, transition: { ...spring.gentle, delay } };
 
   return (
     <section className="relative bg-paper py-28 md:py-40 overflow-hidden">
@@ -81,7 +82,7 @@ export default function Lifestyle() {
               initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={spring.gentle}
             >
               <div
                 ref={primaryRef}

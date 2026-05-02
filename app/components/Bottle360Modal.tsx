@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { spring } from "../lib/springs";
 
 type Props = {
   open: boolean;
@@ -49,10 +50,10 @@ export default function Bottle360Modal({
 
           {/* Modal panel */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 10 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, scale: 0.95, y: 12 }}
+            transition={spring.smooth}
             className="relative w-full max-w-[860px] bg-paper text-ink overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
@@ -68,11 +69,14 @@ export default function Bottle360Modal({
                   H2PRO {flavorName}
                 </span>
               </div>
-              <button
+              <motion.button
                 type="button"
                 onClick={onClose}
                 aria-label="Cerrar"
                 className="text-[0.7rem] tracking-[0.24em] uppercase text-ink/55 hover:text-ink transition-colors flex items-center gap-3"
+                whileHover={{ scale: 1.08, x: -2 }}
+                whileTap={{ scale: 0.94 }}
+                transition={spring.snappy}
               >
                 Cerrar
                 <svg
@@ -87,7 +91,7 @@ export default function Bottle360Modal({
                   <line x1="1" y1="1" x2="13" y2="13" />
                   <line x1="13" y1="1" x2="1" y2="13" />
                 </svg>
-              </button>
+              </motion.button>
             </div>
 
             {/* Video stage — paper bg matches video's white background */}

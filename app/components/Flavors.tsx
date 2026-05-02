@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import Bottle360Modal from "./Bottle360Modal";
+import { spring } from "../lib/springs";
 
 type Flavor = {
   id: string;
@@ -108,10 +109,10 @@ function FlavorBlock({ flavor }: { flavor: Flavor }) {
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-20 md:py-32 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
         {/* Bottle — clickable to open 360° */}
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40 }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ ...spring.gentle, delay: 0.05 }}
           className={`md:col-span-5 relative h-[460px] md:h-[600px] flex items-center justify-center ${
             isLeft ? "md:order-1" : "md:order-2"
           }`}
@@ -127,20 +128,23 @@ function FlavorBlock({ flavor }: { flavor: Flavor }) {
             }}
           />
 
-          <button
+          <motion.button
             type="button"
             onClick={() => setOpen(true)}
             aria-label={`Ver botella ${flavor.name} en 360°`}
             className="group relative w-[68%] max-w-[360px] aspect-[3/5] cursor-pointer"
+            whileTap={reduce ? {} : { scale: 0.97 }}
+            transition={spring.snappy}
           >
             <motion.div
               animate={reduce ? { y: 0 } : { y: [0, -14, 0] }}
+              whileHover={reduce ? {} : { scale: 1.05 }}
               transition={
                 reduce
                   ? { duration: 0 }
                   : { duration: 6, repeat: Infinity, ease: "easeInOut" }
               }
-              className="relative w-full h-full transition-transform duration-700 group-hover:scale-[1.04]"
+              className="relative w-full h-full"
             >
               <Image
                 src={flavor.bottle}
@@ -165,7 +169,7 @@ function FlavorBlock({ flavor }: { flavor: Flavor }) {
             >
               Vista 360° ↻
             </span>
-          </button>
+          </motion.button>
         </motion.div>
 
         {/* Text */}
@@ -173,7 +177,7 @@ function FlavorBlock({ flavor }: { flavor: Flavor }) {
           initial={reduce ? { opacity: 0 } : { opacity: 0, x: isLeft ? 30 : -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ ...spring.gentle, delay: 0.1 }}
           className={`md:col-span-7 ${isLeft ? "md:order-2" : "md:order-1"}`}
         >
           <span className="eyebrow" style={{ color: flavor.accent }}>
@@ -230,18 +234,21 @@ function FlavorBlock({ flavor }: { flavor: Flavor }) {
             >
               500 ml · 20 g proteína
             </span>
-            <button
+            <motion.button
               type="button"
               onClick={() => setOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[0.72rem] tracking-[0.24em] uppercase transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[0.72rem] tracking-[0.24em] uppercase"
               style={{
                 background: flavor.text,
                 color: flavor.bg.includes("#f4e04d") ? "#fdf6c4" : "#cdd5f0",
               }}
+              whileHover={reduce ? {} : { scale: 1.04 }}
+              whileTap={reduce ? {} : { scale: 0.96 }}
+              transition={spring.snappy}
             >
               <span>Ver en 360°</span>
               <span aria-hidden className="text-base">↻</span>
-            </button>
+            </motion.button>
           </div>
         </motion.div>
       </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { spring } from "../lib/springs";
 
 export default function TactileBanner() {
   const reduce = useReducedMotion();
@@ -16,7 +17,7 @@ export default function TactileBanner() {
         initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        transition={spring.gentle}
         className="relative w-full"
       >
         {/* Parallax image container */}
@@ -58,7 +59,7 @@ export default function TactileBanner() {
               initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ ...spring.gentle, delay: 0.15 }}
             >
               <span className="eyebrow text-paper/50 block mb-4">
                 Una vuelta de tapa

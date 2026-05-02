@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { spring } from "../lib/springs";
 
 type Persona = {
   n: string;
@@ -84,7 +85,7 @@ export default function Personas() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: EASE }}
+            transition={spring.smooth}
           >
             <span className="eyebrow text-ink/55">[ 05 ] Para quién</span>
           </motion.div>
@@ -93,7 +94,7 @@ export default function Personas() {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+            transition={{ ...spring.gentle, delay: 0.1 }}
           >
             <h2 className="display text-ink text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
               No es para los gritos del gym.{" "}
@@ -152,7 +153,7 @@ function PersonaSpread({
             initial={reduce ? { opacity: 0 } : { opacity: 0, x: isLeft ? -40 : 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, ease: EASE }}
+            transition={spring.gentle}
             className={`${imageCol} relative ${isLeft ? "md:order-1" : "md:order-2"}`}
           >
             <div

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import CountUp from "./CountUp";
+import { spring } from "../lib/springs";
 
 const hero = {
   unit: "g",
@@ -43,7 +44,7 @@ export default function Claims() {
   };
   const item = {
     hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+    show: { opacity: 1, y: 0, transition: spring.smooth },
   };
 
   return (
@@ -143,9 +144,8 @@ export default function Claims() {
                     opacity: 1,
                     x: 0,
                     transition: {
-                      duration: 0.7,
+                      ...spring.smooth,
                       delay: reduce ? 0 : i * 0.1,
-                      ease: EASE,
                     },
                   },
                 }}
@@ -181,7 +181,7 @@ export default function Claims() {
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: reduce ? 0 : 0.3, ease: EASE }}
+          transition={{ ...spring.gentle, delay: reduce ? 0 : 0.3 }}
           className="mt-20 md:mt-28 max-w-2xl text-[0.95rem] md:text-[1.05rem] leading-relaxed text-ink/60"
         >
           Toda decisión arriba puede comprobarse en la{" "}

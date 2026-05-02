@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { spring } from "../lib/springs";
 
 const rows = [
   { label: "Contenido energético", per100: "16 kcal", per500: "80 kcal" },
@@ -48,7 +49,7 @@ export default function NutritionLabel() {
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={spring.gentle}
           className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 border-2 border-paper"
         >
           {/* Big label panel */}
@@ -129,7 +130,7 @@ export default function NutritionLabel() {
                   initial={reduce ? { opacity: 0 } : { opacity: 0, x: 16 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: reduce ? 0 : 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ ...spring.smooth, delay: reduce ? 0 : 0.1 + i * 0.07 }}
                   className="flex items-baseline gap-5 py-4 border-b border-paper/15"
                 >
                   <span className="text-[0.7rem] tracking-[0.24em] text-paper/40 tabular-nums shrink-0 w-8">
