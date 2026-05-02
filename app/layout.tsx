@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "./components/ScrollProgress";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -40,6 +41,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${instrument.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
+        <ScrollProgress />
         {children}
       </body>
     </html>

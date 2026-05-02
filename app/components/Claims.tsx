@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import CountUp from "./CountUp";
 
 const hero = {
-  n: "20",
   unit: "g",
   index: "01",
   title: "Proteína whey aislada",
@@ -32,41 +32,54 @@ const secondary = [
   },
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function Claims() {
   const reduce = useReducedMotion();
-  const reveal = (delay = 0, y = 24) =>
-    reduce
-      ? { initial: { opacity: 0 }, whileInView: { opacity: 1 } }
-      : {
-          initial: { opacity: 0, y },
-          whileInView: { opacity: 1, y: 0 },
-        };
+
+  const stagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.08, delayChildren: reduce ? 0 : 0.1 } },
+  };
+  const item = {
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  };
 
   return (
     <section className="relative bg-paper py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+
         {/* Section header */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 md:mb-28">
-          <div className="md:col-span-4">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 md:mb-28"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <motion.div variants={item} className="md:col-span-4">
             <span className="eyebrow text-ink/55">[ 02 ] Composición</span>
-          </div>
-          <div className="md:col-span-8">
+          </motion.div>
+          <motion.div variants={item} className="md:col-span-8">
             <h2 className="display text-ink text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
               Cuatro decisiones,{" "}
               <span className="editorial text-h2pro font-normal">
                 cero compromisos.
               </span>
             </h2>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Editorial spread: hero number + spec rows */}
+        {/* Editorial spread */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0 items-stretch">
-          {/* Hero claim — 20g */}
+
+          {/* Hero claim — animated CountUp on "20" */}
           <motion.article
-            {...reveal(0, 32)}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1, ease: EASE }}
             className="md:col-span-8 md:pr-12 lg:pr-20 relative"
           >
             <div className="flex items-baseline gap-4 mb-6">
@@ -79,7 +92,7 @@ export default function Claims() {
               </span>
             </div>
 
-            {/* The number itself — extreme scale */}
+            {/* The number — animated count-up */}
             <div className="relative leading-none -ml-[0.05em]">
               <span
                 className="display text-ink block"
@@ -89,7 +102,7 @@ export default function Claims() {
                   lineHeight: 0.82,
                 }}
               >
-                {hero.n}
+                <CountUp to={20} duration={1.6} />
                 <span
                   className="editorial text-h2pro font-normal"
                   style={{
@@ -113,25 +126,34 @@ export default function Claims() {
             </div>
           </motion.article>
 
-          {/* Secondary rail */}
-          <div className="md:col-span-4 border-t md:border-t-0 md:border-l border-ink/15 md:pl-10 pt-6 md:pt-0 flex flex-col">
-            {secondary.map((item, i) => (
+          {/* Secondary rail — staggered */}
+          <motion.div
+            className="md:col-span-4 border-t md:border-t-0 md:border-l border-ink/15 md:pl-10 pt-6 md:pt-0 flex flex-col"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            {secondary.map((it, i) => (
               <motion.article
-                key={item.title}
-                {...reveal(0, 20)}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: reduce ? 0 : 0.15 + i * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
+                key={it.title}
+                variants={{
+                  hidden: reduce ? { opacity: 0 } : { opacity: 0, x: 20 },
+                  show: {
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                      duration: 0.7,
+                      delay: reduce ? 0 : i * 0.1,
+                      ease: EASE,
+                    },
+                  },
                 }}
-                className={`flex-1 py-8 md:py-10 ${
-                  i > 0 ? "border-t border-ink/15" : ""
-                }`}
+                className={`flex-1 py-8 md:py-10 ${i > 0 ? "border-t border-ink/15" : ""}`}
               >
                 <div className="flex items-baseline justify-between">
                   <span className="text-[0.68rem] tracking-[0.28em] uppercase text-ink/40">
-                    {item.index}
+                    {it.index}
                   </span>
                   <span
                     className="display text-ink leading-none"
@@ -140,25 +162,26 @@ export default function Claims() {
                       letterSpacing: "-0.04em",
                     }}
                   >
-                    {item.n}
+                    {it.n}
                   </span>
                 </div>
                 <h3 className="mt-5 text-[0.95rem] md:text-[1.05rem] font-semibold text-ink leading-tight">
-                  {item.title}
+                  {it.title}
                 </h3>
                 <p className="mt-2 text-[0.85rem] leading-relaxed text-ink/65">
-                  {item.body}
+                  {it.body}
                 </p>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Closing editorial line */}
+        {/* Closing line */}
         <motion.p
-          {...reveal(0.4, 16)}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: reduce ? 0 : 0.5 }}
+          transition={{ duration: 0.8, delay: reduce ? 0 : 0.3, ease: EASE }}
           className="mt-20 md:mt-28 max-w-2xl text-[0.95rem] md:text-[1.05rem] leading-relaxed text-ink/60"
         >
           Toda decisión arriba puede comprobarse en la{" "}

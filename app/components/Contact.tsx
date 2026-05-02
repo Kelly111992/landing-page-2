@@ -46,52 +46,32 @@ export default function Contact() {
             </p>
 
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/15 border border-paper/15 max-w-xl">
-              <a
-                href="mailto:diego@h2pro.fit"
-                className="group bg-ink p-6 hover:bg-h2pro-deep transition-colors"
-              >
-                <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-paper/45 mb-2">
-                  Correo
-                </span>
-                <span className="block text-[1.05rem] text-paper group-hover:underline">
-                  diego@h2pro.fit
-                </span>
-              </a>
-              <a
-                href="tel:+523331470485"
-                className="group bg-ink p-6 hover:bg-h2pro-deep transition-colors"
-              >
-                <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-paper/45 mb-2">
-                  Teléfono
-                </span>
-                <span className="block text-[1.05rem] text-paper group-hover:underline">
-                  +52 33 3147 0485
-                </span>
-              </a>
-              <a
-                href="https://instagram.com/h2pro.fit"
-                target="_blank"
-                rel="noopener"
-                className="group bg-ink p-6 hover:bg-h2pro-deep transition-colors"
-              >
-                <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-paper/45 mb-2">
-                  Instagram
-                </span>
-                <span className="block text-[1.05rem] text-paper group-hover:underline">
-                  @h2pro.fit
-                </span>
-              </a>
-              <a
-                href="https://www.h2pro.fit"
-                className="group bg-ink p-6 hover:bg-h2pro-deep transition-colors"
-              >
-                <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-paper/45 mb-2">
-                  Web
-                </span>
-                <span className="block text-[1.05rem] text-paper group-hover:underline">
-                  www.h2pro.fit
-                </span>
-              </a>
+              {[
+                { href: "mailto:diego@h2pro.fit", label: "Correo", value: "diego@h2pro.fit", target: undefined, rel: undefined },
+                { href: "tel:+523331470485", label: "Teléfono", value: "+52 33 3147 0485", target: undefined, rel: undefined },
+                { href: "https://instagram.com/h2pro.fit", label: "Instagram", value: "@h2pro.fit", target: "_blank", rel: "noopener" },
+                { href: "https://www.h2pro.fit", label: "Web", value: "www.h2pro.fit", target: undefined, rel: undefined },
+              ].map((card, i) => (
+                <motion.a
+                  key={card.label}
+                  href={card.href}
+                  target={card.target}
+                  rel={card.rel}
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, delay: reduce ? 0 : 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ backgroundColor: "var(--color-h2pro-deep)" }}
+                  className="group bg-ink p-6 transition-colors"
+                >
+                  <span className="block text-[0.65rem] tracking-[0.3em] uppercase text-paper/45 mb-2">
+                    {card.label}
+                  </span>
+                  <span className="block text-[1.05rem] text-paper group-hover:underline">
+                    {card.value}
+                  </span>
+                </motion.a>
+              ))}
             </div>
 
           </div>

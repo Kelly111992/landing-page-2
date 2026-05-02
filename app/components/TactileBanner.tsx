@@ -1,32 +1,51 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export default function TactileBanner() {
   const reduce = useReducedMotion();
+  const imgRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: imgRef, offset: ["start end", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [-60, 60]);
 
   return (
     <section aria-label="Producto" className="relative bg-paper overflow-hidden">
       <motion.figure
-        initial={reduce ? { opacity: 0 } : { opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full"
       >
-        <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7]">
-          <Image
-            src="/lifestyle/hero-product.jpg"
-            alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con condensación y fruta fresca"
-            fill
-            sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center 40%" }}
-          />
+        {/* Parallax image container */}
+        <div ref={imgRef} className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7]">
+          <motion.div
+            className="parallax-img"
+            style={{
+              y: imageY,
+              position: "absolute",
+              top: "-15%",
+              bottom: "-15%",
+              left: 0,
+              right: 0,
+            }}
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src="/lifestyle/hero-product.jpg"
+                alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con condensación y fruta fresca"
+                fill
+                sizes="100vw"
+                style={{ objectFit: "cover", objectPosition: "center 40%" }}
+              />
+            </div>
+          </motion.div>
 
           {/* Overlay */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 z-10"
             style={{
               background:
                 "linear-gradient(to top, rgba(10,14,18,0.75) 0%, rgba(10,14,18,0.4) 50%, transparent 100%), linear-gradient(to right, rgba(10,14,18,0.65) 0%, rgba(10,14,18,0.2) 55%, transparent 80%)",
@@ -34,8 +53,13 @@ export default function TactileBanner() {
           />
 
           {/* Texto editorial */}
-          <div className="absolute inset-0 flex items-end md:items-center px-6 md:px-16 lg:px-20 pb-6 md:pb-0 max-w-xl">
-            <div>
+          <div className="absolute inset-0 z-20 flex items-end md:items-center px-6 md:px-16 lg:px-20 pb-6 md:pb-0 max-w-xl">
+            <motion.div
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >
               <span className="eyebrow text-paper/50 block mb-4">
                 Una vuelta de tapa
               </span>
@@ -53,7 +77,7 @@ export default function TactileBanner() {
               <p className="mt-5 text-paper/55 text-[0.88rem] leading-relaxed max-w-xs">
                 20 g de proteína aislada en 500 ml de agua clara. Lista cuando tú lo estés.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
 

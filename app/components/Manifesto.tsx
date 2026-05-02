@@ -1,24 +1,41 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+
+const HEADLINE = [
+  { text: "La proteína no", style: "" },
+  { text: "tenía que ser", style: "" },
+  { text: "espesa, lenta", style: "editorial text-h2pro-glow font-normal" },
+  { text: "ni complicada.", style: "" },
+];
 
 export default function Manifesto() {
   const reduce = useReducedMotion();
-  const reveal = (delay = 0) =>
-    reduce
-      ? {
-          initial: { opacity: 0 },
-          whileInView: { opacity: 1 },
-          transition: { duration: 0.5, delay: 0 },
-          viewport: { once: true, margin: "-50px" },
-        }
-      : {
-          initial: { opacity: 0, y: 15 },
-          whileInView: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: "easeOut" as const },
-          viewport: { once: true, margin: "-50px" },
-        };
+  const bottleRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: bottleRef, offset: ["start end", "end start"] });
+  const bottleY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [-50, 50]);
+
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: reduce ? 0 : 0.09,
+        delayChildren: reduce ? 0 : 0.1,
+      },
+    },
+  };
+
+  const line = {
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: "60%", clipPath: "inset(0 0 100% 0)" },
+    show: {
+      opacity: 1,
+      y: "0%",
+      clipPath: "inset(0 0 0% 0)",
+      transition: { duration: reduce ? 0.4 : 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+    },
+  };
 
   return (
     <section
@@ -45,24 +62,45 @@ export default function Manifesto() {
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
         {/* Side label */}
-        <div className="md:col-span-2 md:pt-2">
+        <motion.div
+          className="md:col-span-2 md:pt-2"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <span className="eyebrow text-h2pro-glow">[ 01 ] Manifiesto</span>
-        </div>
+        </motion.div>
 
-        {/* Main statement */}
-        <motion.div {...reveal(0)} className="md:col-span-7">
-          <h2 className="display text-paper text-[clamp(2.6rem,6.4vw,5.8rem)]">
-            La proteína no
-            <br />
-            tenía que ser
-            <br />
-            <span className="editorial text-h2pro-glow font-normal">
-              espesa, lenta
-            </span>
-            <br />
-            ni complicada.
-          </h2>
-          <div className="mt-12 max-w-xl space-y-5 text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed">
+        {/* Main statement — line-by-line reveal */}
+        <div className="md:col-span-7">
+          <motion.h2
+            className="display text-paper text-[clamp(2.6rem,6.4vw,5.8rem)]"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            aria-label="La proteína no tenía que ser espesa, lenta ni complicada."
+          >
+            {HEADLINE.map((l, i) => (
+              <span key={i} className="block overflow-hidden leading-[1.1]">
+                <motion.span
+                  className={`block ${l.style}`}
+                  variants={line}
+                >
+                  {l.text}
+                </motion.span>
+              </span>
+            ))}
+          </motion.h2>
+
+          <motion.div
+            className="mt-12 max-w-xl space-y-5 text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.75, delay: reduce ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
             <p>
               Después de 20 años en el mundo de los suplementos naturistas vimos
               que faltaba algo: una bebida proteica clara, ligera y honesta.
@@ -75,22 +113,43 @@ export default function Manifesto() {
               <span className="editorial text-paper">protein water</span>{" "}
               hecho en México.
             </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
-        {/* Cinematic bottle photograph on right column */}
+        {/* Cinematic bottle photograph — with parallax */}
         <motion.figure
-          {...reveal(0.1)}
           className="md:col-span-3 relative"
+          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
-            <Image
-              src="/lifestyle/manifesto.jpg"
-              alt="Botella H2PRO Blueberry sobre piedra negra, iluminada por un haz de luz cálida"
-              fill
-              sizes="(max-width: 768px) 100vw, 30vw"
-              style={{ objectFit: "cover" }}
-            />
+          <div
+            ref={bottleRef}
+            className="relative overflow-hidden"
+            style={{ aspectRatio: "4/5" }}
+          >
+            <motion.div
+              className="parallax-img"
+              style={{
+                y: bottleY,
+                position: "absolute",
+                top: "-15%",
+                bottom: "-15%",
+                left: 0,
+                right: 0,
+              }}
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  src="/lifestyle/manifesto.jpg"
+                  alt="Botella H2PRO Blueberry sobre piedra negra, iluminada por un haz de luz cálida"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 30vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </motion.div>
           </div>
           <figcaption className="mt-3 flex items-baseline justify-between text-[0.6rem] tracking-[0.28em] uppercase text-paper/40">
             <span>Pieza única</span>
@@ -99,7 +158,7 @@ export default function Manifesto() {
         </motion.figure>
       </div>
 
-      {/* Marquee strip with brand keywords */}
+      {/* Marquee strip */}
       <div className="relative z-10 border-t border-paper/10 py-6 overflow-hidden whitespace-nowrap">
         <div className="flex gap-12 animate-[shimmer_30s_linear_infinite] text-paper/40 text-[0.78rem] tracking-[0.32em] uppercase">
           {Array.from({ length: 4 }).map((_, i) => (

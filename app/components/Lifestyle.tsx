@@ -1,10 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export default function Lifestyle() {
   const reduce = useReducedMotion();
+
+  const primaryRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: primaryProgress } = useScroll({ target: primaryRef, offset: ["start end", "end start"] });
+  const primaryY = useTransform(primaryProgress, [0, 1], reduce ? [0, 0] : [-50, 50]);
+
+  const bodegonRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: bodegonProgress } = useScroll({ target: bodegonRef, offset: ["start end", "end start"] });
+  const bodegonY = useTransform(bodegonProgress, [0, 1], reduce ? [0, 0] : [-35, 35]);
 
   const EASE = [0.22, 1, 0.36, 1] as const;
   const reveal = (delay = 0) =>
@@ -16,7 +25,7 @@ export default function Lifestyle() {
     <section className="relative bg-paper py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
 
-        {/* ── Top rule + section tag ── */}
+        {/* Top rule + section tag */}
         <motion.div
           {...reveal(0)}
           className="flex items-center justify-between mb-16 md:mb-20 border-t border-ink/10 pt-6"
@@ -25,10 +34,10 @@ export default function Lifestyle() {
           <span className="eyebrow text-ink/30">Ed. 01 · 2026</span>
         </motion.div>
 
-        {/* ── Main grid: text left, dual-image composition right ── */}
+        {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
 
-          {/* Editorial caption — col 1–4 */}
+          {/* Editorial caption — sticky */}
           <motion.div
             {...reveal(0.1)}
             className="md:col-span-4 md:order-1 order-2 md:pt-8 md:sticky md:top-28"
@@ -45,7 +54,6 @@ export default function Lifestyle() {
               nada, sin diluir nada.
             </p>
 
-            {/* Small proof points */}
             <ul className="mt-10 space-y-3 border-t border-ink/10 pt-8">
               {[
                 "20 g proteína aislada",
@@ -65,20 +73,42 @@ export default function Lifestyle() {
             </ul>
           </motion.div>
 
-          {/* Dual-image editorial composition — col 5–12 */}
+          {/* Dual-image composition */}
           <div className="md:col-span-8 md:order-2 order-1">
 
-            {/* Primary image — full width, editorial product shot */}
-            <motion.figure {...reveal(0.15)}>
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
-                <Image
-                  src="/lifestyle/hero-product.jpg"
-                  alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con agua y fruta fresca"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 66vw"
-                  priority={false}
-                  style={{ objectFit: "cover", objectPosition: "center" }}
-                />
+            {/* Primary image — parallax */}
+            <motion.figure
+              initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div
+                ref={primaryRef}
+                className="relative w-full overflow-hidden"
+                style={{ aspectRatio: "16/9" }}
+              >
+                <motion.div
+                  className="parallax-img"
+                  style={{
+                    y: primaryY,
+                    position: "absolute",
+                    top: "-15%",
+                    bottom: "-15%",
+                    left: 0,
+                    right: 0,
+                  }}
+                >
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/lifestyle/hero-product.jpg"
+                      alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con agua y fruta fresca"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 66vw"
+                      style={{ objectFit: "cover", objectPosition: "center" }}
+                    />
+                  </div>
+                </motion.div>
               </div>
               <figcaption className="mt-3 flex items-baseline justify-between text-[0.62rem] tracking-[0.28em] uppercase text-ink/35">
                 <span>Limonada · Blueberry — Los dos sabores</span>
@@ -86,28 +116,48 @@ export default function Lifestyle() {
               </figcaption>
             </motion.figure>
 
-            {/* Secondary row: bodegón real + pull quote */}
+            {/* Secondary row */}
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 items-end">
 
-              {/* Bodegón — the intimate real photo */}
-              <motion.figure {...reveal(0.25)}>
-                <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                  <Image
-                    src="/lifestyle/bodegon.jpg"
-                    alt="Botellas H2PRO sobre una mesa con libro, lentes y taza de café"
-                    fill
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
-                  />
+              {/* Bodegón — with parallax */}
+              <motion.figure
+                {...reveal(0.15)}
+              >
+                <div
+                  ref={bodegonRef}
+                  className="relative w-full overflow-hidden"
+                  style={{ aspectRatio: "4/3" }}
+                >
+                  <motion.div
+                    className="parallax-img"
+                    style={{
+                      y: bodegonY,
+                      position: "absolute",
+                      top: "-15%",
+                      bottom: "-15%",
+                      left: 0,
+                      right: 0,
+                    }}
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/lifestyle/bodegon.jpg"
+                        alt="Botellas H2PRO sobre una mesa con libro, lentes y taza de café"
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        style={{ objectFit: "cover", objectPosition: "center" }}
+                      />
+                    </div>
+                  </motion.div>
                 </div>
                 <figcaption className="mt-3 text-[0.62rem] tracking-[0.28em] uppercase text-ink/35">
                   Producto en contexto
                 </figcaption>
               </motion.figure>
 
-              {/* Pull quote block */}
+              {/* Pull quote */}
               <motion.blockquote
-                {...reveal(0.35)}
+                {...reveal(0.25)}
                 className="pb-2"
               >
                 <span className="block text-[2.6rem] leading-none text-ink/10 font-serif select-none mb-3" aria-hidden>
@@ -124,7 +174,6 @@ export default function Lifestyle() {
                 </footer>
               </motion.blockquote>
             </div>
-
           </div>
         </div>
       </div>
