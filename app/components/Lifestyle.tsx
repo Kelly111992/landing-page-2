@@ -102,8 +102,8 @@ export default function Lifestyle() {
                 >
                   <div className="relative w-full h-full">
                     <Image
-                      src="/lifestyle/hero-product.jpg"
-                      alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con agua y fruta fresca"
+                      src="/lifestyle/bodegon.jpg"
+                      alt="Las dos botellas H2PRO sobre una mesa de madera con café, lentes y el libro Annie Leibovitz at Work"
                       fill
                       sizes="(max-width: 768px) 100vw, 66vw"
                       style={{ objectFit: "cover", objectPosition: "center" }}
@@ -142,17 +142,17 @@ export default function Lifestyle() {
                   >
                     <div className="relative w-full h-full">
                       <Image
-                        src="/lifestyle/bodegon.jpg"
-                        alt="Botellas H2PRO sobre una mesa con libro, lentes y taza de café"
+                        src="/bottles/photo-limonada-1.jpg"
+                        alt="Botella H2PRO Limonada — producto real, 500 ml, 20 g de proteína aislada"
                         fill
                         sizes="(max-width: 640px) 100vw, 33vw"
-                        style={{ objectFit: "cover", objectPosition: "center" }}
+                        style={{ objectFit: "contain", objectPosition: "center", background: "var(--color-paper)" }}
                       />
                     </div>
                   </motion.div>
                 </div>
                 <figcaption className="mt-3 text-[0.62rem] tracking-[0.28em] uppercase text-ink/35">
-                  Producto en contexto
+                  Producto real · 500 ml
                 </figcaption>
               </motion.figure>
 

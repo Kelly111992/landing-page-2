@@ -35,11 +35,11 @@ export default function TactileBanner() {
           >
             <div className="relative w-full h-full">
               <Image
-                src="/lifestyle/hero-product.jpg"
-                alt="Las dos botellas H2PRO — Limonada y Blueberry — en composición editorial con condensación y fruta fresca"
+                src="/lifestyle/macro-hands.jpg"
+                alt="Manos abriendo la tapa de una botella H2PRO Limonada — una vuelta y lista para tomar"
                 fill
                 sizes="100vw"
-                style={{ objectFit: "cover", objectPosition: "center 40%" }}
+                style={{ objectFit: "cover", objectPosition: "center center" }}
               />
             </div>
           </motion.div>
