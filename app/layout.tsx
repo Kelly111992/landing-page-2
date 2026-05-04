@@ -23,12 +23,33 @@ export const metadata: Metadata = {
   description:
     "El primer protein water mexicano. 20 g de proteína, sin azúcar, sin lactosa, sin espesantes. Lista para tomar.",
   metadataBase: new URL("https://www.h2pro.fit"),
+  icons: {
+    icon: "/brand/logo.png",
+    apple: "/brand/logo.png",
+  },
   openGraph: {
     title: "H2PRO — Clear Protein",
     description:
       "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
     type: "website",
     locale: "es_MX",
+    url: "https://www.h2pro.fit",
+    siteName: "H2PRO",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "H2PRO — Clear Protein",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "H2PRO — Clear Protein",
+    description:
+      "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
+    images: ["/opengraph-image"],
   },
 };
 
