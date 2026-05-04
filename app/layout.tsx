@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "H2PRO",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/brand/og-image.png",
         width: 1200,
         height: 630,
         alt: "H2PRO — Clear Protein",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "H2PRO — Clear Protein",
     description:
       "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
-    images: ["/opengraph-image"],
+    images: ["/brand/og-image.png"],
   },
 };
 
