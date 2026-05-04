@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "H2PRO — Clear Protein. Hecho en México.",
   description:
     "El primer protein water mexicano. 20 g de proteína, sin azúcar, sin lactosa, sin espesantes. Lista para tomar.",
-  metadataBase: new URL("https://www.h2pro.fit"),
+  metadataBase: new URL("https://landing-page-2-kellys-projects-00accd94.vercel.app"),
   icons: {
     icon: "/brand/logo.png",
     apple: "/brand/logo.png",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
     type: "website",
     locale: "es_MX",
-    url: "https://www.h2pro.fit",
+    url: "https://landing-page-2-kellys-projects-00accd94.vercel.app",
     siteName: "H2PRO",
     images: [
       {
