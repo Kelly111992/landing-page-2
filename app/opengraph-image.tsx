@@ -16,46 +16,31 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "#0086d6",
+          background: "#f0ede8",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: 40,
+          gap: 32,
           padding: "0 80px",
         }}
       >
-        {/* subtle radial glow */}
-        <div
-          style={{
-            position: "absolute",
-            width: 700,
-            height: 700,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(74,180,240,0.35) 0%, transparent 70%)",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        />
         <img
           src={logoSrc}
-          style={{ width: 560, objectFit: "contain" }}
+          style={{ width: 580, objectFit: "contain" }}
           alt="H2PRO"
         />
         <p
           style={{
-            color: "#f0ede8",
-            fontSize: 32,
+            color: "#0086d6",
+            fontSize: 28,
             fontFamily: "sans-serif",
-            fontWeight: 400,
-            letterSpacing: "0.02em",
+            fontWeight: 600,
+            letterSpacing: "0.04em",
             margin: 0,
             textAlign: "center",
-            opacity: 0.9,
           }}
         >
           20 g de proteína en agua clara · Sin azúcar · Sin lactosa
