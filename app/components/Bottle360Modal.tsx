@@ -64,13 +64,55 @@ function ModalContent({
           }
           className="fixed inset-0 z-[9999] flex flex-col"
           style={{
-            /* Spotlight: blanco en el centro, oscuro en los bordes
-               El mix-blend-mode del video hará que su bg blanco se funda aquí */
-            background:
-              "radial-gradient(ellipse 55% 65% at 50% 52%, #ffffff 0%, #f2ede5 35%, #1a1208 68%, #040508 100%)",
+            /* Studio-lit dark: bg ink + accent-tinted glow + soft floor light from below */
+            background: `
+              radial-gradient(ellipse 60% 55% at 50% 50%, ${accent}33 0%, ${accent}14 32%, transparent 62%),
+              radial-gradient(ellipse 140% 80% at 50% 100%, ${accent}1F 0%, transparent 55%),
+              radial-gradient(ellipse 160% 120% at 50% 50%, #101820 0%, #0a0e12 60%, #06080b 100%)
+            `,
           }}
           onClick={onClose}
         >
+          {/* Hairline grid — premium scientific texture */}
+          <div
+            aria-hidden
+            className="absolute inset-0 z-0 pointer-events-none opacity-[0.12]"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(240,237,232,0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(240,237,232,0.5) 1px, transparent 1px)
+              `,
+              backgroundSize: "120px 120px",
+              maskImage:
+                "radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%)",
+            }}
+          />
+
+          {/* Grain overlay — film texture */}
+          <div
+            aria-hidden
+            className="absolute inset-0 z-0 pointer-events-none opacity-[0.35] mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E\")",
+            }}
+          />
+
+          {/* Stage hairline — bottle "stands on" a thin accent line */}
+          <div
+            aria-hidden
+            className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-10"
+            style={{
+              top: "75%",
+              width: "min(46vw, 520px)",
+              height: "1px",
+              background: `linear-gradient(to right, transparent 0%, ${accent}66 50%, transparent 100%)`,
+              boxShadow: `0 0 24px ${accent}40`,
+            }}
+          />
+
           {/* Scan line */}
           <motion.div
             aria-hidden
@@ -124,7 +166,7 @@ function ModalContent({
                 className="block h-px w-10 origin-left"
                 style={{ background: accent }}
               />
-              <span className="text-[0.57rem] tracking-[0.44em] uppercase text-white/35">
+              <span className="text-[0.57rem] tracking-[0.44em] uppercase text-white/55">
                 H2PRO · Clear Protein
               </span>
               <span
@@ -139,7 +181,7 @@ function ModalContent({
               type="button"
               onClick={onClose}
               aria-label="Cerrar vista 360°"
-              className="group flex items-center gap-3 text-[0.6rem] tracking-[0.38em] uppercase text-white/30 hover:text-white/65 transition-colors"
+              className="group flex items-center gap-3 text-[0.6rem] tracking-[0.38em] uppercase text-white/50 hover:text-white/85 transition-colors"
               whileHover={reduce ? {} : { x: -3 }}
               whileTap={reduce ? {} : { scale: 0.92 }}
               transition={spring.snappy}
@@ -187,7 +229,7 @@ function ModalContent({
               </svg>
             </motion.div>
 
-            {/* Video con vignette circular — funde bordes blancos con el spotlight */}
+            {/* Video — bottle plays inside; the donut overlay below erases its white backdrop */}
             <motion.div
               initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.88, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -197,11 +239,9 @@ function ModalContent({
                 ease: [0.22, 1, 0.36, 1],
                 delay: reduce ? 0 : 0.18,
               }}
+              className="relative"
               style={{
-                /* Máscara radial: opaco en el centro, transparente en los bordes
-                   El fondo blanco del video se funde con el spotlight del modal */
-                WebkitMaskImage: "radial-gradient(ellipse 72% 82% at 50% 50%, black 42%, transparent 72%)",
-                maskImage: "radial-gradient(ellipse 72% 82% at 50% 50%, black 42%, transparent 72%)",
+                filter: `drop-shadow(0 30px 50px ${accent}33) drop-shadow(0 10px 18px rgba(0,0,0,0.5))`,
               }}
             >
               <video
@@ -212,7 +252,39 @@ function ModalContent({
                 loop
                 playsInline
                 preload="auto"
-                className="max-h-[62vh] w-auto object-contain"
+                className="max-h-[62vh] w-auto object-contain block"
+              />
+
+              {/* Donut eraser — transparent over the bottle silhouette, opaque
+                  ink over the video's white backdrop. Center hole is sized to the
+                  widest bottle profile. */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(
+                    ellipse 19% 50% at 50% 50%,
+                    transparent 0%,
+                    transparent 72%,
+                    rgba(10,14,18,0.6) 84%,
+                    #0a0e12 95%,
+                    #0a0e12 100%
+                  )`,
+                }}
+              />
+
+              {/* Soft inner rim of flavor color — implies studio rim-light on the bottle */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none mix-blend-screen"
+                style={{
+                  background: `radial-gradient(
+                    ellipse 22% 56% at 50% 50%,
+                    transparent 60%,
+                    ${accent}26 78%,
+                    transparent 92%
+                  )`,
+                }}
               />
             </motion.div>
           </div>
@@ -226,7 +298,7 @@ function ModalContent({
             className="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 md:py-7"
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="text-[0.55rem] tracking-[0.42em] uppercase text-white/25">
+            <span className="text-[0.55rem] tracking-[0.42em] uppercase text-white/45">
               500 ml · 20 g proteína · PET tapa rosca 38 mm
             </span>
             <SpinningBadge accent={accent} circleId={circleId} />

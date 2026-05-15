@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
-import Bottle360Modal from "./Bottle360Modal";
 import { spring } from "../lib/springs";
 
 type Flavor = {
@@ -91,7 +89,6 @@ function FlavorBlock({
   total: number;
 }) {
   const isLeft = flavor.align === "left";
-  const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
 
   // Hex → rgba helper for inline alpha tints
@@ -210,17 +207,9 @@ function FlavorBlock({
             }}
           />
 
-          <motion.button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-label={`Ver botella ${flavor.name} en 360°`}
-            className="group relative w-[72%] max-w-[380px] aspect-[3/5] cursor-pointer"
-            whileTap={reduce ? {} : { scale: 0.97 }}
-            transition={spring.snappy}
-          >
+          <div className="relative w-[72%] max-w-[380px] aspect-[3/5]">
             <motion.div
               animate={reduce ? { y: 0 } : { y: [0, -16, 0] }}
-              whileHover={reduce ? {} : { scale: 1.04 }}
               transition={
                 reduce
                   ? { duration: 0 }
@@ -239,22 +228,7 @@ function FlavorBlock({
                 }}
               />
             </motion.div>
-
-            {/* Persistent tap hint — refined chip */}
-            <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 flex items-center gap-2 px-4 py-2 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap pointer-events-none border border-paper/15 backdrop-blur-sm bg-ink/40">
-              <span
-                aria-hidden
-                className="inline-block w-1 h-1 rounded-full"
-                style={{ background: flavor.accent }}
-              />
-              <span
-                className="text-[0.6rem] tracking-[0.32em] uppercase"
-                style={{ color: flavor.accent }}
-              >
-                Tap · 360°
-              </span>
-            </div>
-          </motion.button>
+          </div>
         </motion.div>
 
         {/* Text */}
@@ -343,51 +317,19 @@ function FlavorBlock({
             ))}
           </ul>
 
-          {/* Footer row: spec + ghost CTA */}
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-6">
+          {/* Footer row: spec */}
+          <div className="mt-12 flex items-center gap-3">
+            <span
+              aria-hidden
+              className="h-px w-8"
+              style={{ background: flavor.accent }}
+            />
             <span className="text-[0.7rem] tracking-[0.3em] uppercase text-paper/55">
               500 ml · 20 g proteína
             </span>
-
-            <motion.button
-              type="button"
-              onClick={() => setOpen(true)}
-              className="group relative inline-flex items-center gap-3 px-7 py-3.5 rounded-full border overflow-hidden"
-              style={{
-                borderColor: rgba(flavor.accent, 0.45),
-                color: flavor.accent,
-              }}
-              whileHover={reduce ? {} : { scale: 1.03 }}
-              whileTap={reduce ? {} : { scale: 0.97 }}
-              transition={spring.snappy}
-            >
-              {/* Hover fill */}
-              <span
-                aria-hidden
-                className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
-                style={{ background: rgba(flavor.accent, 0.12) }}
-              />
-              <span className="relative text-[0.7rem] tracking-[0.28em] uppercase font-semibold">
-                Ver en 360°
-              </span>
-              <span
-                aria-hidden
-                className="relative text-base inline-block group-hover:rotate-180 transition-transform duration-700"
-              >
-                ↻
-              </span>
-            </motion.button>
           </div>
         </motion.div>
       </div>
-
-      <Bottle360Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        video={flavor.video}
-        flavorName={flavor.name}
-        accent={flavor.accent}
-      />
     </article>
   );
 }
