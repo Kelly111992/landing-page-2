@@ -1,151 +1,60 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
-
-const SLIDES = [
-  {
-    id: 0,
-    bg: "/lifestyle/hero-product.jpg",
-    eyebrow: "El primer Protein Water · México",
-    headline: ["Proteína", "clara,", "sin pesadez."],
-    sub: "20 g de proteína aislada · 500 ml · Sin azúcar ni espesantes.",
-    accent: "limonada" as const,
-  },
-  {
-    id: 1,
-    bg: "/lifestyle/hero-runner-wide.jpg",
-    eyebrow: "Para quién lo da todo",
-    headline: ["Tu rutina,", "sin interrupciones."],
-    sub: "Lista para tomar. Sin preparar. Sin mezclar. Sin excusas.",
-    accent: "blueberry" as const,
-  },
-  {
-    id: 2,
-    bg: "/lifestyle/hero-desk.jpg",
-    eyebrow: "H2PRO · Clear Protein · Ed. 01",
-    headline: ["Proteína para", "todos los días."],
-    sub: "No solo post-gym. También en la oficina, el café, el camino.",
-    accent: "limonada" as const,
-  },
-];
-
-const INTERVAL = 6000;
 
 const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 
+const slide = {
+  bg: "/lifestyle/hero-product.jpg",
+  eyebrow: "El primer Protein Water · México",
+  headline: ["Proteína", "clara,", "sin pesadez."],
+  sub: "20 g de proteína aislada · 500 ml · Sin azúcar ni espesantes.",
+  accent: "limonada" as const,
+};
+
 export default function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [, setDirection] = useState(1);
   const reduce = useReducedMotion();
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [paused, setPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const goTo = useCallback(
-    (index: number, dir?: number) => {
-      setDirection(dir ?? (index > current ? 1 : -1));
-      setCurrent(index);
-      setProgress(0);
-    },
-    [current]
-  );
-
-  const advance = useCallback(() => {
-    setDirection(1);
-    setCurrent((c) => (c + 1) % SLIDES.length);
-    setProgress(0);
-  }, []);
-
-  // Auto-advance
-  useEffect(() => {
-    if (paused || reduce) return;
-    timerRef.current = setTimeout(advance, INTERVAL);
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [current, paused, advance, reduce]);
-
-  // Progress bar fill
-  useEffect(() => {
-    if (paused || reduce) {
-      setProgress(paused ? progress : 100);
-      return;
-    }
-    setProgress(0);
-    const start = Date.now();
-    progressRef.current = setInterval(() => {
-      const elapsed = Date.now() - start;
-      const pct = Math.min((elapsed / INTERVAL) * 100, 100);
-      setProgress(pct);
-      if (pct >= 100 && progressRef.current) clearInterval(progressRef.current);
-    }, 30);
-    return () => {
-      if (progressRef.current) clearInterval(progressRef.current);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, paused, reduce]);
-
-  const slide = SLIDES[current];
 
   return (
     <section
       id="top"
       className="relative min-h-[100svh] w-full overflow-hidden bg-ink"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
-      {/* ─── Background image stack with Ken Burns zoom-out ─── */}
-      <AnimatePresence initial={false} mode="sync">
-        <motion.div
-          key={`bg-${current}`}
-          className="absolute inset-0 z-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: reduce ? 0.01 : 0.9, ease: "easeInOut" }}
-        >
-          {/* Ken Burns: starts scale(1.08), slowly pulls back to scale(1) */}
-          <motion.div
-            className="absolute inset-0"
-            initial={{ scale: reduce ? 1 : 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{
-              duration: reduce ? 0 : INTERVAL / 1000 + 1,
-              ease: "linear",
-            }}
-          >
-            <Image
-              src={slide.bg}
-              alt=""
-              fill
-              priority={current === 0}
-              sizes="100vw"
-              style={{ objectFit: "cover", objectPosition: "center top" }}
-            />
-          </motion.div>
+      {/* ─── Background image with Ken Burns zoom-out ─── */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        initial={{ scale: reduce ? 1 : 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: reduce ? 0 : 7, ease: "linear" }}
+      >
+        <Image
+          src={slide.bg}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center top" }}
+        />
+      </motion.div>
 
-          {/* Cinematic overlay: dark vignette from bottom */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(10,14,18,0.92) 0%, rgba(10,14,18,0.55) 40%, rgba(10,14,18,0.28) 70%, rgba(10,14,18,0.15) 100%)",
-            }}
-          />
-          {/* Left edge fade for text legibility */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(10,14,18,0.65) 0%, rgba(10,14,18,0.2) 50%, transparent 100%)",
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* Cinematic overlay */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(10,14,18,0.92) 0%, rgba(10,14,18,0.55) 40%, rgba(10,14,18,0.28) 70%, rgba(10,14,18,0.15) 100%)",
+        }}
+      />
+      {/* Left edge fade */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(10,14,18,0.65) 0%, rgba(10,14,18,0.2) 50%, transparent 100%)",
+        }}
+      />
 
       {/* ─── Vertical spine label ─── */}
       <div
@@ -158,162 +67,87 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* ─── Slide counter top-right ─── */}
-      <div className="absolute top-24 right-8 z-20 hidden md:flex items-center gap-2">
-        <span className="text-paper/40 text-[0.62rem] tracking-[0.32em] uppercase tabular-nums">
-          {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
-        </span>
-      </div>
-
       {/* ─── Main editorial content ─── */}
       <div className="relative z-20 min-h-[100svh] flex flex-col justify-end px-6 md:px-14 lg:px-20 pb-28 md:pb-32 pt-28">
-        <AnimatePresence mode="wait" initial={false}>
+        <div className="max-w-4xl">
+          {/* Eyebrow */}
+          <motion.span
+            className="eyebrow text-paper/55 block mb-5"
+            initial={reduce ? {} : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: reduce ? 0 : 0.35, duration: 0.6 }}
+          >
+            {slide.eyebrow}
+          </motion.span>
+
+          {/* Headline */}
+          <h1
+            className="display text-paper leading-[0.88] mb-6"
+            style={{ fontSize: "clamp(3.4rem, 10vw, 9rem)" }}
+          >
+            {slide.headline.map((line, i) => (
+              <motion.span
+                key={i}
+                className="block"
+                initial={reduce ? {} : { opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: reduce ? 0 : 0.4 + i * 0.12,
+                  duration: 0.7,
+                  ease: EASE_CINEMA,
+                }}
+              >
+                {i === slide.headline.length - 1 ? (
+                  <span
+                    className="editorial font-normal"
+                    style={{ color: "var(--color-limonada)" }}
+                  >
+                    {line}
+                  </span>
+                ) : (
+                  line
+                )}
+              </motion.span>
+            ))}
+          </h1>
+
+          {/* Subtext */}
+          <motion.p
+            className="text-paper/65 text-[0.9rem] md:text-[1rem] leading-relaxed max-w-sm md:max-w-md"
+            initial={reduce ? {} : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: reduce ? 0 : 0.72, duration: 0.7 }}
+          >
+            {slide.sub}
+          </motion.p>
+
+          {/* CTA row */}
           <motion.div
-            key={`copy-${current}`}
-            className="max-w-4xl"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -16 }}
-            transition={{
-              duration: reduce ? 0.2 : 0.75,
-              ease: EASE_CINEMA,
-              delay: reduce ? 0 : 0.25,
-            }}
+            className="mt-9 flex items-center gap-5"
+            initial={reduce ? {} : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: reduce ? 0 : 0.88, duration: 0.6 }}
           >
-            {/* Eyebrow */}
-            <motion.span
-              className="eyebrow text-paper/55 block mb-5"
-              initial={reduce ? {} : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: reduce ? 0 : 0.35, duration: 0.6 }}
+            <motion.a
+              href="#sabores"
+              className="px-7 py-3.5 rounded-full bg-paper text-ink text-[0.76rem] tracking-[0.22em] uppercase"
+              whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
+              whileTap={reduce ? {} : { scale: 0.97 }}
+              transition={spring.snappy}
             >
-              {slide.eyebrow}
-            </motion.span>
-
-            {/* Headline — massive display type */}
-            <h1
-              className="display text-paper leading-[0.88] mb-6"
-              style={{ fontSize: "clamp(3.4rem, 10vw, 9rem)" }}
+              Conoce los sabores
+            </motion.a>
+            <motion.a
+              href="#manifiesto"
+              className="text-[0.76rem] tracking-[0.22em] uppercase text-paper/60 hover:text-paper transition-colors flex items-center gap-2.5"
+              whileHover={reduce ? {} : { x: 4 }}
+              transition={spring.snappy}
             >
-              {slide.headline.map((line, i) => (
-                <motion.span
-                  key={i}
-                  className="block"
-                  initial={reduce ? {} : { opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: reduce ? 0 : 0.4 + i * 0.12,
-                    duration: 0.7,
-                    ease: EASE_CINEMA,
-                  }}
-                >
-                  {i === slide.headline.length - 1 ? (
-                    <span
-                      className="editorial font-normal"
-                      style={{
-                        color:
-                          slide.accent === "limonada"
-                            ? "var(--color-limonada)"
-                            : "var(--color-blueberry-deep)",
-                        filter:
-                          slide.accent === "limonada"
-                            ? "none"
-                            : "brightness(1.8)",
-                      }}
-                    >
-                      {line}
-                    </span>
-                  ) : (
-                    line
-                  )}
-                </motion.span>
-              ))}
-            </h1>
-
-            {/* Subtext */}
-            <motion.p
-              className="text-paper/65 text-[0.9rem] md:text-[1rem] leading-relaxed max-w-sm md:max-w-md"
-              initial={reduce ? {} : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: reduce ? 0 : 0.72, duration: 0.7 }}
-            >
-              {slide.sub}
-            </motion.p>
-
-            {/* CTA row */}
-            <motion.div
-              className="mt-9 flex items-center gap-5"
-              initial={reduce ? {} : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: reduce ? 0 : 0.88, duration: 0.6 }}
-            >
-              <motion.a
-                href="#sabores"
-                className="px-7 py-3.5 rounded-full bg-paper text-ink text-[0.76rem] tracking-[0.22em] uppercase"
-                whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
-                whileTap={reduce ? {} : { scale: 0.97 }}
-                transition={spring.snappy}
-              >
-                Conoce los sabores
-              </motion.a>
-              <motion.a
-                href="#manifiesto"
-                className="text-[0.76rem] tracking-[0.22em] uppercase text-paper/60 hover:text-paper transition-colors flex items-center gap-2.5"
-                whileHover={reduce ? {} : { x: 4 }}
-                transition={spring.snappy}
-              >
-                <span className="w-7 h-px bg-current" /> Manifiesto
-              </motion.a>
-            </motion.div>
+              <span className="w-7 h-px bg-current" /> Manifiesto
+            </motion.a>
           </motion.div>
-        </AnimatePresence>
+        </div>
       </div>
-
-      {/* ─── Progress bars + dot navigation ─── */}
-      <div className="absolute bottom-10 left-6 md:left-14 lg:left-20 right-6 md:right-14 z-30 flex items-center gap-3">
-        {SLIDES.map((s, i) => (
-          <button
-            key={s.id}
-            onClick={() => goTo(i, i > current ? 1 : -1)}
-            aria-label={`Ir al slide ${i + 1}`}
-            className="group relative flex-1 h-[2px] bg-paper/20 overflow-hidden rounded-full cursor-pointer hover:bg-paper/35 transition-colors"
-          >
-            <span
-              className="absolute inset-y-0 left-0 bg-paper rounded-full transition-none"
-              style={{
-                width: i < current ? "100%" : i === current ? `${progress}%` : "0%",
-                transition: i === current && !paused ? "none" : "width 0.3s ease",
-              }}
-            />
-          </button>
-        ))}
-      </div>
-
-      {/* ─── Arrow navigation ─── */}
-      <motion.button
-        aria-label="Slide anterior"
-        onClick={() => goTo((current - 1 + SLIDES.length) % SLIDES.length, -1)}
-        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 items-center justify-center rounded-full border border-paper/20 text-paper/50 hover:border-paper/60 hover:text-paper transition-colors"
-        whileHover={reduce ? {} : { scale: 1.15 }}
-        whileTap={reduce ? {} : { scale: 0.9 }}
-        transition={spring.snappy}
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-          <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.button>
-      <motion.button
-        aria-label="Slide siguiente"
-        onClick={() => goTo((current + 1) % SLIDES.length, 1)}
-        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 items-center justify-center rounded-full border border-paper/20 text-paper/50 hover:border-paper/60 hover:text-paper transition-colors"
-        whileHover={reduce ? {} : { scale: 1.15 }}
-        whileTap={reduce ? {} : { scale: 0.9 }}
-        transition={spring.snappy}
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-          <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.button>
 
       {/* ─── Bottom colophon ─── */}
       <motion.div

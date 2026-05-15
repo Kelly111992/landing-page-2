@@ -48,7 +48,7 @@ export default function Contact() {
 
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/15 border border-paper/15 max-w-xl">
               {[
-                { href: "mailto:diego@h2pro.fit", label: "Correo", value: "diego@h2pro.fit", target: undefined, rel: undefined },
+                { href: "mailto:info@h2pro.fit", label: "Correo", value: "info@h2pro.fit", target: undefined, rel: undefined },
                 { href: "tel:+523331470485", label: "Teléfono", value: "+52 33 3147 0485", target: undefined, rel: undefined },
                 { href: "https://instagram.com/h2pro.fit", label: "Instagram", value: "@h2pro.fit", target: "_blank", rel: "noopener" },
                 { href: "https://www.h2pro.fit", label: "Web", value: "www.h2pro.fit", target: undefined, rel: undefined },
@@ -96,7 +96,7 @@ export default function Contact() {
                   "business"
                 )}\nCiudad: ${data.get("city")}\n\n${data.get("message")}\n`
               );
-              window.location.href = `mailto:diego@h2pro.fit?subject=${subject}&body=${body}`;
+              window.location.href = `mailto:info@h2pro.fit?subject=${subject}&body=${body}`;
               setSubmitted(true);
             }}
           >
@@ -155,10 +155,10 @@ export default function Contact() {
                   Abrimos tu cliente de correo. Si no se abrió, escríbenos
                   directo a{" "}
                   <a
-                    href="mailto:diego@h2pro.fit"
+                    href="mailto:info@h2pro.fit"
                     className="text-h2pro underline underline-offset-2 hover:text-h2pro-deep"
                   >
-                    diego@h2pro.fit
+                    info@h2pro.fit
                   </a>
                   .
                 </>
@@ -167,10 +167,10 @@ export default function Contact() {
                   El botón abre tu cliente de correo. Si prefieres, escríbenos
                   directo a{" "}
                   <a
-                    href="mailto:diego@h2pro.fit"
+                    href="mailto:info@h2pro.fit"
                     className="text-h2pro underline underline-offset-2 hover:text-h2pro-deep"
                   >
-                    diego@h2pro.fit
+                    info@h2pro.fit
                   </a>
                   .
                 </>
@@ -223,8 +223,11 @@ function Footer() {
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[0.78rem] text-paper/55">
+          <a href="mailto:info@h2pro.fit" className="hover:text-paper transition-colors">
+            info@h2pro.fit
+          </a>
           <a
-            href="mailto:diego@h2pro.fit?subject=Solicitud%20de%20aviso%20de%20privacidad"
+            href="mailto:info@h2pro.fit?subject=Solicitud%20de%20aviso%20de%20privacidad"
             className="hover:text-paper transition-colors"
           >
             Aviso de privacidad

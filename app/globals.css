@@ -61,7 +61,7 @@ body {
 
 .editorial {
   font-family: var(--font-serif);
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
 }
 
