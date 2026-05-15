@@ -54,3 +54,10 @@ skills-lock.json
 /*.png
 /*.jpeg
 /*.jpg
+
+# local static ffmpeg/ffprobe symlinks (resolved via node_modules)
+/.bin/
+
+# hyperframes render outputs (the source MP4 lives in public/videos)
+/hf-nutrient-reveal/renders/
+/hf-nutrient-reveal/node_modules/

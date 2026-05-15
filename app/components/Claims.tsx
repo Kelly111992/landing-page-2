@@ -63,7 +63,7 @@ export default function Claims() {
             <span className="eyebrow text-paper/55">[ 02 ] Composición</span>
           </motion.div>
           <motion.div variants={item} className="md:col-span-8">
-            <h2 className="display text-papertext-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
+            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
               Cuatro decisiones,{" "}
               <span className="editorial text-h2pro font-normal">
                 cero compromisos.
@@ -93,10 +93,20 @@ export default function Claims() {
               </span>
             </div>
 
-            {/* The number — animated count-up */}
-            <div className="relative leading-none -ml-[0.05em]">
+            {/* The number — count-up that resolves into focus */}
+            <motion.div
+              className="relative leading-none -ml-[0.05em]"
+              initial={
+                reduce
+                  ? { opacity: 0 }
+                  : { opacity: 0, filter: "blur(26px)", scale: 1.12 }
+              }
+              whileInView={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: reduce ? 0.3 : 1.4, ease: EASE }}
+            >
               <span
-                className="display text-paperblock"
+                className="display text-paper block"
                 style={{
                   fontSize: "clamp(8rem, 22vw, 22rem)",
                   letterSpacing: "-0.06em",
@@ -104,27 +114,37 @@ export default function Claims() {
                 }}
               >
                 <CountUp to={20} duration={1.6} />
-                <span
-                  className="editorial text-h2pro font-normal"
+                <motion.span
+                  className="editorial text-h2pro font-normal inline-block"
                   style={{
                     fontSize: "0.55em",
                     marginLeft: "0.08em",
                     verticalAlign: "0.32em",
                   }}
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, y: "0.4em" }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ ...spring.bouncy, delay: reduce ? 0 : 1.1 }}
                 >
                   {hero.unit}
-                </span>
+                </motion.span>
               </span>
-            </div>
+            </motion.div>
 
-            <div className="mt-10 max-w-md">
-              <h3 className="display text-papertext-[1.4rem] md:text-[1.6rem] leading-tight">
+            <motion.div
+              className="mt-10 max-w-md"
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ ...spring.gentle, delay: reduce ? 0 : 0.5 }}
+            >
+              <h3 className="display text-paper text-[1.4rem] md:text-[1.6rem] leading-tight">
                 {hero.title}
               </h3>
               <p className="mt-4 text-[0.95rem] md:text-[1rem] leading-relaxed text-paper/70">
                 {hero.body}
               </p>
-            </div>
+            </motion.div>
           </motion.article>
 
           {/* Secondary rail — staggered */}
@@ -156,7 +176,7 @@ export default function Claims() {
                     {it.index}
                   </span>
                   <span
-                    className="display text-paperleading-none"
+                    className="display text-paper leading-none"
                     style={{
                       fontSize: "clamp(2.4rem, 4.5vw, 3.4rem)",
                       letterSpacing: "-0.04em",
@@ -165,7 +185,7 @@ export default function Claims() {
                     {it.n}
                   </span>
                 </div>
-                <h3 className="mt-5 text-[0.95rem] md:text-[1.05rem] font-semibold text-paperleading-tight">
+                <h3 className="mt-5 text-[0.95rem] md:text-[1.05rem] font-semibold text-paper leading-tight">
                   {it.title}
                 </h3>
                 <p className="mt-2 text-[0.85rem] leading-relaxed text-paper/65">

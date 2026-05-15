@@ -11,7 +11,7 @@ export default function NutrientRevealVideo() {
           muted
           playsInline
           className="w-full h-full object-cover"
-          aria-label="Animación de los 4 diferenciadores de H2PRO: 20g proteína, 0g azúcar, 0g lactosa, 0 espesantes"
+          aria-label="Por qué ahora: +40% dispuestos a probar versiones más saludables (NielsenIQ), 38% decide por beneficios nutrimentales (Alianza por la Salud Alimentaria), +18M hogares consumen funcionales (EXPOANTAD). H2PRO: 1.er protein water hecho en México."
         />
       </div>
     </section>

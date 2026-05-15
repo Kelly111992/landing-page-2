@@ -1,0 +1,598 @@
+<template id="main-graphics-template">
+  <div
+    id="main-graphics"
+    data-composition-id="main-graphics"
+    data-width="1080"
+    data-height="1080"
+    data-duration="11.5"
+  >
+    <!-- ============ PERSISTENT BACKGROUND LAYER ============ -->
+    <div class="bg-base"></div>
+    <div class="bg-glow" id="glow"></div>
+    <div class="ghost" id="ghost">H2PRO</div>
+    <div class="hairline" id="hairline"></div>
+    <div class="grain"></div>
+
+    <!-- persistent corner metadata -->
+    <div class="meta-top">H2PRO <span class="meta-dim">— PROTEIN WATER</span></div>
+
+    <!-- progress ticks (fade in/out for clean loop) -->
+    <div class="progress" id="progress">
+      <span class="tick"><span class="tick-fill" id="tf-0"></span></span>
+      <span class="tick"><span class="tick-fill" id="tf-1"></span></span>
+      <span class="tick"><span class="tick-fill" id="tf-2"></span></span>
+      <span class="tick"><span class="tick-fill" id="tf-3"></span></span>
+    </div>
+
+    <!-- ============ SCENE 1 — +40% dispuestos a probar ============ -->
+    <div class="scene" id="s1">
+      <div class="scene-content">
+        <div class="eyebrow">
+          <span class="idx">01</span><span class="rule-sm"></span><span>Tendencia</span>
+        </div>
+        <div class="figure">
+          <span class="prefix" id="s1-prefix">+</span><span class="num" id="s1-num">0</span><span class="unit">%</span>
+        </div>
+        <div class="divider"></div>
+        <div class="caption">
+          <h2 class="title">Dispuestos a probar versiones más saludables</h2>
+          <p class="desc">Consumidores que incluyen proteína en su día a día</p>
+        </div>
+        <div class="source">Fuente · NielsenIQ</div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 2 — 38% decide por beneficio nutrimental ============ -->
+    <div class="scene" id="s2">
+      <div class="scene-content">
+        <div class="eyebrow">
+          <span class="idx">02</span><span class="rule-sm"></span><span>Decisión</span>
+        </div>
+        <div class="figure">
+          <span class="num">38</span><span class="unit">%</span>
+        </div>
+        <div class="divider"></div>
+        <div class="caption">
+          <h2 class="title">Decide por beneficios nutrimentales</h2>
+          <p class="desc">Etiquetas funcionales por encima del precio</p>
+        </div>
+        <div class="source">Fuente · Alianza por la Salud Alimentaria</div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 3 — +18M hogares funcionales ============ -->
+    <div class="scene" id="s3">
+      <div class="scene-content">
+        <div class="eyebrow">
+          <span class="idx">03</span><span class="rule-sm"></span><span>Escala</span>
+        </div>
+        <div class="figure">
+          <span class="prefix" id="s3-prefix">+</span><span class="num">18</span><span class="unit">M</span>
+        </div>
+        <div class="divider"></div>
+        <div class="caption">
+          <h2 class="title">Hogares consumen funcionales</h2>
+          <p class="desc">Snacks y bebidas saludables · México</p>
+        </div>
+        <div class="source">Fuente · EXPOANTAD</div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 4 — 1.er hecho en México ============ -->
+    <div class="scene" id="s4">
+      <div class="scene-content">
+        <div class="eyebrow">
+          <span class="idx">04</span><span class="rule-sm"></span><span>Origen</span>
+        </div>
+        <div class="figure figure-serif">
+          <span class="primer-num">1.</span><span class="primer-er">er</span>
+        </div>
+        <div class="divider"></div>
+        <div class="caption">
+          <h2 class="title">Protein Water hecho en México</h2>
+          <p class="desc">Reto Zapopan · IMPI · Aviso COFEPRIS</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 5 — closing ============ -->
+    <div class="scene" id="s5">
+      <div class="scene-content">
+        <div class="eyebrow">
+          <span class="idx">—</span><span class="rule-sm"></span><span>Ahora</span>
+        </div>
+        <div class="closing">
+          <span class="closing-serif" id="c-serif">Llegó</span>
+          <span class="closing-bold" id="c-bold">primero.</span>
+        </div>
+        <div class="divider" id="s5-div"></div>
+        <div class="s5-foot">
+          <div class="wordmark" id="s5-wordmark">
+            H2<span class="wordmark-accent">PRO</span>
+          </div>
+          <p class="desc" id="s5-desc">
+            Clear protein water · h2pro.fit
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      #main-graphics {
+        background: #0a0e12;
+        font-family: "Manrope", sans-serif;
+        color: #f0ede8;
+        overflow: hidden;
+        position: absolute;
+        inset: 0;
+      }
+
+      /* ---------- background layer ---------- */
+      .bg-base {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            120% 90% at 15% 0%,
+            #101820 0%,
+            #0a0e12 55%
+          );
+        z-index: 0;
+      }
+      .bg-glow {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        left: 90px;
+        top: 130px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 134, 214, 0.34) 0%,
+          rgba(0, 134, 214, 0.12) 38%,
+          rgba(0, 134, 214, 0) 70%
+        );
+        filter: blur(20px);
+        z-index: 1;
+      }
+      .ghost {
+        position: absolute;
+        right: -70px;
+        top: 50%;
+        font-size: 300px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #f0ede8;
+        opacity: 0.045;
+        transform: translateY(-50%) rotate(90deg);
+        transform-origin: center;
+        white-space: nowrap;
+        z-index: 1;
+      }
+      .hairline {
+        position: absolute;
+        left: 150px;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background: rgba(240, 237, 232, 0.12);
+        z-index: 2;
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        opacity: 0.5;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      }
+
+      .meta-top {
+        position: absolute;
+        top: 74px;
+        left: 92px;
+        z-index: 6;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        color: rgba(240, 237, 232, 0.62);
+      }
+      .meta-dim {
+        color: rgba(240, 237, 232, 0.52);
+      }
+
+      .progress {
+        position: absolute;
+        bottom: 82px;
+        left: 92px;
+        z-index: 6;
+        display: flex;
+        gap: 14px;
+      }
+      .tick {
+        width: 64px;
+        height: 3px;
+        background: rgba(240, 237, 232, 0.16);
+        display: block;
+        overflow: hidden;
+      }
+      .tick-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #0086d6;
+        transform: scaleX(0);
+        transform-origin: left center;
+      }
+
+      /* ---------- scenes ---------- */
+      .scene {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .scene-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 150px 92px 170px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        box-sizing: border-box;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 25px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(240, 237, 232, 0.6);
+      }
+      .eyebrow .idx {
+        color: #4ab4f0;
+      }
+      .rule-sm {
+        width: 54px;
+        height: 2px;
+        background: rgba(240, 237, 232, 0.28);
+        display: block;
+      }
+
+      .figure {
+        display: flex;
+        align-items: baseline;
+        margin: 6px 0 4px;
+      }
+      .num {
+        font-family: "Manrope", sans-serif;
+        font-size: 420px;
+        font-weight: 800;
+        line-height: 0.82;
+        letter-spacing: -0.05em;
+        color: #f0ede8;
+      }
+      .num-symbol {
+        font-weight: 500;
+        font-size: 360px;
+        letter-spacing: 0;
+      }
+      .prefix {
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: 260px;
+        line-height: 0.82;
+        letter-spacing: -0.03em;
+        color: #4ab4f0;
+        margin-right: 6px;
+        align-self: flex-start;
+        margin-top: 16px;
+      }
+      .unit {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: 200px;
+        line-height: 1;
+        color: #0086d6;
+        margin-left: 14px;
+      }
+      .figure-serif {
+        align-items: flex-end;
+      }
+      .primer-num {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: 460px;
+        line-height: 0.82;
+        letter-spacing: -0.02em;
+        color: #f0ede8;
+      }
+      .primer-er {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: 220px;
+        line-height: 1;
+        color: #0086d6;
+        margin-left: 12px;
+        margin-bottom: 60px;
+      }
+      .source {
+        margin-top: 26px;
+        font-family: "Manrope", sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(240, 237, 232, 0.45);
+      }
+
+      .divider {
+        width: 0;
+        height: 3px;
+        background: #0086d6;
+      }
+
+      .caption {
+        margin-top: 14px;
+      }
+      .title {
+        font-family: "Manrope", sans-serif;
+        font-size: 66px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #f0ede8;
+      }
+      .desc {
+        margin-top: 16px;
+        font-size: 31px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: rgba(240, 237, 232, 0.72);
+      }
+
+      /* ---------- scene 5 closing ---------- */
+      .closing {
+        margin: 10px 0 4px;
+        display: flex;
+        flex-direction: column;
+        line-height: 0.96;
+      }
+      .closing-serif {
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: 150px;
+        color: rgba(240, 237, 232, 0.85);
+      }
+      .closing-bold {
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: 168px;
+        letter-spacing: -0.03em;
+        color: #f0ede8;
+      }
+      .s5-foot {
+        margin-top: 30px;
+      }
+      .wordmark {
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: 70px;
+        letter-spacing: -0.02em;
+        color: #f0ede8;
+      }
+      .wordmark-accent {
+        color: #0086d6;
+      }
+      .s5-foot .desc {
+        margin-top: 14px;
+      }
+      .s5-foot .desc sup {
+        font-size: 0.6em;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      /* ---------------- ambient background motion (loops over full 11.5s) ---------------- */
+      // one full breath, returns to start -> seamless loop
+      tl.to(
+        "#glow",
+        { scale: 1.16, duration: 5.75, yoyo: true, repeat: 1, ease: "sine.inOut" },
+        0,
+      );
+      // ghost drifts down then back
+      tl.to(
+        "#ghost",
+        { yPercent: 8, duration: 5.75, yoyo: true, repeat: 1, ease: "sine.inOut" },
+        0,
+      );
+      // hairline slow opacity pulse, returns
+      tl.to(
+        "#hairline",
+        { opacity: 0.55, duration: 5.75, yoyo: true, repeat: 1, ease: "sine.inOut" },
+        0,
+      );
+
+      /* ---------------- progress ticks ---------------- */
+      tl.fromTo("#progress", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.2);
+      tl.fromTo("#tf-0", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+      tl.fromTo("#tf-1", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 2.6);
+      tl.fromTo("#tf-2", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 4.9);
+      tl.fromTo("#tf-3", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 7.2);
+      tl.to("#progress", { opacity: 0, duration: 0.4, ease: "power2.in" }, 10.9);
+      tl.set("#progress", { opacity: 0 }, 11.3);
+
+      /* ================= SCENE 1 — 0.0s -> 2.6s ================= */
+      tl.set("#s1", { opacity: 1, visibility: "visible" }, 0);
+      tl.fromTo(
+        "#s1 .eyebrow",
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        0.15,
+      );
+      // hero number: count up + resolve from blur/scale
+      tl.fromTo(
+        "#s1 .figure",
+        { opacity: 0, scale: 1.16, filter: "blur(30px)" },
+        { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "expo.out" },
+        0.2,
+      );
+      tl.to(
+        { v: 0 },
+        {
+          v: 40,
+          duration: 1.3,
+          ease: "power2.out",
+          onUpdate: function () {
+            document.getElementById("s1-num").textContent = Math.round(this.targets()[0].v);
+          },
+        },
+        0.25,
+      );
+      tl.fromTo("#s1 .divider", { width: 0 }, { width: 430, duration: 0.7, ease: "power3.inOut" }, 0.8);
+      tl.fromTo(
+        "#s1 .caption",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
+        1.0,
+      );
+      tl.fromTo(
+        "#s1 .source",
+        { y: 14, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        1.4,
+      );
+      // exit
+      tl.to("#s1", { opacity: 0, duration: 0.4, ease: "power2.in", overwrite: "auto" }, 2.25);
+      tl.set("#s1", { opacity: 0, visibility: "hidden" }, 2.65);
+
+      /* ================= SCENE 2 — 2.6s -> 4.9s ================= */
+      tl.set("#s2", { opacity: 1, visibility: "visible" }, 2.6);
+      tl.fromTo("#s2 .eyebrow", { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "sine.out" }, 2.7);
+      tl.fromTo(
+        "#s2 .num",
+        { y: -120, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power4.out" },
+        2.7,
+      );
+      tl.fromTo(
+        "#s2 .unit",
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(2.2)" },
+        2.95,
+      );
+      tl.fromTo("#s2 .divider", { width: 0 }, { width: 360, duration: 0.6, ease: "circ.out" }, 3.05);
+      tl.fromTo(
+        "#s2 .caption",
+        { x: 44, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.65, ease: "power2.out" },
+        3.2,
+      );
+      tl.fromTo(
+        "#s2 .source",
+        { y: 14, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        3.55,
+      );
+      tl.to("#s2", { opacity: 0, duration: 0.4, ease: "power2.in", overwrite: "auto" }, 4.55);
+      tl.set("#s2", { opacity: 0, visibility: "hidden" }, 4.95);
+
+      /* ================= SCENE 3 — 4.9s -> 7.2s ================= */
+      tl.set("#s3", { opacity: 1, visibility: "visible" }, 4.9);
+      tl.fromTo("#s3 .eyebrow", { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 5.0);
+      // number expands open from compressed letter-spacing
+      tl.fromTo(
+        "#s3 .figure",
+        { opacity: 0, scaleX: 0.55 },
+        { opacity: 1, scaleX: 1, duration: 0.85, ease: "expo.out" },
+        5.0,
+      );
+      tl.fromTo("#s3 .divider", { width: 0 }, { width: 300, duration: 0.6, ease: "power3.inOut" }, 5.35);
+      tl.fromTo(
+        "#s3 .caption",
+        { y: 38, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, ease: "power2.out" },
+        5.5,
+      );
+      tl.fromTo(
+        "#s3 .source",
+        { y: 14, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        5.85,
+      );
+      tl.to("#s3", { opacity: 0, duration: 0.4, ease: "power2.in", overwrite: "auto" }, 6.85);
+      tl.set("#s3", { opacity: 0, visibility: "hidden" }, 7.25);
+
+      /* ================= SCENE 4 — 7.2s -> 9.4s ================= */
+      tl.set("#s4", { opacity: 1, visibility: "visible" }, 7.2);
+      tl.fromTo("#s4 .eyebrow", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, 7.3);
+      // serif "1.er" — elegant fade up
+      tl.fromTo(
+        "#s4 .primer-num",
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.95, ease: "expo.out" },
+        7.3,
+      );
+      tl.fromTo(
+        "#s4 .primer-er",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" },
+        7.55,
+      );
+      tl.fromTo("#s4 .divider", { width: 0 }, { width: 330, duration: 0.55, ease: "circ.out" }, 7.7);
+      tl.fromTo(
+        "#s4 .caption",
+        { x: 44, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        7.85,
+      );
+      tl.to("#s4", { opacity: 0, duration: 0.4, ease: "power2.in", overwrite: "auto" }, 9.05);
+      tl.set("#s4", { opacity: 0, visibility: "hidden" }, 9.45);
+
+      /* ================= SCENE 5 — 9.4s -> 11.5s (closing) ================= */
+      tl.set("#s5", { opacity: 1, visibility: "visible" }, 9.4);
+      tl.fromTo("#s5 .eyebrow", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, 9.5);
+      tl.fromTo(
+        "#c-serif",
+        { x: -60, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        9.55,
+      );
+      tl.fromTo(
+        "#c-bold",
+        { x: 70, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.7, ease: "expo.out" },
+        9.75,
+      );
+      tl.fromTo("#s5-div", { width: 0 }, { width: 380, duration: 0.6, ease: "power3.inOut" }, 10.0);
+      tl.fromTo(
+        "#s5-wordmark",
+        { scale: 0.7, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" },
+        10.2,
+      );
+      tl.fromTo(
+        "#s5-desc",
+        { y: 26, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+        10.4,
+      );
+      // resolve: gentle fade of whole scene back to bare background -> seamless loop
+      tl.to("#s5", { opacity: 0, duration: 0.55, ease: "sine.inOut", overwrite: "auto" }, 10.95);
+      tl.set("#s5", { opacity: 0, visibility: "hidden" }, 11.49);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main-graphics"] = tl;
+    </script>
+  </div>
+</template>
