@@ -12,7 +12,7 @@ export default function TactileBanner() {
   const imageY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [-60, 60]);
 
   return (
-    <section aria-label="Producto" className="relative bg-paper overflow-hidden">
+    <section aria-label="Producto" className="relative bg-ink overflow-hidden">
       <motion.figure
         initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -82,7 +82,7 @@ export default function TactileBanner() {
           </div>
         </div>
 
-        <figcaption className="mx-auto max-w-[1480px] px-6 md:px-10 mt-4 flex items-baseline justify-between text-[0.62rem] tracking-[0.28em] uppercase text-ink/40">
+        <figcaption className="mx-auto max-w-[1480px] px-6 md:px-10 mt-4 flex items-baseline justify-between text-[0.62rem] tracking-[0.28em] uppercase text-paper/40">
           <span>Limonada · Blueberry</span>
           <span>500 ml · 20 g · listo</span>
         </figcaption>

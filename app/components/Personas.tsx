@@ -68,7 +68,7 @@ export default function Personas() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="para-quien" className="relative bg-paper">
+    <section id="para-quien" className="relative bg-ink">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10 pt-28 md:pt-40 pb-24 md:pb-36">
         {/* Section header */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20 md:mb-28">
@@ -79,7 +79,7 @@ export default function Personas() {
             viewport={{ once: true, margin: "-60px" }}
             transition={spring.smooth}
           >
-            <span className="eyebrow text-ink/55">[ 05 ] Para quién</span>
+            <span className="eyebrow text-paper/55">[ 05 ] Para quién</span>
           </motion.div>
           <motion.div
             className="md:col-span-8"
@@ -88,7 +88,7 @@ export default function Personas() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ ...spring.gentle, delay: 0.1 }}
           >
-            <h2 className="display text-ink text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
+            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
               No es para los gritos del gym.{" "}
               <span className="editorial text-h2pro font-normal">
                 Es para tu día.
@@ -98,7 +98,7 @@ export default function Personas() {
         </div>
 
         {/* Linear 3-card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink/10 border border-ink/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink/10 border border-paper/10">
           {personas.map((p, i) => (
             <PersonaCard key={p.n} persona={p} index={i} reduce={!!reduce} />
           ))}
@@ -121,7 +121,7 @@ function PersonaCard({
 
   return (
     <motion.article
-      className="bg-paper flex flex-col"
+      className="bg-ink flex flex-col"
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -161,24 +161,24 @@ function PersonaCard({
           <span className={`text-[0.68rem] tracking-[0.3em] uppercase ${c.text}`}>
             {persona.role}
           </span>
-          <span className="text-[0.65rem] tracking-[0.28em] uppercase text-ink/40">
+          <span className="text-[0.65rem] tracking-[0.28em] uppercase text-paper/40">
             {persona.age} años
           </span>
         </div>
 
         {/* Insight quote */}
-        <p className="text-ink text-[1rem] md:text-[1.05rem] leading-relaxed flex-1">
+        <p className="text-paper/85 text-[1rem] md:text-[1.05rem] leading-relaxed flex-1">
           &ldquo;{persona.insight}&rdquo;
         </p>
 
         {/* Routine tags */}
-        <div className="mt-8 pt-6 border-t border-ink/15">
-          <span className="text-[0.65rem] tracking-[0.3em] uppercase text-ink/40 block mb-4">
+        <div className="mt-8 pt-6 border-t border-paper/15">
+          <span className="text-[0.65rem] tracking-[0.3em] uppercase text-paper/40 block mb-4">
             Su rutina
           </span>
           <ul className="flex flex-col gap-2">
             {persona.routine.map((tag, j) => (
-              <li key={tag} className="flex items-baseline gap-2 text-[0.85rem] text-ink/75">
+              <li key={tag} className="flex items-baseline gap-2 text-[0.85rem] text-paper/75">
                 <span className={`text-[0.6rem] tracking-[0.24em] uppercase ${c.text} tabular-nums`}>
                   {String(j + 1).padStart(2, "0")}
                 </span>
@@ -191,7 +191,7 @@ function PersonaCard({
         {/* Moment caption */}
         <div className="mt-6 flex items-center gap-3">
           <span className={`w-2 h-2 rounded-full flex-shrink-0 ${c.dot}`} />
-          <span className="text-[0.68rem] tracking-[0.22em] uppercase text-ink/45">
+          <span className="text-[0.68rem] tracking-[0.22em] uppercase text-paper/45">
             {persona.moment}
           </span>
         </div>

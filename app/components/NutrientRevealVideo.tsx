@@ -2,7 +2,7 @@
 
 export default function NutrientRevealVideo() {
   return (
-    <section className="bg-paper py-0 flex justify-center items-center overflow-hidden border-t border-ice">
+    <section className="bg-ink py-0 flex justify-center items-center overflow-hidden border-t border-paper/10">
       <div className="w-full max-w-xl aspect-square">
         <video
           src="/videos/nutrient-reveal.mp4"

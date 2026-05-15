@@ -48,7 +48,7 @@ export default function Claims() {
   };
 
   return (
-    <section className="relative bg-paper-blue py-28 md:py-40 overflow-hidden">
+    <section className="relative bg-ink py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
 
         {/* Section header */}
@@ -60,10 +60,10 @@ export default function Claims() {
           viewport={{ once: true, margin: "-80px" }}
         >
           <motion.div variants={item} className="md:col-span-4">
-            <span className="eyebrow text-ink/55">[ 02 ] Composición</span>
+            <span className="eyebrow text-paper/55">[ 02 ] Composición</span>
           </motion.div>
           <motion.div variants={item} className="md:col-span-8">
-            <h2 className="display text-ink text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
+            <h2 className="display text-papertext-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
               Cuatro decisiones,{" "}
               <span className="editorial text-h2pro font-normal">
                 cero compromisos.
@@ -84,11 +84,11 @@ export default function Claims() {
             className="md:col-span-8 md:pr-12 lg:pr-20 relative"
           >
             <div className="flex items-baseline gap-4 mb-6">
-              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-ink/40">
+              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40">
                 {hero.index}
               </span>
-              <span className="h-px flex-1 max-w-[80px] bg-ink/20" />
-              <span className="text-[0.65rem] tracking-[0.28em] uppercase text-ink/40">
+              <span className="h-px flex-1 max-w-[80px] bg-paper/20" />
+              <span className="text-[0.65rem] tracking-[0.28em] uppercase text-paper/40">
                 por 500 ml
               </span>
             </div>
@@ -96,7 +96,7 @@ export default function Claims() {
             {/* The number — animated count-up */}
             <div className="relative leading-none -ml-[0.05em]">
               <span
-                className="display text-ink block"
+                className="display text-paperblock"
                 style={{
                   fontSize: "clamp(8rem, 22vw, 22rem)",
                   letterSpacing: "-0.06em",
@@ -118,10 +118,10 @@ export default function Claims() {
             </div>
 
             <div className="mt-10 max-w-md">
-              <h3 className="display text-ink text-[1.4rem] md:text-[1.6rem] leading-tight">
+              <h3 className="display text-papertext-[1.4rem] md:text-[1.6rem] leading-tight">
                 {hero.title}
               </h3>
-              <p className="mt-4 text-[0.95rem] md:text-[1rem] leading-relaxed text-ink/70">
+              <p className="mt-4 text-[0.95rem] md:text-[1rem] leading-relaxed text-paper/70">
                 {hero.body}
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function Claims() {
 
           {/* Secondary rail — staggered */}
           <motion.div
-            className="md:col-span-4 border-t md:border-t-0 md:border-l border-ink/15 md:pl-10 pt-6 md:pt-0 flex flex-col"
+            className="md:col-span-4 border-t md:border-t-0 md:border-l border-paper/15 md:pl-10 pt-6 md:pt-0 flex flex-col"
             variants={stagger}
             initial="hidden"
             whileInView="show"
@@ -149,14 +149,14 @@ export default function Claims() {
                     },
                   },
                 }}
-                className={`flex-1 py-8 md:py-10 ${i > 0 ? "border-t border-ink/15" : ""}`}
+                className={`flex-1 py-8 md:py-10 ${i > 0 ? "border-t border-paper/15" : ""}`}
               >
                 <div className="flex items-baseline justify-between">
-                  <span className="text-[0.68rem] tracking-[0.28em] uppercase text-ink/40">
+                  <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40">
                     {it.index}
                   </span>
                   <span
-                    className="display text-ink leading-none"
+                    className="display text-paperleading-none"
                     style={{
                       fontSize: "clamp(2.4rem, 4.5vw, 3.4rem)",
                       letterSpacing: "-0.04em",
@@ -165,10 +165,10 @@ export default function Claims() {
                     {it.n}
                   </span>
                 </div>
-                <h3 className="mt-5 text-[0.95rem] md:text-[1.05rem] font-semibold text-ink leading-tight">
+                <h3 className="mt-5 text-[0.95rem] md:text-[1.05rem] font-semibold text-paperleading-tight">
                   {it.title}
                 </h3>
-                <p className="mt-2 text-[0.85rem] leading-relaxed text-ink/65">
+                <p className="mt-2 text-[0.85rem] leading-relaxed text-paper/65">
                   {it.body}
                 </p>
               </motion.article>
@@ -182,12 +182,12 @@ export default function Claims() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ ...spring.gentle, delay: reduce ? 0 : 0.3 }}
-          className="mt-20 md:mt-28 max-w-2xl text-[0.95rem] md:text-[1.05rem] leading-relaxed text-ink/60"
+          className="mt-20 md:mt-28 max-w-2xl text-[0.95rem] md:text-[1.05rem] leading-relaxed text-paper/60"
         >
           Toda decisión arriba puede comprobarse en la{" "}
           <a
             href="#nutrimental"
-            className="text-ink underline underline-offset-4 decoration-ink/30 hover:decoration-h2pro decoration-1 transition-colors"
+            className="text-paper underline underline-offset-4 decoration-paper/30 hover:decoration-h2pro decoration-1 transition-colors"
           >
             tabla nutrimental
           </a>

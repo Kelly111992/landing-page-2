@@ -56,14 +56,14 @@ const flavors: Flavor[] = [
 
 export default function Flavors() {
   return (
-    <section id="sabores" className="relative bg-paper">
+    <section id="sabores" className="relative bg-ink">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10 pt-28 md:pt-40 pb-12 md:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           <div className="md:col-span-4">
-            <span className="eyebrow text-ink/55">[ 03 ] Sabores</span>
+            <span className="eyebrow text-paper/55">[ 03 ] Sabores</span>
           </div>
           <div className="md:col-span-8">
-            <h2 className="display text-ink text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
+            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
               Dos perfiles.{" "}
               <span className="editorial text-h2pro font-normal">
                 Una promesa
