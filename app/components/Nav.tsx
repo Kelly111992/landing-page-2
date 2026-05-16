@@ -14,8 +14,16 @@ const links = [
 ];
 
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -30,20 +38,33 @@ export default function Nav() {
     };
   }, [open]);
 
+  // Treat the mobile menu open as "scrolled" so its overlay reads on cream
+  const light = scrolled || open;
+
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 bg-ink/85 backdrop-blur-xl border-b border-paper/10"
+        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl transition-colors duration-500 ${
+          light
+            ? "bg-paper/85 border-b border-ink/5"
+            : "bg-ink/85 border-b border-paper/10"
+        }`}
       >
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
           <a
             href="#top"
             onClick={() => setOpen(false)}
             aria-label="H2PRO — Clear Protein"
-            className="flex items-center gap-4 group text-paper"
+            className={`flex items-center gap-4 group transition-colors duration-500 ${
+              light ? "text-ink" : "text-paper"
+            }`}
           >
-            <H2ProLogo className="h-9 md:h-11 w-auto" />
-            <span className="hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase mt-1 text-paper/55">
+            <H2ProLogo className="h-9 md:h-11 w-auto" colorful={light} />
+            <span
+              className={`hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase mt-1 transition-colors duration-500 ${
+                light ? "text-ink/50" : "text-paper/55"
+              }`}
+            >
               Clear&nbsp;Protein
             </span>
           </a>
@@ -53,7 +74,11 @@ export default function Nav() {
               <li key={l.href}>
                 <motion.a
                   href={l.href}
-                  className="text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase whitespace-nowrap inline-block text-paper/70 hover:text-paper transition-colors"
+                  className={`text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase whitespace-nowrap inline-block transition-colors duration-500 ${
+                    light
+                      ? "text-ink/65 hover:text-ink"
+                      : "text-paper/70 hover:text-paper"
+                  }`}
                   whileHover={{ x: 2 }}
                   transition={spring.snappy}
                 >
@@ -65,7 +90,9 @@ export default function Nav() {
 
           <motion.a
             href="#contacto"
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase whitespace-nowrap bg-paper text-ink"
+            className={`hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase whitespace-nowrap transition-colors duration-500 ${
+              light ? "bg-ink text-paper" : "bg-paper text-ink"
+            }`}
             whileHover={{ scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
             whileTap={{ scale: 0.97 }}
             transition={spring.snappy}
@@ -80,7 +107,9 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            className="md:hidden flex items-center gap-3 text-[0.74rem] tracking-[0.2em] uppercase text-paper"
+            className={`md:hidden flex items-center gap-3 text-[0.74rem] tracking-[0.2em] uppercase transition-colors duration-500 ${
+              light ? "text-ink" : "text-paper"
+            }`}
           >
             <span>{open ? "Cerrar" : "Menú"}</span>
             <span
@@ -88,14 +117,14 @@ export default function Nav() {
               className="relative w-5 h-3 inline-block"
             >
               <span
-                className={`absolute left-0 right-0 h-px bg-paper transition-all duration-300 ${
-                  open ? "top-1/2 rotate-45" : "top-0"
-                }`}
+                className={`absolute left-0 right-0 h-px transition-all duration-300 ${
+                  light ? "bg-ink" : "bg-paper"
+                } ${open ? "top-1/2 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 right-0 h-px bg-paper transition-all duration-300 ${
-                  open ? "top-1/2 -rotate-45" : "bottom-0"
-                }`}
+                className={`absolute left-0 right-0 h-px transition-all duration-300 ${
+                  light ? "bg-ink" : "bg-paper"
+                } ${open ? "top-1/2 -rotate-45" : "bottom-0"}`}
               />
             </span>
           </button>
