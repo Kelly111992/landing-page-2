@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
+import H2ProLogo from "./H2ProLogo";
 
 const links = [
   { href: "#manifiesto", label: "Manifiesto" },
@@ -50,15 +51,17 @@ export default function Nav() {
           <a
             href="#top"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 group"
+            aria-label="H2PRO — Clear Protein"
+            className={`flex items-center gap-4 group transition-colors duration-500 ${
+              scrolled || open ? "text-ink" : "text-paper"
+            }`}
           >
+            <H2ProLogo className="h-9 md:h-11 w-auto" />
             <span
-              className="display text-[1.6rem] md:text-[1.8rem] leading-none text-ink"
-              style={{ letterSpacing: "-0.05em" }}
+              className={`hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase mt-1 transition-colors duration-500 ${
+                scrolled || open ? "text-ink/50" : "text-paper/55"
+              }`}
             >
-              H<span className="text-h2pro">2</span>PRO
-            </span>
-            <span className="hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase text-ink/50 mt-1">
               Clear&nbsp;Protein
             </span>
           </a>
@@ -68,7 +71,11 @@ export default function Nav() {
               <li key={l.href}>
                 <motion.a
                   href={l.href}
-                  className="text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors whitespace-nowrap inline-block"
+                  className={`text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase transition-colors duration-500 whitespace-nowrap inline-block ${
+                    scrolled || open
+                      ? "text-ink/65 hover:text-ink"
+                      : "text-paper/70 hover:text-paper"
+                  }`}
                   whileHover={scrolled ? { x: 2 } : {}}
                   transition={spring.snappy}
                 >
@@ -80,8 +87,12 @@ export default function Nav() {
 
           <motion.a
             href="#contacto"
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ink text-paper text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase whitespace-nowrap"
-            whileHover={{ scale: 1.03, backgroundColor: "var(--color-h2pro)" }}
+            className={`hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase whitespace-nowrap transition-colors duration-500 ${
+              scrolled || open
+                ? "bg-ink text-paper"
+                : "bg-paper text-ink"
+            }`}
+            whileHover={{ scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
             whileTap={{ scale: 0.97 }}
             transition={spring.snappy}
           >
@@ -95,7 +106,9 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            className="md:hidden flex items-center gap-3 text-[0.74rem] tracking-[0.2em] uppercase text-ink"
+            className={`md:hidden flex items-center gap-3 text-[0.74rem] tracking-[0.2em] uppercase transition-colors duration-500 ${
+              scrolled || open ? "text-ink" : "text-paper"
+            }`}
           >
             <span>{open ? "Cerrar" : "Menú"}</span>
             <span
@@ -103,14 +116,14 @@ export default function Nav() {
               className="relative w-5 h-3 inline-block"
             >
               <span
-                className={`absolute left-0 right-0 h-px bg-ink transition-all duration-300 ${
-                  open ? "top-1/2 rotate-45" : "top-0"
-                }`}
+                className={`absolute left-0 right-0 h-px transition-all duration-300 ${
+                  scrolled || open ? "bg-ink" : "bg-paper"
+                } ${open ? "top-1/2 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 right-0 h-px bg-ink transition-all duration-300 ${
-                  open ? "top-1/2 -rotate-45" : "bottom-0"
-                }`}
+                className={`absolute left-0 right-0 h-px transition-all duration-300 ${
+                  scrolled || open ? "bg-ink" : "bg-paper"
+                } ${open ? "top-1/2 -rotate-45" : "bottom-0"}`}
               />
             </span>
           </button>
