@@ -58,18 +58,7 @@ export default function Hero() {
         }}
       />
 
-      {/* ─── Vertical spine label ─── */}
-      <div
-        aria-hidden
-        className="hidden lg:block absolute top-1/2 left-5 z-20 pointer-events-none origin-center"
-        style={{ transform: "translateY(-50%) rotate(-90deg)" }}
-      >
-        <span className="block whitespace-nowrap text-[0.58rem] tracking-[0.42em] uppercase text-ink/40 font-medium">
-          H2PRO &nbsp;·&nbsp; Clear Protein &nbsp;·&nbsp; Ed. 01 &nbsp;·&nbsp; México 2026
-        </span>
-      </div>
-
-      {/* ─── Main editorial content ─── */}
+{/* ─── Main editorial content ─── */}
       <div className="relative z-20 min-h-[100svh] flex flex-col justify-end px-6 md:px-14 lg:px-20 pb-28 md:pb-32 pt-28">
         <div className="max-w-4xl">
           {/* Eyebrow */}
