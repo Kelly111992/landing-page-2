@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] w-full overflow-hidden bg-ink"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-paper"
     >
       {/* ─── Background image with Ken Burns zoom-out ─── */}
       <motion.div
@@ -39,20 +39,22 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Cinematic overlay */}
+      {/* Light wash on the left for text legibility — paper-tinted, very subtle */}
       <div
+        aria-hidden
         className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(to top, rgba(10,14,18,0.92) 0%, rgba(10,14,18,0.55) 40%, rgba(10,14,18,0.28) 70%, rgba(10,14,18,0.15) 100%)",
+            "linear-gradient(to right, rgba(240,237,232,0.78) 0%, rgba(240,237,232,0.45) 35%, rgba(240,237,232,0) 65%)",
         }}
       />
-      {/* Left edge fade */}
+      {/* Soft bottom lift so the colophon hairline reads */}
       <div
-        className="absolute inset-0 z-10"
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-40 z-10"
         style={{
           background:
-            "linear-gradient(to right, rgba(10,14,18,0.65) 0%, rgba(10,14,18,0.2) 50%, transparent 100%)",
+            "linear-gradient(to top, rgba(240,237,232,0.55) 0%, rgba(240,237,232,0) 100%)",
         }}
       />
 
@@ -62,7 +64,7 @@ export default function Hero() {
         className="hidden lg:block absolute top-1/2 left-5 z-20 pointer-events-none origin-center"
         style={{ transform: "translateY(-50%) rotate(-90deg)" }}
       >
-        <span className="block whitespace-nowrap text-[0.58rem] tracking-[0.42em] uppercase text-paper/30 font-medium">
+        <span className="block whitespace-nowrap text-[0.58rem] tracking-[0.42em] uppercase text-ink/40 font-medium">
           H2PRO &nbsp;·&nbsp; Clear Protein &nbsp;·&nbsp; Ed. 01 &nbsp;·&nbsp; México 2026
         </span>
       </div>
@@ -72,7 +74,7 @@ export default function Hero() {
         <div className="max-w-4xl">
           {/* Eyebrow */}
           <motion.span
-            className="eyebrow text-paper/55 block mb-5"
+            className="eyebrow text-ink/60 block mb-5"
             initial={reduce ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: reduce ? 0 : 0.35, duration: 0.6 }}
@@ -82,7 +84,7 @@ export default function Hero() {
 
           {/* Headline */}
           <h1
-            className="display text-paper leading-[0.88] mb-6"
+            className="display text-ink leading-[0.88] mb-6"
             style={{ fontSize: "clamp(3.4rem, 10vw, 9rem)" }}
           >
             {slide.headline.map((line, i) => (
@@ -100,7 +102,7 @@ export default function Hero() {
                 {i === slide.headline.length - 1 ? (
                   <span
                     className="editorial font-normal"
-                    style={{ color: "var(--color-limonada)" }}
+                    style={{ color: "var(--color-h2pro)" }}
                   >
                     {line}
                   </span>
@@ -113,7 +115,7 @@ export default function Hero() {
 
           {/* Subtext */}
           <motion.p
-            className="text-paper/65 text-[0.9rem] md:text-[1rem] leading-relaxed max-w-sm md:max-w-md"
+            className="text-ink/72 text-[0.9rem] md:text-[1rem] leading-relaxed max-w-sm md:max-w-md"
             initial={reduce ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: reduce ? 0 : 0.72, duration: 0.7 }}
@@ -130,7 +132,7 @@ export default function Hero() {
           >
             <motion.a
               href="#sabores"
-              className="px-7 py-3.5 rounded-full bg-paper text-ink text-[0.76rem] tracking-[0.22em] uppercase"
+              className="px-7 py-3.5 rounded-full bg-ink text-paper text-[0.76rem] tracking-[0.22em] uppercase"
               whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
               whileTap={reduce ? {} : { scale: 0.97 }}
               transition={spring.snappy}
@@ -139,7 +141,7 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#manifiesto"
-              className="text-[0.76rem] tracking-[0.22em] uppercase text-paper/60 hover:text-paper transition-colors flex items-center gap-2.5"
+              className="text-[0.76rem] tracking-[0.22em] uppercase text-ink/65 hover:text-ink transition-colors flex items-center gap-2.5"
               whileHover={reduce ? {} : { x: 4 }}
               transition={spring.snappy}
             >
@@ -157,19 +159,19 @@ export default function Hero() {
         className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none"
       >
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 pb-[4.5rem] md:pb-[4.5rem]">
-          <div className="border-t border-paper/10 pt-4 grid grid-cols-12 items-baseline gap-4">
-            <span className="col-span-4 text-[0.58rem] tracking-[0.28em] uppercase text-paper/30">
+          <div className="border-t border-ink/15 pt-4 grid grid-cols-12 items-baseline gap-4">
+            <span className="col-span-4 text-[0.58rem] tracking-[0.28em] uppercase text-ink/40">
               <span className="hidden md:inline">Ed. 01 — Vol. 01 / N° 01</span>
               <span className="md:hidden">Ed. 01 — N°01</span>
             </span>
             <span className="col-span-4 text-center">
-              <span className="editorial text-paper/45 text-[0.9rem] md:text-[1rem] leading-snug">
+              <span className="editorial text-ink/55 text-[0.9rem] md:text-[1rem] leading-snug">
                 Clear Protein. Hecho en México.
               </span>
             </span>
             <a
               href="#manifiesto"
-              className="col-span-4 pointer-events-auto group flex items-center justify-end gap-3 text-[0.58rem] tracking-[0.28em] uppercase text-paper/40 hover:text-paper/70 transition-colors"
+              className="col-span-4 pointer-events-auto group flex items-center justify-end gap-3 text-[0.58rem] tracking-[0.28em] uppercase text-ink/50 hover:text-ink/80 transition-colors"
             >
               <span className="hidden md:inline">01 → Manifiesto</span>
               <span className="md:hidden">01 →</span>
@@ -186,7 +188,7 @@ function ScrollLine() {
   return (
     <span
       aria-hidden
-      className="relative block h-5 w-px overflow-hidden bg-paper/20"
+      className="relative block h-5 w-px overflow-hidden bg-ink/20"
     >
       <span
         className="absolute inset-x-0 top-0 h-3 bg-current opacity-50"

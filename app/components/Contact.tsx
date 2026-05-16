@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { spring } from "../lib/springs";
+import Footer from "./Footer";
 
 export default function Contact() {
   const reduce = useReducedMotion();
@@ -210,31 +211,3 @@ function Field({
   );
 }
 
-function Footer() {
-  return (
-    <footer className="relative z-10 border-t border-paper/10">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="flex items-baseline gap-3">
-          <span className="display text-[1.6rem] text-paper" style={{ letterSpacing: "-0.05em" }}>
-            H<span className="text-h2pro-glow">2</span>PRO
-          </span>
-          <span className="text-[0.65rem] tracking-[0.32em] uppercase text-paper/45">
-            Clear Protein · Hecho en México
-          </span>
-        </div>
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[0.78rem] text-paper/55">
-          <a href="mailto:info@h2pro.fit" className="hover:text-paper transition-colors">
-            info@h2pro.fit
-          </a>
-          <a
-            href="mailto:info@h2pro.fit?subject=Solicitud%20de%20aviso%20de%20privacidad"
-            className="hover:text-paper transition-colors"
-          >
-            Aviso de privacidad
-          </a>
-          <span>© {new Date().getFullYear()} H2PRO</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
