@@ -125,6 +125,9 @@ export default function Footer() {
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/45">
           <span>
             © {year} H2PRO — Clear Protein. Todos los derechos reservados.
+            <span className="block mt-1 text-paper/30">
+              SUPLEMENTOS DISRUPTIVOS S.A. DE C.V.
+            </span>
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <a
