@@ -5,9 +5,14 @@ import { useState } from "react";
 import { spring } from "../lib/springs";
 import Footer from "./Footer";
 
+// Web3Forms access key — generado gratis en https://web3forms.com (apuntando a info@h2pro.fit)
+const WEB3FORMS_ACCESS_KEY = "fb56be62-6c2c-4a4a-b863-c9d7c10fddd0";
+
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function Contact() {
   const reduce = useReducedMotion();
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
   return (
     <section
       id="contacto"
@@ -86,19 +91,39 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-5 bg-paper text-ink p-8 md:p-10 self-start"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              const data = new FormData(e.currentTarget);
-              const subject = encodeURIComponent(
-                `[H2PRO web] ${data.get("intent")} — ${data.get("name")}`
-              );
-              const body = encodeURIComponent(
-                `Nombre: ${data.get("name")}\nNegocio: ${data.get(
-                  "business"
-                )}\nCiudad: ${data.get("city")}\n\n${data.get("message")}\n`
-              );
-              window.location.href = `mailto:info@h2pro.fit?subject=${subject}&body=${body}`;
-              setSubmitted(true);
+              const form = e.currentTarget;
+              const data = new FormData(form);
+              setStatus("sending");
+              try {
+                const res = await fetch("https://api.web3forms.com/submit", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                  },
+                  body: JSON.stringify({
+                    access_key: WEB3FORMS_ACCESS_KEY,
+                    subject: `[H2PRO web] ${data.get("intent")} — ${data.get("name")}`,
+                    from_name: "H2PRO — Formulario web",
+                    name: data.get("name"),
+                    email: data.get("email"),
+                    negocio: data.get("business"),
+                    ciudad: data.get("city"),
+                    intencion: data.get("intent"),
+                    mensaje: data.get("message"),
+                  }),
+                });
+                if (res.ok) {
+                  setStatus("success");
+                  form.reset();
+                } else {
+                  setStatus("error");
+                }
+              } catch {
+                setStatus("error");
+              }
             }}
           >
             <span className="eyebrow text-ink/60">Formulario</span>
@@ -108,6 +133,7 @@ export default function Contact() {
 
             <div className="space-y-5">
               <Field label="Nombre" name="name" required />
+              <Field label="Correo" name="email" type="email" required />
               <Field label="Negocio o marca" name="business" />
               <Field label="Ciudad" name="city" />
 
@@ -142,19 +168,23 @@ export default function Contact() {
 
             <motion.button
               type="submit"
-              className="mt-10 w-full px-7 py-4 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.22em] uppercase"
+              disabled={status === "sending"}
+              className="mt-10 w-full px-7 py-4 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.22em] uppercase disabled:opacity-60"
               whileHover={{ scale: 1.02, backgroundColor: "var(--color-h2pro)" }}
               whileTap={{ scale: 0.97 }}
               transition={spring.snappy}
             >
-              Enviar correo →
+              {status === "sending" ? "Enviando…" : "Enviar →"}
             </motion.button>
 
             <p className="mt-5 text-[0.78rem] leading-relaxed text-ink/60">
-              {submitted ? (
+              {status === "success" ? (
                 <>
-                  Abrimos tu cliente de correo. Si no se abrió, escríbenos
-                  directo a{" "}
+                  ¡Gracias! Recibimos tu mensaje y te respondemos pronto.
+                </>
+              ) : status === "error" ? (
+                <>
+                  Hubo un problema al enviar. Escríbenos directo a{" "}
                   <a
                     href="mailto:info@h2pro.fit"
                     className="text-h2pro underline underline-offset-2 hover:text-h2pro-deep"
@@ -165,8 +195,8 @@ export default function Contact() {
                 </>
               ) : (
                 <>
-                  El botón abre tu cliente de correo. Si prefieres, escríbenos
-                  directo a{" "}
+                  Te respondemos al correo que nos dejes. También puedes
+                  escribirnos directo a{" "}
                   <a
                     href="mailto:info@h2pro.fit"
                     className="text-h2pro underline underline-offset-2 hover:text-h2pro-deep"
@@ -190,10 +220,12 @@ function Field({
   label,
   name,
   required,
+  type = "text",
 }: {
   label: string;
   name: string;
   required?: boolean;
+  type?: string;
 }) {
   return (
     <div>
@@ -204,7 +236,7 @@ function Field({
       <input
         name={name}
         required={required}
-        type="text"
+        type={type}
         className="w-full bg-transparent border-b border-ink/30 py-3 text-[0.95rem] outline-none focus:border-h2pro transition-colors"
       />
     </div>
