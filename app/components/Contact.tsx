@@ -107,6 +107,7 @@ export default function Contact() {
                     access_key: WEB3FORMS_ACCESS_KEY,
                     subject: `[H2PRO web] ${data.get("intent")} — ${data.get("name")}`,
                     from_name: "H2PRO — Formulario web",
+                    replyto: data.get("email"),
                     name: data.get("name"),
                     email: data.get("email"),
                     negocio: data.get("business"),
