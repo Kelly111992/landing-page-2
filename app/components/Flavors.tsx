@@ -12,8 +12,6 @@ type Flavor = {
   spanish: string;
   bottle: string;
   video: string;
-  notes: string[];
-  description: string;
   accent: string;
   accentDeep: string;
   align: "left" | "right";
@@ -28,9 +26,6 @@ const flavors: Flavor[] = [
     spanish: "Cítrico fresco",
     bottle: "/bottles/bottle-limonada.png",
     video: "/videos/limonada-360.mp4",
-    notes: ["Cáscara de limón", "Acidez ligera", "Final limpio"],
-    description:
-      "El clásico que abre el apetito y refresca después del entrenamiento. Cítrico nítido, sin notas dulces falsas.",
     accent: "#f4e04d",
     accentDeep: "#b89c1f",
     align: "left",
@@ -43,9 +38,6 @@ const flavors: Flavor[] = [
     spanish: "Mora silvestre",
     bottle: "/bottles/bottle-blueberry.png",
     video: "/videos/blueberry-360.mp4",
-    notes: ["Mora azul", "Ligero toque dulce", "Profundidad violácea"],
-    description:
-      "Un perfil más redondo, casi de postre. Blueberry de verdad, sin caer en el caramelo artificial.",
     accent: "#7d8fd6",
     accentDeep: "#4659a3",
     align: "right",
@@ -75,7 +67,38 @@ export default function Flavors() {
       {flavors.map((f, i) => (
         <FlavorBlock key={f.id} flavor={f} position={i + 1} total={flavors.length} />
       ))}
+
+      {/* ====== TEASER CLOSING BEAT ====== */}
+      <TeaserLine />
     </section>
+  );
+}
+
+function TeaserLine() {
+  const reduce = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={
+        reduce
+          ? { duration: 0.3 }
+          : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
+      }
+      className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-20 md:py-28"
+    >
+      {/* Hairline anchor above the copy */}
+      <div aria-hidden className="mb-10 h-px bg-paper/10 max-w-[280px]" />
+
+      <p className="display text-paper text-[clamp(1.55rem,3.2vw,2.8rem)] max-w-[28ch] leading-[1.18]">
+        Arrancamos con limonada y blueberry —{" "}
+        <span className="editorial text-h2pro font-normal">
+          pero ya hay más en desarrollo.
+        </span>
+      </p>
+    </motion.div>
   );
 }
 
@@ -284,41 +307,8 @@ function FlavorBlock({
             <span aria-hidden className="h-px flex-1 max-w-[280px] bg-paper/15" />
           </div>
 
-          <p className="max-w-md text-[1rem] md:text-[1.05rem] leading-relaxed text-paper/72">
-            {flavor.description}
-          </p>
-
-          {/* Tasting notes — editorial table */}
-          <ul className="mt-12 max-w-lg border-t border-paper/10">
-            {flavor.notes.map((note, i) => (
-              <motion.li
-                key={note}
-                initial={
-                  reduce ? { opacity: 0 } : { opacity: 0, x: isLeft ? 18 : -18 }
-                }
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  ...spring.smooth,
-                  delay: reduce ? 0 : 0.15 + i * 0.08,
-                }}
-                className="flex items-center gap-6 py-4 border-b border-paper/10"
-              >
-                <span
-                  className="text-[0.66rem] tracking-[0.32em] uppercase shrink-0 w-10"
-                  style={{ color: flavor.accent }}
-                >
-                  N·{i + 1}
-                </span>
-                <span className="text-paper text-[0.95rem] md:text-[1rem]">
-                  {note}
-                </span>
-              </motion.li>
-            ))}
-          </ul>
-
           {/* Footer row: spec */}
-          <div className="mt-12 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <span
               aria-hidden
               className="h-px w-8"
