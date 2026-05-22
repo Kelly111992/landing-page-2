@@ -7,29 +7,41 @@ import { spring } from "../lib/springs";
 const hero = {
   unit: "g",
   index: "01",
-  title: "Proteína whey aislada",
+  title: "Proteína aislada de suero de leche",
   body:
     "Aislado de suero de leche con alta biodisponibilidad. La misma calidad de un suplemento premium, en el formato más simple posible.",
 };
 
 const secondary = [
   {
-    n: "0 g",
+    n: "4.5 g",
     index: "02",
+    title: "BCAAs",
+    body: "4.5 g de aminoácidos de cadena ramificada en cada botella.",
+  },
+  {
+    n: "0 g",
+    index: "03",
     title: "Azúcar añadida",
     body: "Sin azúcar disfrazada, sin maltodextrinas, sin jarabes.",
   },
   {
-    n: "0 %",
-    index: "03",
+    n: "0 g",
+    index: "04",
     title: "Lactosa",
     body: "Sin la pesadez ni inflamación que provocan las proteínas tradicionales.",
   },
   {
-    n: "Ø",
-    index: "04",
-    title: "Espesantes",
-    body: "Sin gomas, sin emulsionantes. Por eso se ve clara: porque no esconde nada.",
+    n: "✓",
+    index: "05",
+    title: "Ingredientes naturales",
+    body: "Saborizantes y colores de origen natural. Nada que no reconozcas.",
+  },
+  {
+    n: "✓",
+    index: "06",
+    title: "Clean Label",
+    body: "Etiqueta limpia: en la fórmula está lo único que hay.",
   },
 ];
 
@@ -115,7 +127,7 @@ export default function Claims() {
               >
                 <CountUp to={20} duration={1.6} />
                 <motion.span
-                  className="editorial text-h2pro font-normal inline-block"
+                  className="display text-h2pro inline-block"
                   style={{
                     fontSize: "0.55em",
                     marginLeft: "0.08em",

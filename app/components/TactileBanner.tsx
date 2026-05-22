@@ -69,7 +69,7 @@ export default function TactileBanner() {
                 style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)" }}
               >
                 <span className="editorial font-normal text-h2pro-glow">
-                  Sin diluir,
+                  Sin polvos,
                 </span>{" "}
                 sin shake,{" "}
                 <br className="hidden md:block" />
