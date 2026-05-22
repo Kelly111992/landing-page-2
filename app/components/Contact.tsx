@@ -1,18 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
 import { spring } from "../lib/springs";
 import Footer from "./Footer";
 
-// Web3Forms access key — generado gratis en https://web3forms.com (apuntando a info@h2pro.fit)
-const WEB3FORMS_ACCESS_KEY = "fb56be62-6c2c-4a4a-b863-c9d7c10fddd0";
-
-type Status = "idle" | "sending" | "success" | "error";
+const WA_HREF =
+  "https://wa.me/523331470485?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s.";
 
 export default function Contact() {
   const reduce = useReducedMotion();
-  const [status, setStatus] = useState<Status>("idle");
   return (
     <section
       id="contacto"
@@ -29,6 +25,7 @@ export default function Contact() {
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+          {/* Left — copy */}
           <div className="md:col-span-7">
             <span className="eyebrow text-h2pro-glow">[ 06 ] Hablemos</span>
             <motion.h2
@@ -52,10 +49,9 @@ export default function Contact() {
               finales —les decimos dónde encontrar la botella más cerca.
             </p>
 
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-paper/15 border border-paper/15 max-w-xl">
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-paper/15 border border-paper/15 max-w-xl">
               {[
                 { href: "mailto:info@h2pro.fit", label: "Correo", value: "info@h2pro.fit", target: undefined, rel: undefined },
-                { href: "tel:+523331470485", label: "Teléfono", value: "+52 33 3147 0485", target: undefined, rel: undefined },
                 { href: "https://instagram.com/h2pro.fit", label: "Instagram", value: "@h2pro.fit", target: "_blank", rel: "noopener" },
                 { href: "https://www.h2pro.fit", label: "Web", value: "www.h2pro.fit", target: undefined, rel: undefined },
               ].map((card, i) => (
@@ -81,134 +77,50 @@ export default function Contact() {
                 </motion.a>
               ))}
             </div>
-
           </div>
 
-          {/* Form */}
-          <motion.form
+          {/* Right — WhatsApp CTA */}
+          <motion.div
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-5 bg-paper text-ink p-8 md:p-10 self-start"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const form = e.currentTarget;
-              const data = new FormData(form);
-              setStatus("sending");
-              try {
-                const res = await fetch("https://api.web3forms.com/submit", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                  },
-                  body: JSON.stringify({
-                    access_key: WEB3FORMS_ACCESS_KEY,
-                    subject: `[H2PRO web] ${data.get("intent")} — ${data.get("name")}`,
-                    from_name: "H2PRO — Formulario web",
-                    replyto: data.get("email"),
-                    name: data.get("name"),
-                    email: data.get("email"),
-                    negocio: data.get("business"),
-                    ciudad: data.get("city"),
-                    intencion: data.get("intent"),
-                    mensaje: data.get("message"),
-                  }),
-                });
-                if (res.ok) {
-                  setStatus("success");
-                  form.reset();
-                } else {
-                  setStatus("error");
-                }
-              } catch {
-                setStatus("error");
-              }
-            }}
+            className="md:col-span-5 flex flex-col justify-center items-start gap-8 self-center"
           >
-            <span className="eyebrow text-ink/60">Formulario</span>
-            <h3 className="display text-ink text-[1.8rem] mt-3 mb-8 leading-tight">
-              Cuéntanos qué traes en mente.
-            </h3>
-
-            <div className="space-y-5">
-              <Field label="Nombre" name="name" required />
-              <Field label="Correo" name="email" type="email" required />
-              <Field label="Negocio o marca" name="business" />
-              <Field label="Ciudad" name="city" />
-
-              <div>
-                <label className="block text-[0.65rem] tracking-[0.28em] uppercase text-ink/55 mb-2">
-                  Intención
-                </label>
-                <select
-                  name="intent"
-                  className="w-full bg-transparent border-b border-ink/30 py-3 text-[0.95rem] outline-none focus:border-h2pro transition-colors"
-                  defaultValue="Distribución"
-                >
-                  <option>Distribución</option>
-                  <option>Punto de venta</option>
-                  <option>Prensa</option>
-                  <option>Cliente final</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-[0.65rem] tracking-[0.28em] uppercase text-ink/55 mb-2">
-                  Mensaje
-                </label>
-                <textarea
-                  name="message"
-                  rows={3}
-                  className="w-full bg-transparent border-b border-ink/30 py-3 text-[0.95rem] outline-none focus:border-h2pro transition-colors resize-none"
-                />
-              </div>
+            <div>
+              <span className="eyebrow text-paper/40">Canal directo</span>
+              <h3 className="display text-paper text-[1.8rem] mt-3 leading-tight">
+                La forma más rápida de hablar con nosotros.
+              </h3>
+              <p className="mt-4 text-paper/60 text-[0.95rem] leading-relaxed max-w-sm">
+                Escríbenos por WhatsApp y te respondemos en minutos. Sin
+                formularios, sin esperas.
+              </p>
             </div>
 
-            <motion.button
-              type="submit"
-              disabled={status === "sending"}
-              className="mt-10 w-full px-7 py-4 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.22em] uppercase disabled:opacity-60"
-              whileHover={{ scale: 1.02, backgroundColor: "var(--color-h2pro)" }}
+            <motion.a
+              href={WA_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04, backgroundColor: "var(--color-h2pro)" }}
               whileTap={{ scale: 0.97 }}
               transition={spring.snappy}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-paper text-ink text-[0.78rem] tracking-[0.22em] uppercase font-medium"
             >
-              {status === "sending" ? "Enviando…" : "Enviar →"}
-            </motion.button>
-
-            <p className="mt-5 text-[0.78rem] leading-relaxed text-ink/60">
-              {status === "success" ? (
-                <>
-                  ¡Gracias! Recibimos tu mensaje y te respondemos pronto.
-                </>
-              ) : status === "error" ? (
-                <>
-                  Hubo un problema al enviar. Escríbenos directo a{" "}
-                  <a
-                    href="mailto:info@h2pro.fit"
-                    className="text-h2pro underline underline-offset-2 hover:text-h2pro-deep"
-                  >
-                    info@h2pro.fit
-                  </a>
-                  .
-                </>
-              ) : (
-                <>
-                  Te respondemos al correo que nos dejes. También puedes
-                  escribirnos directo a{" "}
-                  <a
-                    href="mailto:info@h2pro.fit"
-                    className="text-h2pro underline underline-offset-2 hover:text-h2pro-deep"
-                  >
-                    info@h2pro.fit
-                  </a>
-                  .
-                </>
-              )}
-            </p>
-          </motion.form>
+              {/* WhatsApp glyph */}
+              <svg
+                aria-hidden="true"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="shrink-0"
+              >
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Escríbenos por WhatsApp
+            </motion.a>
+          </motion.div>
         </div>
       </div>
 
@@ -216,31 +128,3 @@ export default function Contact() {
     </section>
   );
 }
-
-function Field({
-  label,
-  name,
-  required,
-  type = "text",
-}: {
-  label: string;
-  name: string;
-  required?: boolean;
-  type?: string;
-}) {
-  return (
-    <div>
-      <label className="block text-[0.65rem] tracking-[0.28em] uppercase text-ink/55 mb-2">
-        {label}
-        {required && <span className="text-h2pro"> *</span>}
-      </label>
-      <input
-        name={name}
-        required={required}
-        type={type}
-        className="w-full bg-transparent border-b border-ink/30 py-3 text-[0.95rem] outline-none focus:border-h2pro transition-colors"
-      />
-    </div>
-  );
-}
-
