@@ -6,7 +6,6 @@ import { spring } from "../lib/springs";
 import H2ProLogo from "./H2ProLogo";
 
 const links = [
-  { href: "#manifiesto", label: "Manifiesto" },
   { href: "#sabores", label: "Sabores" },
   { href: "#nutrimental", label: "Etiqueta" },
   { href: "#para-quien", label: "Para quién" },
