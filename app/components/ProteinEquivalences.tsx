@@ -34,6 +34,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function ProteinEquivalences() {
   const reduce = useReducedMotion();
 
+  const item = {
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: spring.smooth },
+  };
+
   const stagger = {
     hidden: {},
     show: {
@@ -52,7 +57,7 @@ export default function ProteinEquivalences() {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { ...spring.smooth, duration: 0.7 },
+      transition: { ...spring.smooth },
     },
   };
 
@@ -69,20 +74,14 @@ export default function ProteinEquivalences() {
           viewport={{ once: true, margin: "-80px" }}
         >
           <motion.div
-            variants={{
-              hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
-              show: { opacity: 1, y: 0, transition: spring.smooth },
-            }}
+            variants={item}
             className="md:col-span-4"
           >
             <span className="eyebrow text-paper/55">Proteína real</span>
           </motion.div>
 
           <motion.div
-            variants={{
-              hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
-              show: { opacity: 1, y: 0, transition: spring.gentle },
-            }}
+            variants={item}
             className="md:col-span-8"
           >
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
@@ -125,14 +124,12 @@ export default function ProteinEquivalences() {
         </motion.div>
 
         {/* Equivalences grid */}
-        <div className="mb-4">
-          <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40 mb-8 block">
-            Equivalente a
-          </span>
-        </div>
+        <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40 mb-8 block">
+          Equivalente a
+        </span>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-0"
+          className="grid grid-cols-1 md:grid-cols-3"
           variants={stagger}
           initial="hidden"
           whileInView="show"
