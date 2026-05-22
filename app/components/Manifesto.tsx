@@ -7,8 +7,8 @@ import { spring } from "../lib/springs";
 
 const HEADLINE = [
   { text: "La proteína no", style: "" },
-  { text: "tenía que ser", style: "" },
-  { text: "espesa, lenta", style: "editorial text-h2pro-glow font-normal" },
+  { text: "tiene que ser", style: "" },
+  { text: "pesada, lenta", style: "editorial text-h2pro-glow font-normal" },
   { text: "ni complicada.", style: "" },
 ];
 
@@ -70,7 +70,7 @@ export default function Manifesto() {
           viewport={{ once: true, margin: "-50px" }}
           transition={spring.smooth}
         >
-          <span className="eyebrow text-h2pro-glow">[ 01 ] Manifiesto</span>
+          <span className="eyebrow text-h2pro-glow">[ 01 ] Quiénes somos</span>
         </motion.div>
 
         {/* Main statement — line-by-line reveal */}
@@ -81,10 +81,10 @@ export default function Manifesto() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            aria-label="La proteína no tenía que ser espesa, lenta ni complicada."
+            aria-label="La proteína no tiene que ser pesada, lenta ni complicada."
           >
             {HEADLINE.map((l, i) => (
-              <span key={i} className="block overflow-hidden leading-[1.1]">
+              <span key={i} className="block overflow-hidden leading-[1.15]">
                 <motion.span
                   className={`block ${l.style}`}
                   variants={line}
