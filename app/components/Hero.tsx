@@ -9,7 +9,7 @@ const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 const slide = {
   bg: "/lifestyle/hero-product.jpg",
   eyebrow: "El primer Protein Water · México",
-  headline: ["Proteína", "clara,", "sin pesadez."],
+  headline: ["Proteína refrescante", "lista para tomar."],
   sub: "20 g de proteína aislada · 500 ml · Sin azúcar ni espesantes.",
   accent: "limonada" as const,
 };
@@ -22,13 +22,8 @@ export default function Hero() {
       id="top"
       className="relative min-h-[100svh] w-full overflow-hidden bg-paper"
     >
-      {/* ─── Background image with Ken Burns zoom-out ─── */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        initial={{ scale: reduce ? 1 : 1.08 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: reduce ? 0 : 7, ease: "linear" }}
-      >
+      {/* ─── Background image (fixed, no animation) ─── */}
+      <div className="absolute inset-0 z-0">
         <Image
           src={slide.bg}
           alt=""
@@ -37,7 +32,7 @@ export default function Hero() {
           sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center top" }}
         />
-      </motion.div>
+      </div>
 
       {/* Light wash on the left for text legibility — paper-tinted, very subtle */}
       <div
@@ -134,7 +129,7 @@ export default function Hero() {
               whileHover={reduce ? {} : { x: 4 }}
               transition={spring.snappy}
             >
-              <span className="w-7 h-px bg-current" /> Manifiesto
+              <span className="w-7 h-px bg-current" /> Quiénes somos
             </motion.a>
           </motion.div>
         </div>
@@ -162,7 +157,7 @@ export default function Hero() {
               href="#manifiesto"
               className="col-span-4 pointer-events-auto group flex items-center justify-end gap-3 text-[0.58rem] tracking-[0.28em] uppercase text-ink/50 hover:text-ink/80 transition-colors"
             >
-              <span className="hidden md:inline">01 → Manifiesto</span>
+              <span className="hidden md:inline">01 → Quiénes somos</span>
               <span className="md:hidden">01 →</span>
               <ScrollLine />
             </a>
