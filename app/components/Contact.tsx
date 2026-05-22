@@ -49,10 +49,10 @@ export default function Contact() {
               finales —les decimos dónde encontrar la botella más cerca.
             </p>
 
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-paper/15 border border-paper/15 max-w-xl">
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-paper/15 border border-paper/15 max-w-2xl">
               {[
                 { href: "mailto:info@h2pro.fit", label: "Correo", value: "info@h2pro.fit", target: undefined, rel: undefined },
-                { href: "https://instagram.com/h2pro.fit", label: "Instagram", value: "@h2pro.fit", target: "_blank", rel: "noopener" },
+                { href: "https://instagram.com/h2pro.fit", label: "Instagram", value: "@h2pro.fit", target: "_blank", rel: "noopener noreferrer" },
                 { href: "https://www.h2pro.fit", label: "Web", value: "www.h2pro.fit", target: undefined, rel: undefined },
               ].map((card, i) => (
                 <motion.a
@@ -102,8 +102,8 @@ export default function Contact() {
               href={WA_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, backgroundColor: "var(--color-h2pro)" }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={reduce ? {} : { scale: 1.04, backgroundColor: "var(--color-h2pro)" }}
+              whileTap={reduce ? {} : { scale: 0.97 }}
               transition={spring.snappy}
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-paper text-ink text-[0.78rem] tracking-[0.22em] uppercase font-medium"
             >
