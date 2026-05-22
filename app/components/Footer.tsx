@@ -19,9 +19,18 @@ export default function Footer() {
             >
               <H2ProLogo className="h-9 w-auto" />
             </Link>
+            {/*
+              PROVISIONAL — texto de manifiesto corporativo pendiente de
+              revisión por Diego (Word doc del cliente, entrega pendiente).
+              Reemplazar cuando se reciba la versión definitiva.
+            */}
             <p className="mt-7 text-paper/65 max-w-sm text-[0.95rem] leading-relaxed">
-              Protein water clara, ligera y refrescante. Sin azúcar añadida,
-              sin lactosa, sin espesantes. Desarrollada y fabricada en México.
+              Creemos que la nutrición funcional debe ser simple, honesta y
+              para todos. Por eso hacemos H2PRO: proteína clara, sin atajos,
+              hecha en México.
+            </p>
+            <p className="mt-3 text-paper/45 text-[0.78rem] leading-snug max-w-sm">
+              Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco · México
             </p>
 
             {/* Sellos */}
@@ -32,8 +41,8 @@ export default function Footer() {
                   alt="Hecho en México — sello oficial"
                   width={64}
                   height={64}
-                  className="w-14 h-14 opacity-90"
-                  style={{ mixBlendMode: "screen" }}
+                  className="w-14 h-14"
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </div>
               <div className="border-l border-paper/15 pl-5 py-1">
@@ -53,7 +62,7 @@ export default function Footer() {
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="/#sabores">Sabores</FooterLink>
               <FooterLink href="/#nutrimental">Etiqueta</FooterLink>
-              <FooterLink href="/#manifiesto">Manifiesto</FooterLink>
+              <FooterLink href="/#manifiesto">Quiénes somos</FooterLink>
               <FooterLink href="/#para-quien">Para quién</FooterLink>
             </ul>
           </div>
