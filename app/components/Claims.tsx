@@ -76,7 +76,7 @@ export default function Claims() {
           </motion.div>
           <motion.div variants={item} className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
-              Cuatro decisiones,{" "}
+              Lo esencial,{" "}
               <span className="editorial text-h2pro font-normal">
                 cero compromisos.
               </span>
@@ -85,7 +85,7 @@ export default function Claims() {
         </motion.div>
 
         {/* Editorial spread */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0 items-start">
 
           {/* Hero claim — animated CountUp on "20" */}
           <motion.article
@@ -181,14 +181,14 @@ export default function Claims() {
                     },
                   },
                 }}
-                className={`flex-1 py-8 md:py-10 ${i > 0 ? "border-t border-paper/15" : ""}`}
+                className={`flex-1 py-5 md:py-7 ${i > 0 ? "border-t border-paper/15" : ""}`}
               >
                 <div className="flex items-baseline justify-between">
                   <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40">
                     {it.index}
                   </span>
                   <span
-                    className="display text-paper leading-none"
+                    className={`display leading-none ${it.n === "✓" ? "text-h2pro" : "text-paper"}`}
                     style={{
                       fontSize: "clamp(2.4rem, 4.5vw, 3.4rem)",
                       letterSpacing: "-0.04em",
