@@ -71,7 +71,7 @@ export default function TactileBanner() {
                 Sin polvos,{" "}
                 sin shake,{" "}
                 <br className="hidden md:block" />
-                sin pretexto.
+                sin pretexto
               </p>
               <p className="mt-5 text-paper/55 text-[0.88rem] leading-relaxed max-w-xs">
                 20 g de proteína aislada en 500 ml de agua clara. Lista cuando tú lo estés.

@@ -9,7 +9,7 @@ const HEADLINE = [
   { text: "La proteína no", style: "" },
   { text: "tiene que ser", style: "" },
   { text: "pesada, lenta", style: "" },
-  { text: "ni complicada.", style: "" },
+  { text: "ni complicada", style: "" },
 ];
 
 export default function Manifesto() {
@@ -81,7 +81,7 @@ export default function Manifesto() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            aria-label="La proteína no tiene que ser pesada, lenta ni complicada."
+            aria-label="La proteína no tiene que ser pesada, lenta ni complicada"
           >
             {HEADLINE.map((l, i) => (
               <span key={i} className="block overflow-hidden leading-[1.15]">

@@ -89,7 +89,7 @@ export default function Personas() {
             transition={{ ...spring.gentle, delay: 0.1 }}
           >
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
-              Es para todos.
+              Es para todos
             </h2>
           </motion.div>
         </div>

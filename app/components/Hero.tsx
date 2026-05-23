@@ -9,7 +9,7 @@ const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 const slide = {
   bg: "/lifestyle/hero-product.jpg",
   eyebrow: "El primer Protein Water · México",
-  headline: ["Proteína refrescante", "lista para tomar."],
+  headline: ["Proteína refrescante", "lista para tomar"],
   sub: "20 g de proteína aislada · 500 ml · Sin azúcar ni espesantes.",
   accent: "limonada" as const,
 };

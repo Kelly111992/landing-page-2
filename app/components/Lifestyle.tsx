@@ -39,7 +39,7 @@ export default function Lifestyle() {
             className="md:col-span-4 md:order-1 order-2 md:pt-8 md:sticky md:top-28"
           >
             <p className="display text-paper text-[clamp(1.9rem,3.2vw,2.8rem)] leading-[1.02] max-w-[16ch]">
-              Hecha para la mesa, no para el botiquín.
+              Hecha para la mesa, no para el botiquín
             </p>
 
             <p className="mt-8 max-w-xs text-[0.95rem] leading-relaxed text-paper/65">
