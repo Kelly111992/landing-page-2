@@ -95,29 +95,26 @@ export default function ProteinEquivalences() {
           </motion.div>
         </motion.div>
 
-        {/* Anchor stat — "1 botella = 20 g" */}
+        {/* Anchor — cinematic video reveal */}
         <motion.div
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="flex flex-wrap items-baseline gap-x-6 gap-y-2 mb-16 md:mb-20 pb-12 border-b border-paper/15"
+          className="relative mb-16 md:mb-20 pb-12 border-b border-paper/15"
         >
-          <span
-            className="display text-paper leading-none"
-            style={{ fontSize: "clamp(4rem, 10vw, 8rem)", letterSpacing: "-0.05em" }}
-          >
-            1&nbsp;botella
-          </span>
-          <span
-            className="display text-paper leading-none"
-            style={{ fontSize: "clamp(3rem, 7vw, 5.6rem)", letterSpacing: "-0.05em" }}
-          >
-            = 20&nbsp;g
-          </span>
-          <span className="text-[0.8rem] tracking-[0.26em] uppercase text-paper/45 self-end pb-2">
-            proteína real
-          </span>
+          <div className="relative w-full overflow-hidden bg-ink" style={{ aspectRatio: "16 / 9" }}>
+            <video
+              src="/videos/protein-equivalences.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label="Animación: una botella H2PRO equivale a 20 g de proteína real, lo mismo que 100 g de pechuga de pollo, 100 g de carne de res o 100 g de pescado"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
         </motion.div>
 
         {/* Equivalences grid */}
