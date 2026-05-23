@@ -54,11 +54,7 @@ export default function Flavors() {
           </div>
           <div className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
-              Dos perfiles.{" "}
-              <span className="editorial text-h2pro font-normal">
-                Una promesa
-              </span>{" "}
-              de claridad.
+              Dos perfiles. Una promesa de claridad.
             </h2>
           </div>
         </div>
@@ -93,10 +89,7 @@ function TeaserLine() {
       <div aria-hidden className="mb-10 h-px bg-paper/10 max-w-[280px]" />
 
       <p className="display text-paper text-[clamp(1.55rem,3.2vw,2.8rem)] max-w-[28ch] leading-[1.18]">
-        Arrancamos con limonada y blueberry —{" "}
-        <span className="editorial text-h2pro font-normal">
-          pero ya hay más en desarrollo.
-        </span>
+        Arrancamos con limonada y blueberry — pero ya hay más en desarrollo.
       </p>
     </motion.div>
   );

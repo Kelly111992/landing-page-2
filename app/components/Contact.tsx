@@ -39,9 +39,7 @@ export default function Contact() {
               <br />
               prensa o
               <br />
-              <span className="editorial text-h2pro-glow font-normal">
-                solo curiosidad?
-              </span>
+              solo curiosidad?
             </motion.h2>
             <p className="mt-8 max-w-md text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
               Buscamos puntos de venta, gimnasios, hoteles y cafeterías que

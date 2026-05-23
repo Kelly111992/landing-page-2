@@ -68,9 +68,7 @@ export default function TactileBanner() {
                 className="display text-paper leading-[0.94]"
                 style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)" }}
               >
-                <span className="editorial font-normal text-h2pro-glow">
-                  Sin polvos,
-                </span>{" "}
+                Sin polvos,{" "}
                 sin shake,{" "}
                 <br className="hidden md:block" />
                 sin pretexto.

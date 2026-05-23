@@ -83,16 +83,7 @@ export default function Hero() {
                   ease: EASE_CINEMA,
                 }}
               >
-                {i === slide.headline.length - 1 ? (
-                  <span
-                    className="editorial font-normal"
-                    style={{ color: "var(--color-h2pro)" }}
-                  >
-                    {line}
-                  </span>
-                ) : (
-                  line
-                )}
+                {line}
               </motion.span>
             ))}
           </h1>

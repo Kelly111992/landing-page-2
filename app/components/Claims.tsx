@@ -76,10 +76,7 @@ export default function Claims() {
           </motion.div>
           <motion.div variants={item} className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
-              Lo esencial,{" "}
-              <span className="editorial text-h2pro font-normal">
-                cero compromisos.
-              </span>
+              Lo esencial, cero compromisos.
             </h2>
           </motion.div>
         </motion.div>

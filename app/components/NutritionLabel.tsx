@@ -33,10 +33,7 @@ export default function NutritionLabel() {
           </div>
           <div className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
-              Lo que ves es{" "}
-              <span className="editorial text-h2pro-glow font-normal">
-                lo que hay.
-              </span>
+              Lo que ves es lo que hay.
             </h2>
             <p className="mt-6 max-w-md text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
               Cinco ingredientes. Cero letra chiquita. Si no entendieras qué es

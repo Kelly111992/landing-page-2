@@ -85,10 +85,7 @@ export default function ProteinEquivalences() {
             className="md:col-span-8"
           >
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
-              Una botella.{" "}
-              <span className="editorial text-h2pro font-normal">
-                La proteína de un plato completo.
-              </span>
+              Una botella. La proteína de un plato completo.
             </h2>
             <p className="mt-6 max-w-lg text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
               20 g de proteína aislada de suero de leche por botella — el mismo

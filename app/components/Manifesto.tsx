@@ -8,7 +8,7 @@ import { spring } from "../lib/springs";
 const HEADLINE = [
   { text: "La proteína no", style: "" },
   { text: "tiene que ser", style: "" },
-  { text: "pesada, lenta", style: "editorial text-h2pro-glow font-normal" },
+  { text: "pesada, lenta", style: "" },
   { text: "ni complicada.", style: "" },
 ];
 
