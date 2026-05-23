@@ -25,6 +25,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* compensa la barra fija del nav al saltar a anchors */
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 html, body {

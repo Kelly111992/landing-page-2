@@ -100,7 +100,7 @@ export default function Hero() {
 
           {/* CTA row */}
           <motion.div
-            className="mt-9 flex items-center gap-5"
+            className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3"
             initial={reduce ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: reduce ? 0 : 0.88, duration: 0.6 }}
@@ -139,7 +139,7 @@ export default function Hero() {
               <span className="hidden md:inline">Ed. 01 — Vol. 01 / N° 01</span>
               <span className="md:hidden">Ed. 01 — N°01</span>
             </span>
-            <span className="col-span-4 text-center">
+            <span className="col-span-4 text-center hidden md:block">
               <span className="editorial text-ink/55 text-[0.9rem] md:text-[1rem] leading-snug">
                 Clear Protein. Hecho en México.
               </span>
