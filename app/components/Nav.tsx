@@ -87,19 +87,6 @@ export default function Nav() {
             ))}
           </ul>
 
-          <motion.a
-            href="#contacto"
-            className={`hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[0.66rem] lg:text-[0.74rem] tracking-[0.15em] lg:tracking-[0.2em] uppercase whitespace-nowrap transition-colors duration-500 ${
-              light ? "bg-ink text-paper" : "bg-paper text-ink"
-            }`}
-            whileHover={{ scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
-            whileTap={{ scale: 0.97 }}
-            transition={spring.snappy}
-          >
-            Pedidos
-            <span aria-hidden>→</span>
-          </motion.a>
-
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -175,15 +162,8 @@ export default function Nav() {
               </ul>
 
               <div className="mt-auto pt-12">
-                <a
-                  href="#contacto"
-                  onClick={() => setOpen(false)}
-                  className="block text-center px-7 py-4 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.22em] uppercase"
-                >
-                  Pedidos &nbsp;→
-                </a>
-                <p className="mt-6 text-[0.7rem] tracking-[0.18em] uppercase text-ink/45 text-center">
-                  diego@h2pro.fit · @h2pro.fit
+                <p className="text-[0.7rem] tracking-[0.18em] uppercase text-ink/45 text-center">
+                  info@h2pro.fit · @h2pro.fit
                 </p>
               </div>
             </div>
