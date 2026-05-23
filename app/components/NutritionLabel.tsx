@@ -93,7 +93,7 @@ export default function NutritionLabel() {
                   <span
                     className={`py-4 border-b border-paper/15 text-right tabular-nums ${
                       r.emphasis
-                        ? "display text-h2pro-glow text-[1.2rem]"
+                        ? "display text-paper text-[1.2rem]"
                         : "text-paper/70"
                     }`}
                   >

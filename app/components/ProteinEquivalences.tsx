@@ -110,7 +110,7 @@ export default function ProteinEquivalences() {
             1&nbsp;botella
           </span>
           <span
-            className="display text-h2pro leading-none"
+            className="display text-paper leading-none"
             style={{ fontSize: "clamp(3rem, 7vw, 5.6rem)", letterSpacing: "-0.05em" }}
           >
             = 20&nbsp;g
@@ -164,7 +164,7 @@ export default function ProteinEquivalences() {
                   {eq.amount}
                 </span>
                 <span
-                  className="display text-h2pro leading-none"
+                  className="display text-paper leading-none"
                   style={{
                     fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
                     letterSpacing: "-0.03em",

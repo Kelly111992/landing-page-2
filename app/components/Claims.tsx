@@ -124,7 +124,7 @@ export default function Claims() {
               >
                 <CountUp to={20} duration={1.6} />
                 <motion.span
-                  className="display text-h2pro inline-block"
+                  className="display text-paper inline-block"
                   style={{
                     fontSize: "0.55em",
                     marginLeft: "0.08em",
@@ -185,7 +185,7 @@ export default function Claims() {
                     {it.index}
                   </span>
                   <span
-                    className={`display leading-none ${it.n === "✓" ? "text-h2pro" : "text-paper"}`}
+                    className="display leading-none text-paper"
                     style={{
                       fontSize: "clamp(2.4rem, 4.5vw, 3.4rem)",
                       letterSpacing: "-0.04em",
