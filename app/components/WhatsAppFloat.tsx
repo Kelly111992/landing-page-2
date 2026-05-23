@@ -24,7 +24,7 @@ export default function WhatsAppFloat() {
       }
       whileHover={reduce ? {} : { scale: 1.08 }}
       whileTap={reduce ? {} : { scale: 0.94 }}
-      className="fixed bottom-3 right-3 md:bottom-7 md:right-7 z-50 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)] ring-1 ring-black/5"
+      className="fixed bottom-3 right-3 md:bottom-7 md:right-7 z-50 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-ink text-paper shadow-[0_8px_30px_rgba(0,0,0,0.45)] ring-1 ring-paper/25"
     >
       <svg
         viewBox="0 0 448 512"
