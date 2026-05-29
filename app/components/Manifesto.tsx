@@ -62,19 +62,8 @@ export default function Manifesto() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
-        {/* Side label */}
-        <motion.div
-          className="md:col-span-2 md:pt-2"
-          initial={{ opacity: 0, x: -16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={spring.smooth}
-        >
-          <span className="eyebrow text-h2pro-glow">[ 01 ] Quiénes somos</span>
-        </motion.div>
-
         {/* Main statement — line-by-line reveal */}
-        <div className="md:col-span-7">
+        <div className="md:col-span-8">
           <motion.h2
             className="display text-paper text-[clamp(2.6rem,6.4vw,5.8rem)]"
             variants={container}
@@ -96,21 +85,15 @@ export default function Manifesto() {
           </motion.h2>
 
           <motion.div
-            className="mt-12 max-w-xl space-y-5 text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed"
+            className="mt-12 max-w-xl text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
           >
             <p>
-              Después de 20 años en el mundo de los suplementos naturistas vimos
-              que faltaba algo: una bebida proteica clara, ligera y honesta.
-              Sin shakes pesados, sin sabores artificiales, sin promesas de
-              cuerpo de revista.
-            </p>
-            <p>
-              H2PRO es agua con 20 gramos de proteína. Eso es todo —y eso lo
-              cambia todo. Es el primer{" "}
+              H2PRO es agua con 20 gramos de proteína. Sin shakes pesados, sin
+              sabores artificiales, sin promesas de cuerpo de revista. El primer{" "}
               <span className="editorial text-paper">protein water</span>{" "}
               hecho en México.
             </p>
@@ -119,7 +102,7 @@ export default function Manifesto() {
 
         {/* Cinematic bottle photograph — with parallax */}
         <motion.figure
-          className="md:col-span-3 relative"
+          className="md:col-span-4 relative"
           initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -143,11 +126,11 @@ export default function Manifesto() {
             >
               <div className="relative w-full h-full">
                 <Image
-                  src="/lifestyle/manifesto.jpg"
-                  alt="Botella H2PRO Blueberry sobre piedra negra, iluminada por un haz de luz cálida"
+                  src="/lifestyle/manifesto-blueberry.png"
+                  alt="Botella H2PRO Blueberry transparente sobre fondo navy oscuro"
                   fill
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: "contain" }}
                 />
               </div>
             </motion.div>
