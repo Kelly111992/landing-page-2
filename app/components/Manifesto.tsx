@@ -152,10 +152,6 @@ export default function Manifesto() {
               </div>
             </motion.div>
           </div>
-          <figcaption className="mt-3 flex items-baseline justify-between text-[0.6rem] tracking-[0.28em] uppercase text-paper/40">
-            <span>Pieza única</span>
-            <span>Ed. 01</span>
-          </figcaption>
         </motion.figure>
       </div>
 
