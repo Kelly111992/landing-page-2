@@ -19,22 +19,9 @@ export default function Footer() {
             >
               <H2ProLogo className="h-9 w-auto" />
             </Link>
-            {/*
-              PROVISIONAL — texto de manifiesto corporativo pendiente de
-              revisión por Diego (Word doc del cliente, entrega pendiente).
-              Reemplazar cuando se reciba la versión definitiva.
-            */}
-            <p className="mt-7 text-paper/65 max-w-sm text-[0.95rem] leading-relaxed">
-              Creemos que la nutrición funcional debe ser simple, honesta y
-              para todos. Por eso hacemos H2PRO: proteína clara, sin atajos,
-              hecha en México.
-            </p>
-            <p className="mt-3 text-paper/45 text-[0.78rem] leading-snug max-w-sm">
-              Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco · México
-            </p>
 
             {/* Sellos */}
-            <div className="mt-10 flex items-start gap-6">
+            <div className="mt-8 flex items-start gap-6">
               <div className="shrink-0">
                 <Image
                   src="/brand/hecho-en-mexico.png"
@@ -47,7 +34,7 @@ export default function Footer() {
               </div>
               <div className="border-l border-paper/15 pl-5 py-1">
                 <span className="block text-[0.6rem] tracking-[0.32em] uppercase text-paper/45">
-                  Aviso COFEPRIS
+                  Aviso de funcionamiento Cofepris
                 </span>
                 <span className="block text-[0.82rem] tracking-[0.16em] uppercase text-paper/75 font-medium mt-2">
                   2614105019X00016
@@ -63,7 +50,6 @@ export default function Footer() {
               <FooterLink href="/#sabores">Sabores</FooterLink>
               <FooterLink href="/#nutrimental">Etiqueta</FooterLink>
               <FooterLink href="/#manifiesto">Quiénes somos</FooterLink>
-              <FooterLink href="/#para-quien">Para quién</FooterLink>
             </ul>
           </div>
 
@@ -72,7 +58,7 @@ export default function Footer() {
             <h4 className="eyebrow text-paper/40 mb-6">Contacto</h4>
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="mailto:info@h2pro.fit">info@h2pro.fit</FooterLink>
-              <FooterLink href="tel:+523331470485">+52 33 3147 0485</FooterLink>
+              <FooterLink href="https://instagram.com/h2pro.fit">@h2pro.fit</FooterLink>
               <li className="text-paper/55">Zapopan, Jalisco · México</li>
             </ul>
           </div>
@@ -133,9 +119,13 @@ export default function Footer() {
       <div className="border-t border-paper/10">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/45">
           <span>
-            © {year} H2PRO — Clear Protein. Todos los derechos reservados.
+            © {year} H2PRO — Protein Water. Todos los derechos reservados.
+            {/* Manifiesto empresarial — sutil, junto a la razón social */}
+            <span className="block mt-1 text-paper/40 italic">
+              Nutrición funcional simple, honesta y para todos.
+            </span>
             <span className="block mt-1 text-paper/30">
-              SUPLEMENTOS DISRUPTIVOS S.A. DE C.V.
+              Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco
             </span>
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">

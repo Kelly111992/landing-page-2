@@ -7,39 +7,31 @@ import { spring } from "../lib/springs";
 const hero = {
   unit: "g",
   index: "01",
-  title: "Proteína aislada de suero de leche",
-  body:
-    "Aislado de suero de leche con alta biodisponibilidad. La misma calidad de un suplemento premium, en el formato más simple posible.",
+  title: "Proteína de suero de leche",
 };
 
 const secondary = [
   {
     n: "4.5 g",
     index: "02",
-    title: "BCAAs",
+    title: "BCAA",
     body: "4.5 g de aminoácidos de cadena ramificada en cada botella.",
   },
   {
-    n: "0 g",
+    n: "0",
     index: "03",
-    title: "Azúcar añadida",
+    title: "Cero azúcar",
     body: "Sin azúcar disfrazada, sin maltodextrinas, sin jarabes.",
   },
   {
-    n: "0 g",
+    n: "0",
     index: "04",
-    title: "Lactosa",
+    title: "Cero lactosa",
     body: "Sin la pesadez ni inflamación que provocan las proteínas tradicionales.",
   },
   {
     n: "✓",
     index: "05",
-    title: "Ingredientes naturales",
-    body: "Saborizantes y colores de origen natural. Nada que no reconozcas.",
-  },
-  {
-    n: "✓",
-    index: "06",
     title: "Clean Label",
     body: "Etiqueta limpia: en la fórmula está lo único que hay.",
   },
@@ -150,9 +142,6 @@ export default function Claims() {
               <h3 className="display text-paper text-[1.4rem] md:text-[1.6rem] leading-tight">
                 {hero.title}
               </h3>
-              <p className="mt-4 text-[0.95rem] md:text-[1rem] leading-relaxed text-paper/70">
-                {hero.body}
-              </p>
             </motion.div>
           </motion.article>
 
@@ -204,24 +193,6 @@ export default function Claims() {
             ))}
           </motion.div>
         </div>
-
-        {/* Closing line */}
-        <motion.p
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ ...spring.gentle, delay: reduce ? 0 : 0.3 }}
-          className="mt-20 md:mt-28 max-w-2xl text-[0.95rem] md:text-[1.05rem] leading-relaxed text-paper/60"
-        >
-          Toda decisión arriba puede comprobarse en la{" "}
-          <a
-            href="#nutrimental"
-            className="text-paper underline underline-offset-4 decoration-paper/30 hover:decoration-h2pro decoration-1 transition-colors"
-          >
-            tabla nutrimental
-          </a>
-          . No hay segunda lectura.
-        </motion.p>
       </div>
     </section>
   );

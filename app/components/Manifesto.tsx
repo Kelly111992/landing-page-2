@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
 
 const HEADLINE = [
@@ -14,9 +12,6 @@ const HEADLINE = [
 
 export default function Manifesto() {
   const reduce = useReducedMotion();
-  const bottleRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: bottleRef, offset: ["start end", "end start"] });
-  const bottleY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [-50, 50]);
 
   const container = {
     hidden: {},
@@ -61,9 +56,9 @@ export default function Manifesto() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
+      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44">
         {/* Main statement — line-by-line reveal */}
-        <div className="md:col-span-8">
+        <div className="max-w-5xl">
           <motion.h2
             className="display text-paper text-[clamp(2.6rem,6.4vw,5.8rem)]"
             variants={container}
@@ -94,48 +89,11 @@ export default function Manifesto() {
             <p>
               H2PRO es agua con 20 gramos de proteína. Sin shakes pesados, sin
               sabores artificiales, sin promesas de cuerpo de revista. El primer{" "}
-              <span className="editorial text-paper">protein water</span>{" "}
+              <span className="editorial text-paper">Protein Water</span>{" "}
               hecho en México.
             </p>
           </motion.div>
         </div>
-
-        {/* Cinematic bottle photograph — with parallax */}
-        <motion.figure
-          className="md:col-span-4 relative"
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={spring.gentle}
-        >
-          <div
-            ref={bottleRef}
-            className="relative overflow-hidden"
-            style={{ aspectRatio: "4/5" }}
-          >
-            <motion.div
-              className="parallax-img"
-              style={{
-                y: bottleY,
-                position: "absolute",
-                top: "-15%",
-                bottom: "-15%",
-                left: 0,
-                right: 0,
-              }}
-            >
-              <div className="relative w-full h-full">
-                <Image
-                  src="/lifestyle/manifesto-blueberry.png"
-                  alt="Botella H2PRO Blueberry transparente sobre fondo navy oscuro"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-            </motion.div>
-          </div>
-        </motion.figure>
       </div>
 
       {/* Marquee strip */}
@@ -143,7 +101,7 @@ export default function Manifesto() {
         <div className="flex gap-12 animate-[shimmer_30s_linear_infinite] text-paper/40 text-[0.78rem] tracking-[0.32em] uppercase">
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
-              <span>Clear Protein</span>
+              <span>Protein Water</span>
               <span>·</span>
               <span>Clean Label</span>
               <span>·</span>

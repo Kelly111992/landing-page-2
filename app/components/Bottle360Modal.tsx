@@ -167,7 +167,7 @@ function ModalContent({
                 style={{ background: accent }}
               />
               <span className="text-[0.57rem] tracking-[0.44em] uppercase text-white/55">
-                H2PRO · Clear Protein
+                H2PRO · Protein Water
               </span>
               <span
                 className="text-[0.67rem] tracking-[0.26em] uppercase font-semibold"

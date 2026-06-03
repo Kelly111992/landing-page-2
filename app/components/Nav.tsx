@@ -8,7 +8,6 @@ import H2ProLogo from "./H2ProLogo";
 const links = [
   { href: "#sabores", label: "Sabores" },
   { href: "#nutrimental", label: "Etiqueta" },
-  { href: "#para-quien", label: "Para quién" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -53,7 +52,7 @@ export default function Nav() {
           <a
             href="#top"
             onClick={() => setOpen(false)}
-            aria-label="H2PRO — Clear Protein"
+            aria-label="H2PRO — Protein Water"
             className={`flex items-center gap-4 group transition-colors duration-500 ${
               light ? "text-ink" : "text-paper"
             }`}
@@ -64,7 +63,7 @@ export default function Nav() {
                 light ? "text-ink/50" : "text-paper/55"
               }`}
             >
-              Clear&nbsp;Protein
+              Protein&nbsp;Water
             </span>
           </a>
 

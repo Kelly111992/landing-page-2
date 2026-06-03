@@ -11,14 +11,6 @@ const rows = [
   { label: "Sodio", per100: "7.6 mg", per500: "38 mg" },
 ];
 
-const ingredients = [
-  "Agua",
-  "Proteína aislada de suero de leche",
-  "Saborizante idéntico al natural",
-  "Color natural",
-  "Sucralosa",
-];
-
 export default function NutritionLabel() {
   const reduce = useReducedMotion();
   return (
@@ -36,8 +28,9 @@ export default function NutritionLabel() {
               Lo que ves es lo que hay
             </h2>
             <p className="mt-6 max-w-md text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
-              Cinco ingredientes. Cero letra chiquita. Si no entendieras qué es
-              algo, no lo pondríamos en la fórmula.
+              Sin letra chiquita. La declaración nutrimental oficial, tal cual
+              aparece en la botella. Los valores cambian según el perfil del
+              sabor.
             </p>
           </div>
         </div>
@@ -47,10 +40,10 @@ export default function NutritionLabel() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={spring.gentle}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 border-2 border-paper"
+          className="border-2 border-paper"
         >
-          {/* Big label panel */}
-          <div className="lg:col-span-7 border-b-2 lg:border-b-0 lg:border-r-2 border-paper p-8 md:p-12">
+          {/* Tabla de declaración nutrimental — único panel conservado */}
+          <div className="p-8 md:p-12">
             <div className="flex items-baseline justify-between mb-8 pb-4 border-b border-paper/30">
               <h3 className="display text-paper text-[1.6rem]">
                 Declaración nutrimental
@@ -108,60 +101,13 @@ export default function NutritionLabel() {
               porción diaria recomendada.
             </p>
           </div>
-
-          {/* Ingredients */}
-          <div className="lg:col-span-5 p-8 md:p-12 flex flex-col">
-            <div className="flex items-baseline justify-between mb-8 pb-4 border-b border-paper/30">
-              <h3 className="display text-paper text-[1.6rem]">
-                Ingredientes
-              </h3>
-              <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/55">
-                05
-              </span>
-            </div>
-
-            <ol className="space-y-1 flex-1">
-              {ingredients.map((ing, i) => (
-                <motion.li
-                  key={ing}
-                  initial={reduce ? { opacity: 0 } : { opacity: 0, x: 16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ ...spring.smooth, delay: reduce ? 0 : 0.1 + i * 0.07 }}
-                  className="flex items-baseline gap-5 py-4 border-b border-paper/15"
-                >
-                  <span className="text-[0.7rem] tracking-[0.24em] text-paper/40 tabular-nums shrink-0 w-8">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[1.05rem] md:text-[1.15rem] text-paper">
-                    {ing}
-                  </span>
-                </motion.li>
-              ))}
-            </ol>
-
-            <div className="mt-10 pt-6 border-t border-paper/20 grid grid-cols-2 gap-6 text-[0.78rem] text-paper/65">
-              <div>
-                <span className="block text-[0.65rem] tracking-[0.28em] uppercase text-paper/40 mb-2">
-                  Vida de anaquel
-                </span>
-                18 meses
-              </div>
-              <div>
-                <span className="block text-[0.65rem] tracking-[0.28em] uppercase text-paper/40 mb-2">
-                  Presentación
-                </span>
-                PET 500 ml · 19 cm × 6.5 cm
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* Disclaimer line */}
         <p className="mt-10 text-[0.78rem] text-paper/45 leading-relaxed max-w-3xl">
-          No recomendable en niños. No consumir durante el embarazo o
-          lactancia. Almacenar en lugar fresco, seco y alejado de la luz solar
-          directa. Una vez abierto, consérvese en refrigeración.
+          No consumir durante el embarazo o lactancia. Almacenar en lugar
+          fresco, seco y alejado de la luz solar directa. Una vez abierto,
+          consérvese en refrigeración.
         </p>
       </div>
     </section>
