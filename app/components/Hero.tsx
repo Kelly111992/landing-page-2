@@ -76,14 +76,31 @@ export default function Hero() {
     </div>
   );
 
-  // Foto de producto — siempre completa (object-contain), nunca debajo del texto
-  const photo = (
+  // Máscaras que difuminan los bordes de la foto para que se funda con el fondo
+  // (en vez de verse como un rectángulo duro).
+  const radialFade =
+    "radial-gradient(125% 130% at 52% 48%, #000 48%, rgba(0,0,0,0.45) 76%, rgba(0,0,0,0) 100%)";
+  const verticalFade =
+    "linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 14%, #000 86%, rgba(0,0,0,0) 100%)";
+
+  // Foto de producto — completa (object-contain), bordes difuminados + halo
+  const photo = (variant: "contained" | "full") => (
     <motion.div
       initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ ...spring.gentle, delay: 0.1 }}
       className="relative w-full"
     >
+      {/* Halo de color suave detrás de las botellas, da profundidad */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(closest-side at 52% 48%, rgba(0,134,214,0.16) 0%, rgba(0,134,214,0.06) 45%, rgba(0,134,214,0) 75%)",
+          filter: "blur(8px)",
+        }}
+      />
       <div className="relative w-full aspect-[1451/1084]">
         <Image
           src={slide.bg}
@@ -91,7 +108,12 @@ export default function Hero() {
           fill
           priority
           sizes="(max-width: 768px) 100vw, 55vw"
-          style={{ objectFit: "contain", objectPosition: "center" }}
+          style={{
+            objectFit: "contain",
+            objectPosition: "center",
+            WebkitMaskImage: variant === "full" ? verticalFade : radialFade,
+            maskImage: variant === "full" ? verticalFade : radialFade,
+          }}
         />
       </div>
     </motion.div>
@@ -99,16 +121,26 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative w-full overflow-hidden bg-paper">
+      {/* Resplandor atmosférico muy sutil al fondo */}
+      <div
+        aria-hidden
+        className="absolute -top-1/4 right-0 w-[70vw] h-[70vw] max-w-[900px] max-h-[900px] rounded-full blur-3xl opacity-60 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(0,134,214,0.08) 0%, rgba(0,134,214,0) 65%)",
+        }}
+      />
+
       {/* ─── MÓVIL: foto completa arriba, texto debajo ─── */}
-      <div className="md:hidden">
-        <div className="pt-16">{photo}</div>
-        <div className="px-6 pt-8 pb-16">{text}</div>
+      <div className="md:hidden relative">
+        <div className="pt-14">{photo("full")}</div>
+        <div className="px-6 pt-6 pb-16">{text}</div>
       </div>
 
       {/* ─── DESKTOP: texto a la izquierda, foto completa a la derecha ─── */}
-      <div className="hidden md:grid min-h-[100svh] grid-cols-12 items-center gap-6 px-14 lg:px-20 pt-20">
+      <div className="hidden md:grid relative min-h-[100svh] grid-cols-12 items-center gap-6 px-14 lg:px-20 pt-20">
         <div className="col-span-5 lg:col-span-5">{text}</div>
-        <div className="col-span-7 lg:col-span-7">{photo}</div>
+        <div className="col-span-7 lg:col-span-7">{photo("contained")}</div>
       </div>
     </section>
   );
