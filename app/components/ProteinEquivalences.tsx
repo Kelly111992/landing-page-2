@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
 
@@ -7,6 +8,32 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function ProteinEquivalences() {
   const reduce = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Reproduce el video desde el inicio cada vez que entra en pantalla; lo
+  // pausa al salir. Así la revelación cinemática del enunciado se ve al llegar.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (reduce) {
+      // Sin animación: mostrar el enunciado completo fijo (último frame).
+      video.currentTime = 6.9;
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.55 }
+    );
+    io.observe(video);
+    return () => io.disconnect();
+  }, [reduce]);
 
   const item = {
     hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
@@ -57,26 +84,24 @@ export default function ProteinEquivalences() {
           </motion.div>
         </motion.div>
 
-        {/* Enunciado fijo y completo de equivalencia */}
+        {/* Video — enunciado completo de equivalencia, revelación cinemática */}
         <motion.div
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="relative border-t border-b border-paper/12 py-20 md:py-28"
+          className="relative w-full overflow-hidden rounded-xl"
+          style={{ aspectRatio: "16 / 9" }}
         >
-          <p
-            className="display text-paper text-center mx-auto max-w-[22ch] leading-[1.12]"
-            style={{ fontSize: "clamp(1.9rem, 4.6vw, 3.6rem)" }}
+          <video
+            ref={videoRef}
+            src="/videos/protein-equivalences.mp4"
+            muted
+            playsInline
+            preload="metadata"
             aria-label="20 g de proteína real equivalen aproximadamente a 100 g de pechuga de pollo, carne de res o pescado"
-          >
-            20 g de proteína real
-            <span className="block text-h2pro-glow my-3" aria-hidden>≃</span>
-            100 g de pechuga de pollo, carne de res o pescado
-          </p>
-          <p className="mt-8 text-center text-[0.72rem] tracking-[0.28em] uppercase text-paper/40">
-            Equivalencia aproximada de aporte proteico
-          </p>
+            className="absolute inset-0 w-full h-full object-cover"
+          />
         </motion.div>
 
         {/* Closing note */}
