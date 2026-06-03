@@ -36,14 +36,17 @@ export default function Nav() {
     };
   }, [open]);
 
-  // El hero ahora es claro, así que el nav siempre va en tono paper.
-  const light = true;
+  // Arriba (sin scroll) el nav va oscuro/translúcido con logo blanco; al hacer
+  // scroll transiciona a fondo claro (paper) con el logo a 2 tonos.
+  const light = scrolled || open;
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl transition-shadow duration-500 bg-paper/85 border-b border-ink/5 ${
-          scrolled ? "shadow-[0_1px_20px_rgba(10,14,18,0.06)]" : ""
+        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl transition-colors duration-500 ${
+          light
+            ? "bg-paper/85 border-b border-ink/5"
+            : "bg-ink/85 border-b border-paper/10"
         }`}
       >
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
