@@ -121,8 +121,9 @@ export default function Footer() {
           <span>
             © {year} H2PRO — Protein Water. Todos los derechos reservados.
             {/* Manifiesto empresarial — sutil, junto a la razón social */}
-            <span className="block mt-1 text-paper/40 italic">
-              Nutrición funcional simple, honesta y para todos.
+            <span className="block mt-1 text-paper/40">
+              Lo tenemos claro: nutrir a México con productos disruptivos
+              creciendo de forma responsable con el medio ambiente.
             </span>
             <span className="block mt-1 text-paper/30">
               Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco

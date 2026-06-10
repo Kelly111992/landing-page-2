@@ -15,7 +15,7 @@ const secondary = [
     n: "4.5 g",
     index: "02",
     title: "BCAA",
-    body: "4.5 g de aminoácidos de cadena ramificada en cada botella.",
+    body: "Leucina, isoleucina y valina, que ayudan a formar proteína muscular.",
   },
   {
     n: "0",
@@ -30,10 +30,10 @@ const secondary = [
     body: "Sin la pesadez ni inflamación que provocan las proteínas tradicionales.",
   },
   {
-    n: "✓",
+    n: "",
     index: "05",
     title: "Clean Label",
-    body: "Etiqueta limpia: en la fórmula está lo único que hay.",
+    body: "Ingredientes simples y fáciles de entender. Somos transparentes hasta en nuestra fórmula.",
   },
 ];
 

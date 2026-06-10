@@ -74,7 +74,7 @@ export default function TactileBanner() {
                 sin grumos, sin pretextos
               </p>
               <p className="mt-5 text-paper/65 text-[0.95rem] md:text-[1.05rem] leading-relaxed max-w-md">
-                20 g de proteína de suero de leche, listo para tomar.
+                20 g de proteína aislada de suero de leche, lista para tomar.
               </p>
             </motion.div>
           </div>
