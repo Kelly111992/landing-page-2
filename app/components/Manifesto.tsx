@@ -57,10 +57,10 @@ export default function Manifesto() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44">
-        {/* Main statement — line-by-line reveal */}
-        <div className="max-w-5xl">
+        {/* Main statement — headline a la izquierda, párrafo cierra la composición a la derecha */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-10 items-end">
           <motion.h2
-            className="display text-paper text-[clamp(2.6rem,6.4vw,5.8rem)]"
+            className="display text-paper text-[clamp(2.6rem,7.2vw,6.8rem)] md:col-span-8"
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -80,7 +80,7 @@ export default function Manifesto() {
           </motion.h2>
 
           <motion.div
-            className="mt-12 max-w-xl text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed"
+            className="md:col-span-4 md:pl-8 md:border-l border-paper/15 text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}

@@ -1,39 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import CountUp from "./CountUp";
 import { spring } from "../lib/springs";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
+// Equivalencia proteica como ecuación tipográfica fija (minuta 01-jun):
+// "20 g de proteína real ≃ 100 g de pechuga de pollo, carne de res o pescado".
+// Sin video, sin revelación renglón por renglón: un solo enunciado, mismo bg-ink.
 export default function ProteinEquivalences() {
   const reduce = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Reproduce el video desde el inicio cada vez que entra en pantalla; lo
-  // pausa al salir. Así la revelación cinemática del enunciado se ve al llegar.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (reduce) {
-      // Sin animación: mostrar el enunciado completo fijo (último frame).
-      video.currentTime = 6.9;
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.55 }
-    );
-    io.observe(video);
-    return () => io.disconnect();
-  }, [reduce]);
 
   const item = {
     hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
@@ -50,71 +25,110 @@ export default function ProteinEquivalences() {
     },
   };
 
+  const numberStyle = {
+    fontSize: "clamp(4.6rem, 10.5vw, 10rem)",
+    letterSpacing: "-0.05em",
+    lineHeight: 0.85,
+  } as const;
+
   return (
     <section className="relative bg-ink py-24 md:py-32 overflow-hidden border-t border-paper/10">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
 
         {/* Section header */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 md:mb-28"
+          className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16 md:mb-24"
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.div
-            variants={item}
-            className="md:col-span-4"
-          >
+          <motion.div variants={item} className="md:col-span-4">
             <span className="eyebrow text-paper/55">Proteína real</span>
           </motion.div>
 
-          <motion.div
-            variants={item}
-            className="md:col-span-8"
-          >
+          <motion.div variants={item} className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
               Una botella. La proteína de un plato completo
             </h2>
             <p className="mt-6 max-w-lg text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
-              20 g de proteína aislada de suero de leche por botella — el mismo
+              20 g de proteína aislada de suero de leche por botella: el mismo
               aporte que una porción de proteína animal de alta calidad, sin
               preparación, sin calorías de más.
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Video — enunciado completo de equivalencia, revelación cinemática */}
+        {/* Ecuación tipográfica — un solo enunciado fijo y completo */}
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9, ease: EASE }}
-          className="relative w-full overflow-hidden rounded-xl"
-          style={{ aspectRatio: "16 / 9" }}
+          className="border-y border-paper/12"
+          aria-label="20 g de proteína real equivalen aproximadamente a 100 g de pechuga de pollo, carne de res o pescado"
         >
-          <video
-            ref={videoRef}
-            src="/videos/protein-equivalences.mp4"
-            muted
-            playsInline
-            preload="metadata"
-            aria-label="20 g de proteína real equivalen aproximadamente a 100 g de pechuga de pollo, carne de res o pescado"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
+
+            {/* 20 g — la botella */}
+            <motion.div
+              variants={item}
+              className="md:col-span-5 py-12 md:py-16 flex flex-col gap-10 md:gap-14"
+            >
+              <span className="eyebrow text-paper/40">Una botella H2PRO</span>
+              <div>
+                <span className="display text-paper block" style={numberStyle}>
+                  <CountUp to={20} duration={1.2} />
+                  <span style={{ fontSize: "0.42em", marginLeft: "0.1em" }}>g</span>
+                </span>
+                <p className="mt-5 text-paper/65 text-[0.95rem] md:text-[1.05rem]">
+                  de proteína real
+                </p>
+              </div>
+            </motion.div>
+
+            {/* ≃ — aproximación */}
+            <motion.div
+              variants={item}
+              className="md:col-span-2 flex flex-row md:flex-col items-center justify-center gap-4 py-8 md:py-16 border-y md:border-y-0 md:border-x border-paper/12"
+            >
+              <span
+                aria-hidden
+                className="display text-h2pro-glow"
+                style={{ fontSize: "clamp(3.2rem, 6vw, 5.4rem)", lineHeight: 1 }}
+              >
+                ≃
+              </span>
+            </motion.div>
+
+            {/* 100 g — el plato */}
+            <motion.div
+              variants={item}
+              className="md:col-span-5 py-12 md:py-16 md:pl-12 flex flex-col gap-10 md:gap-14 md:items-end md:text-right"
+            >
+              <span className="eyebrow text-paper/40">Aporte equivalente</span>
+              <div>
+                <span className="display text-paper block" style={numberStyle}>
+                  <CountUp to={100} duration={1.6} />
+                  <span style={{ fontSize: "0.42em", marginLeft: "0.1em" }}>g</span>
+                </span>
+                <p className="mt-5 text-paper/65 text-[0.95rem] md:text-[1.05rem] max-w-[26ch]">
+                  de pechuga de pollo, carne de res o pescado
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* Closing note */}
+        {/* Nota de aproximación */}
         <motion.p
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ ...spring.gentle, delay: reduce ? 0 : 0.3 }}
-          className="mt-20 md:mt-24 max-w-2xl text-[0.95rem] md:text-[1.05rem] leading-relaxed text-paper/60"
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
+          className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-paper/35"
         >
-          Sin sartén, sin batidora, sin pretextos.{" "}
-          <span className="text-paper">H2PRO</span> es tu proteína diaria en el
-          formato más simple posible.
+          Equivalencia aproximada de aporte proteico
         </motion.p>
       </div>
     </section>
