@@ -3,12 +3,35 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
 
-const HEADLINE = [
-  { text: "La proteína no", style: "" },
-  { text: "tiene que ser", style: "" },
-  { text: "pesada, lenta", style: "" },
-  { text: "ni complicada", style: "" },
-];
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+// Palabra negada: serif editorial con un tachado en azul de marca que se
+// dibuja después del reveal del titular. Hereda hidden/show del h2 para no
+// pelear con su propio observer dentro de los variants del titular.
+function Struck({ children, delay }: { children: string; delay: number }) {
+  const reduce = useReducedMotion();
+  const strike = {
+    hidden: { scaleX: reduce ? 1 : 0 },
+    show: {
+      scaleX: 1,
+      transition: {
+        duration: reduce ? 0 : 0.5,
+        ease: EASE,
+        delay: reduce ? 0 : delay,
+      },
+    },
+  };
+  return (
+    <span className="relative inline-block">
+      {children}
+      <motion.span
+        aria-hidden
+        className="absolute left-[-0.06em] right-[-0.06em] top-[55%] h-[0.045em] bg-h2pro-glow origin-left"
+        variants={strike}
+      />
+    </span>
+  );
+}
 
 export default function Manifesto() {
   const reduce = useReducedMotion();
@@ -24,12 +47,14 @@ export default function Manifesto() {
   };
 
   const line = {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: "60%", clipPath: "inset(0 0 100% 0)" },
+    hidden: reduce
+      ? { opacity: 0 }
+      : { opacity: 0, y: "60%", clipPath: "inset(0 0 100% 0)" },
     show: {
       opacity: 1,
       y: "0%",
       clipPath: "inset(0 0 0% 0)",
-      transition: { duration: reduce ? 0.4 : 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+      transition: { duration: reduce ? 0.4 : 0.8, ease: EASE },
     },
   };
 
@@ -57,40 +82,70 @@ export default function Manifesto() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44">
-        {/* Main statement — headline a la izquierda, párrafo cierra la composición a la derecha */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-10 items-end">
-          <motion.h2
-            className="display text-paper text-[clamp(2.6rem,7.2vw,6.8rem)] md:col-span-8"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            aria-label="La proteína no tiene que ser pesada, lenta ni complicada"
-          >
-            {HEADLINE.map((l, i) => (
-              <span key={i} className="block overflow-hidden leading-[1.15]">
-                <motion.span
-                  className={`block ${l.style}`}
-                  variants={line}
-                >
-                  {l.text}
-                </motion.span>
-              </span>
-            ))}
-          </motion.h2>
+        <motion.span
+          className="eyebrow text-paper/55 block mb-12 md:mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={spring.gentle}
+        >
+          Manifiesto
+        </motion.span>
 
+        {/* Lo que la proteína no tiene que ser, tachado en azul */}
+        <motion.h2
+          className="display text-paper text-[clamp(2.6rem,7.4vw,7rem)]"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          aria-label="La proteína no tiene que ser pesada, lenta ni complicada"
+        >
+          <span className="block overflow-hidden leading-[1.12]">
+            <motion.span className="block" variants={line}>
+              La proteína no
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden leading-[1.12]">
+            <motion.span className="block" variants={line}>
+              tiene que ser
+            </motion.span>
+          </span>
+          {/* Instrument Serif corre óptico más chico: se compensa con 1.14em */}
+          <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
+            <motion.span
+              className="block editorial tracking-[-0.01em]"
+              variants={line}
+            >
+              <Struck delay={1.05}>pesada</Struck>,{" "}
+              <Struck delay={1.3}>lenta</Struck>
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
+            <motion.span
+              className="block editorial tracking-[-0.01em]"
+              variants={line}
+            >
+              ni <Struck delay={1.55}>complicada</Struck>
+            </motion.span>
+          </span>
+        </motion.h2>
+
+        {/* Cierre — el párrafo remata la composición a la derecha */}
+        <div className="mt-16 md:mt-24 border-t border-paper/12 pt-10 md:pt-12 grid grid-cols-1 md:grid-cols-12">
           <motion.div
-            className="md:col-span-4 md:pl-8 md:border-l border-paper/15 text-paper/75 text-[1rem] md:text-[1.05rem] leading-relaxed"
+            className="md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
+            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.2 }}
           >
-            <p>
+            <p className="text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
               H2PRO es agua con 20 gramos de proteína. Sin shakes pesados, sin
-              sabores artificiales, sin promesas de cuerpo de revista. El primer{" "}
-              <span className="editorial text-paper">Protein Water</span>{" "}
-              hecho en México.
+              sabores artificiales, sin promesas de cuerpo de revista.
+            </p>
+            <p className="mt-6 editorial text-paper text-[1.4rem] md:text-[1.7rem] leading-snug">
+              El primer Protein Water hecho en México.
             </p>
           </motion.div>
         </div>
