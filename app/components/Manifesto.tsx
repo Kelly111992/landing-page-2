@@ -1,40 +1,29 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import Image from "next/image";
 import { spring } from "../lib/springs";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// Palabra negada: serif editorial con un tachado en azul de marca que se
-// dibuja después del reveal del titular. Hereda hidden/show del h2 para no
-// pelear con su propio observer dentro de los variants del titular.
-function Struck({ children, delay }: { children: string; delay: number }) {
-  const reduce = useReducedMotion();
-  const strike = {
-    hidden: { scaleX: reduce ? 1 : 0 },
-    show: {
-      scaleX: 1,
-      transition: {
-        duration: reduce ? 0 : 0.5,
-        ease: EASE,
-        delay: reduce ? 0 : delay,
-      },
-    },
-  };
-  return (
-    <span className="relative inline-block">
-      {children}
-      <motion.span
-        aria-hidden
-        className="absolute left-[-0.06em] right-[-0.06em] top-[55%] h-[0.045em] bg-h2pro-glow origin-left"
-        variants={strike}
-      />
-    </span>
-  );
-}
-
 export default function Manifesto() {
   const reduce = useReducedMotion();
+  const bottleRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: bottleRef,
+    offset: ["start end", "end start"],
+  });
+  const bottleY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? [0, 0] : [-50, 50],
+  );
 
   const container = {
     hidden: {},
@@ -81,7 +70,7 @@ export default function Manifesto() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-44">
+      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
         <motion.span
           className="eyebrow text-paper/55 block mb-12 md:mb-16"
           initial={{ opacity: 0 }}
@@ -92,62 +81,119 @@ export default function Manifesto() {
           Manifiesto
         </motion.span>
 
-        {/* Lo que la proteína no tiene que ser, tachado en azul */}
-        <motion.h2
-          className="display text-paper text-[clamp(2.6rem,7.4vw,7rem)]"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          aria-label="La proteína no tiene que ser pesada, lenta ni complicada"
-        >
-          <span className="block overflow-hidden leading-[1.12]">
-            <motion.span className="block" variants={line}>
-              La proteína no
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden leading-[1.12]">
-            <motion.span className="block" variants={line}>
-              tiene que ser
-            </motion.span>
-          </span>
-          {/* Instrument Serif corre óptico más chico: se compensa con 1.14em */}
-          <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
-            <motion.span
-              className="block editorial tracking-[-0.01em]"
-              variants={line}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-14 md:gap-10 items-center">
+          {/* Main statement — line-by-line reveal */}
+          <div className="md:col-span-7">
+            <motion.h2
+              className="display text-paper text-[clamp(2.6rem,5.8vw,5.6rem)]"
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              aria-label="La proteína no tiene que ser pesada, lenta ni complicada"
             >
-              <Struck delay={1.05}>pesada</Struck>,{" "}
-              <Struck delay={1.3}>lenta</Struck>
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
-            <motion.span
-              className="block editorial tracking-[-0.01em]"
-              variants={line}
-            >
-              ni <Struck delay={1.55}>complicada</Struck>
-            </motion.span>
-          </span>
-        </motion.h2>
+              <span className="block overflow-hidden leading-[1.12]">
+                <motion.span className="block" variants={line}>
+                  La proteína no
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden leading-[1.12]">
+                <motion.span className="block" variants={line}>
+                  tiene que ser
+                </motion.span>
+              </span>
+              {/* Instrument Serif corre óptico más chico: se compensa con 1.14em */}
+              <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
+                <motion.span
+                  className="block editorial tracking-[-0.01em]"
+                  variants={line}
+                >
+                  pesada, lenta
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
+                <motion.span
+                  className="block editorial tracking-[-0.01em]"
+                  variants={line}
+                >
+                  ni complicada
+                </motion.span>
+              </span>
+            </motion.h2>
 
-        {/* Cierre — el párrafo remata la composición a la derecha */}
-        <div className="mt-16 md:mt-24 border-t border-paper/12 pt-10 md:pt-12 grid grid-cols-1 md:grid-cols-12">
-          <motion.div
-            className="md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.2 }}
+            <motion.div
+              className="mt-12 md:mt-16 max-w-xl border-t border-paper/12 pt-8"
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
+            >
+              <p className="text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
+                H2PRO es agua con 20 gramos de proteína. Sin shakes pesados,
+                sin sabores artificiales, sin promesas de cuerpo de revista.
+              </p>
+              <p className="mt-5 editorial text-paper text-[1.35rem] md:text-[1.6rem] leading-snug">
+                El primer Protein Water hecho en México.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Botella — parallax con halo, ocupa el lado derecho */}
+          <motion.figure
+            className="md:col-span-5 relative"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={spring.gentle}
           >
-            <p className="text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
-              H2PRO es agua con 20 gramos de proteína. Sin shakes pesados, sin
-              sabores artificiales, sin promesas de cuerpo de revista.
-            </p>
-            <p className="mt-6 editorial text-paper text-[1.4rem] md:text-[1.7rem] leading-snug">
-              El primer Protein Water hecho en México.
-            </p>
-          </motion.div>
+            {/* Halo frío detrás de la botella */}
+            <div
+              aria-hidden
+              className="absolute inset-0 m-auto w-[80%] h-[80%] rounded-full opacity-35 blur-3xl"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(74,180,240,0.55) 0%, rgba(74,180,240,0) 70%)",
+              }}
+            />
+            <div
+              ref={bottleRef}
+              className="relative overflow-hidden"
+              style={{ aspectRatio: "4/5" }}
+            >
+              <motion.div
+                className="parallax-img"
+                style={{
+                  y: bottleY,
+                  position: "absolute",
+                  top: "-15%",
+                  bottom: "-15%",
+                  left: 0,
+                  right: 0,
+                }}
+              >
+                <div
+                  className="relative w-full h-full"
+                  style={{
+                    WebkitMaskImage:
+                      "radial-gradient(120% 120% at 50% 50%, black 55%, transparent 92%)",
+                    maskImage:
+                      "radial-gradient(120% 120% at 50% 50%, black 55%, transparent 92%)",
+                    // La foto trae mucho aire alrededor de la botella: se
+                    // recorta con cover + zoom para darle presencia
+                    transform: "scale(1.18)",
+                  }}
+                >
+                  <Image
+                    src="/lifestyle/manifesto-blueberry.png"
+                    alt="Botella H2PRO Blueberry transparente sobre fondo navy oscuro"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 42vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </motion.figure>
         </div>
       </div>
 
