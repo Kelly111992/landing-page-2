@@ -175,17 +175,14 @@ export default function Manifesto() {
                   className="relative w-full h-full"
                   style={{
                     WebkitMaskImage:
-                      "radial-gradient(120% 120% at 50% 50%, black 55%, transparent 92%)",
+                      "radial-gradient(ellipse 76% 70% at 50% 50%, black 46%, rgba(0,0,0,0.65) 70%, transparent 94%)",
                     maskImage:
-                      "radial-gradient(120% 120% at 50% 50%, black 55%, transparent 92%)",
-                    // La foto trae mucho aire alrededor de la botella: se
-                    // recorta con cover + zoom para darle presencia
-                    transform: "scale(1.18)",
+                      "radial-gradient(ellipse 76% 70% at 50% 50%, black 46%, rgba(0,0,0,0.65) 70%, transparent 94%)",
                   }}
                 >
                   <Image
-                    src="/lifestyle/manifesto-blueberry.png"
-                    alt="Botella H2PRO Blueberry transparente sobre fondo navy oscuro"
+                    src="/lifestyle/manifesto-float.jpg"
+                    alt="Botella H2PRO Blueberry flotando ingrávida entre agua suspendida sobre fondo negro"
                     fill
                     sizes="(max-width: 768px) 100vw, 42vw"
                     style={{ objectFit: "cover" }}
