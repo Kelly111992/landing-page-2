@@ -169,9 +169,10 @@ export default function ProteinEquivalences() {
                 </AnimatePresence>
               </div>
 
-              {/* Número gigante — rueda 20 → 100 con el scroll */}
+              {/* Número gigante — rueda 20 → 100 con el scroll y se
+                  re-proyecta con cada alimento (mismo valor, nueva toma) */}
               <div
-                className="display text-paper mt-6 md:mt-8 tabular-nums"
+                className="relative mt-6 md:mt-8"
                 style={{
                   fontSize: "clamp(7rem, 24vw, 19rem)",
                   letterSpacing: "-0.05em",
@@ -179,10 +180,49 @@ export default function ProteinEquivalences() {
                 }}
                 aria-hidden
               >
-                <motion.span>{numText}</motion.span>
-                <span className="text-h2pro-glow" style={{ fontSize: "0.4em" }}>
-                  g
+                {/* Signo de equivalencia — pulsa con cada alimento */}
+                <span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 md:mr-7">
+                  <AnimatePresence mode="popLayout">
+                    {food && (
+                      <motion.span
+                        key={`sym-${phase}`}
+                        className="block display text-h2pro-glow"
+                        style={{ fontSize: "0.3em", lineHeight: 1 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.6, ease: EASE }}
+                      >
+                        ≃
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </span>
+
+                <div className="display text-paper tabular-nums overflow-hidden">
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.span
+                      key={phase <= 1 ? "base" : `food-${phase}`}
+                      className="inline-block"
+                      initial={{
+                        opacity: 0,
+                        y: "0.45em",
+                        filter: "blur(14px)",
+                      }}
+                      animate={{ opacity: 1, y: "0em", filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: "-0.45em", filter: "blur(14px)" }}
+                      transition={{ duration: 0.7, ease: EASE }}
+                    >
+                      <motion.span>{numText}</motion.span>
+                      <span
+                        className="text-h2pro-glow"
+                        style={{ fontSize: "0.4em" }}
+                      >
+                        g
+                      </span>
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
               </div>
 
               {/* Lectura — qué significa el número en esta fase */}
