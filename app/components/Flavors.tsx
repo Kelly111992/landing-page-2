@@ -8,32 +8,29 @@ type Flavor = {
   id: string;
   name: string;
   spanish: string;
-  // Recorte de la foto del banner principal (hero-bottles.jpg): cada sabor
-  // muestra su mitad — limonada con limones, blueberry con moras.
-  photoPos: string;
+  // Foto de producto sobre fondo negro (generada a partir del banner
+  // principal): botella centrada, glow del color del sabor y fruta en la base.
+  photo: string;
   accent: string;
 };
 
-const HERO_PHOTO = "/lifestyle/hero-bottles.jpg";
-
-// Máscara elíptica tipo spotlight: la botella queda nítida al centro y el
-// fondo de la foto se funde con el bg-ink en todo el contorno
+// Desvanecido suave del contorno: el negro de la foto empalma con el bg-ink
 const FEATHER_MASK =
-  "radial-gradient(ellipse 66% 60% at 50% 50%, #000 46%, rgba(0,0,0,0.55) 68%, transparent 90%)";
+  "radial-gradient(ellipse 74% 68% at 50% 50%, #000 58%, rgba(0,0,0,0.6) 80%, transparent 98%)";
 
 const flavors: Flavor[] = [
   {
     id: "limonada",
     name: "Limonada",
     spanish: "Cítrico fresco",
-    photoPos: "28% 50%",
+    photo: "/flavors/limonada-dark.jpg",
     accent: "#f4e04d",
   },
   {
     id: "blueberry",
     name: "Blueberry",
     spanish: "Mora silvestre",
-    photoPos: "76% 50%",
+    photo: "/flavors/blueberry-dark.jpg",
     accent: "#7d8fd6",
   },
 ];
@@ -96,7 +93,7 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
       transition={{ ...spring.gentle, delay: reduce ? 0 : 0.05 + index * 0.12 }}
       className="relative flex flex-col items-center text-center"
     >
-      {/* Botella — recorte fotográfico fundido con el fondo */}
+      {/* Botella — foto de producto fundida con el fondo */}
       <div
         className="relative w-full max-w-[520px] aspect-[2/3] overflow-hidden"
         style={{ WebkitMaskImage: FEATHER_MASK, maskImage: FEATHER_MASK }}
@@ -109,22 +106,13 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src={HERO_PHOTO}
+            src={flavor.photo}
             alt={`Botella H2PRO sabor ${flavor.name}`}
             fill
             sizes="(max-width: 768px) 100vw, 520px"
-            style={{ objectFit: "cover", objectPosition: flavor.photoPos }}
+            style={{ objectFit: "cover" }}
           />
         </motion.div>
-        {/* Viñeta de tinta: empuja los bordes claros de la foto hacia el negro */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 64% at 50% 50%, rgba(10,14,18,0) 44%, rgba(10,14,18,0.45) 75%, rgba(10,14,18,0.85) 100%)",
-          }}
-        />
       </div>
 
       {/* Nombre del sabor */}
