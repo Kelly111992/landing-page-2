@@ -1,87 +1,75 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
-  useInView,
+  useMotionValueEvent,
   useReducedMotion,
+  useScroll,
+  useTransform,
 } from "framer-motion";
-import CountUp from "./CountUp";
 import { spring } from "../lib/springs";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// Equivalencia proteica: el enunciado queda quieto y sólo el alimento se
-// re-proyecta (crossfade con blur). Auto-avanza mientras está en pantalla;
-// el selector permite elegir y reinicia el ciclo (el efecto depende de idx).
+// Secuencia cinemática fijada al scroll: el 20 de una botella rueda hasta el
+// 100 del plato, y cada alimento se proyecta con su nombre gigante en
+// outline detrás. Las fases se derivan del progreso de scroll del wrapper.
 const FOODS = [
-  { label: "pechuga de pollo", short: "Pollo" },
-  { label: "carne de res", short: "Res" },
-  { label: "pescado", short: "Pescado" },
+  { label: "de pechuga de pollo", word: "Pollo" },
+  { label: "de carne de res", word: "Res" },
+  { label: "de pescado", word: "Pescado" },
 ];
-const CYCLE_MS = 3400;
+
+// Fase 0 = botella (20 g); fases 1-3 = alimentos (100 g)
+const PHASE_AT = (v: number) => (v < 0.24 ? 0 : v < 0.5 ? 1 : v < 0.74 ? 2 : 3);
 
 export default function ProteinEquivalences() {
   const reduce = useReducedMotion();
-  const eqRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(eqRef, { amount: 0.35 });
-  const [idx, setIdx] = useState(0);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState(0);
 
-  useEffect(() => {
-    if (reduce || !inView) return;
-    const t = setTimeout(() => setIdx((i) => (i + 1) % FOODS.length), CYCLE_MS);
-    return () => clearTimeout(t);
-  }, [reduce, inView, idx]);
+  const { scrollYProgress } = useScroll({
+    target: pinRef,
+    offset: ["start start", "end end"],
+  });
 
-  const item = {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: spring.smooth },
-  };
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const p = PHASE_AT(v);
+    if (p !== phase) setPhase(p);
+  });
 
-  const stagger = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: reduce ? 0 : 0.12,
-        delayChildren: reduce ? 0 : 0.15,
-      },
-    },
-  };
+  // El número rueda 20 → 100 mientras el scroll cruza la frontera de fases
+  const num = useTransform(scrollYProgress, [0.14, 0.3], [20, 100], {
+    clamp: true,
+  });
+  const numText = useTransform(num, (v) => String(Math.round(v)));
 
-  const numberStyle = {
-    fontSize: "clamp(4.6rem, 10.5vw, 10rem)",
-    letterSpacing: "-0.05em",
-    lineHeight: 0.85,
-  } as const;
+  // El halo central respira: tenue en la botella, pleno en los alimentos
+  const haloOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0.16, 0.34]);
+
+  // Deriva lenta del nombre outline (parallax dentro de la fase)
+  const wordDrift = useTransform(scrollYProgress, [0.24, 1], ["4%", "-4%"]);
+
+  const food = phase > 0 ? FOODS[phase - 1] : null;
 
   return (
-    <section className="relative bg-ink py-24 md:py-32 overflow-hidden border-t border-paper/10 grain">
-      {/* Atmósfera — luz fría detrás del aporte equivalente */}
-      <div
-        aria-hidden
-        className="absolute -top-44 right-[-12%] w-[52vw] h-[52vw] max-w-[700px] max-h-[700px] rounded-full opacity-30 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(0,134,214,0.55) 0%, rgba(0,134,214,0) 65%)",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10">
-
-        {/* Section header */}
+    <section
+      className="relative bg-ink border-t border-paper/10 grain"
+      aria-label="20 gramos de proteína real por botella: el aporte equivalente a 100 gramos de pechuga de pollo, carne de res o pescado"
+    >
+      {/* Header — flujo normal, se desplaza antes de que fije la escena */}
+      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-24 md:pt-32 pb-10 md:pb-14">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16 md:mb-24"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
+          className="grid grid-cols-1 md:grid-cols-12 gap-10"
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
+          transition={spring.gentle}
         >
-          <motion.div variants={item} className="md:col-span-4">
-            <span className="eyebrow text-paper/55">Proteína real</span>
-          </motion.div>
-
-          <motion.div variants={item} className="md:col-span-8">
+          <div className="md:col-span-4" />
+          <div className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
               Una botella. La proteína de un plato completo
             </h2>
@@ -90,202 +78,159 @@ export default function ProteinEquivalences() {
               aporte que una porción de proteína animal de alta calidad, sin
               preparación, sin calorías de más.
             </p>
-          </motion.div>
-        </motion.div>
-
-        {/* Ecuación — el enunciado quieto, el alimento se re-proyecta */}
-        <motion.div
-          ref={eqRef}
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="relative border-y border-paper/12"
-          aria-label="20 g de proteína real equivalen aproximadamente a 100 g de pechuga de pollo, carne de res o pescado"
-        >
-          {/* Ticks de esquina */}
-          {[
-            "top-0 left-0 border-t border-l",
-            "top-0 right-0 border-t border-r",
-            "bottom-0 left-0 border-b border-l",
-            "bottom-0 right-0 border-b border-r",
-          ].map((c) => (
-            <span
-              key={c}
-              aria-hidden
-              className={`absolute w-3 h-3 border-paper/45 ${c}`}
-            />
-          ))}
-
-          <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
-
-            {/* 20 g — la botella */}
-            <motion.div
-              variants={item}
-              className="md:col-span-5 py-12 md:py-20 flex flex-col gap-10 md:gap-14"
-            >
-              <span className="eyebrow text-paper/40">Una botella H2PRO</span>
-              <div>
-                <span className="display text-paper block" style={numberStyle}>
-                  <CountUp to={20} duration={1.2} />
-                  <span
-                    className="text-paper/55"
-                    style={{ fontSize: "0.42em", marginLeft: "0.1em" }}
-                  >
-                    g
-                  </span>
-                </span>
-                <p className="mt-5 text-paper/60 text-[0.95rem] md:text-[1.05rem]">
-                  de proteína real
-                </p>
-              </div>
-            </motion.div>
-
-            {/* ≃ — pulsa con cada alimento */}
-            <motion.div
-              variants={item}
-              className="relative md:col-span-2 flex items-center justify-center py-8 md:py-20 border-y md:border-y-0 md:border-x border-paper/12"
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div
-                  className="w-36 h-36 rounded-full blur-2xl opacity-25"
-                  style={{
-                    background:
-                      "radial-gradient(circle, rgba(74,180,240,0.7) 0%, rgba(74,180,240,0) 70%)",
-                  }}
-                />
-              </div>
-              <motion.span
-                key={reduce ? "static" : idx}
-                aria-hidden
-                className="relative display text-h2pro-glow"
-                style={{ fontSize: "clamp(3.2rem, 6vw, 5.4rem)", lineHeight: 1 }}
-                initial={reduce ? false : { scale: 0.92, opacity: 0.6 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.7, ease: EASE }}
-              >
-                ≃
-              </motion.span>
-            </motion.div>
-
-            {/* 100 g — el alimento se re-proyecta */}
-            <motion.div
-              variants={item}
-              className="md:col-span-5 py-12 md:py-20 md:pl-12 flex flex-col gap-10 md:gap-14 md:items-end md:text-right"
-            >
-              <span className="eyebrow text-paper/40">Aporte equivalente</span>
-
-              {reduce ? (
-                /* Reduced motion: enunciado completo, fijo */
-                <div>
-                  <span className="display text-paper block" style={numberStyle}>
-                    100
-                    <span
-                      className="text-paper/55"
-                      style={{ fontSize: "0.42em", marginLeft: "0.1em" }}
-                    >
-                      g
-                    </span>
-                  </span>
-                  <p className="mt-5 text-paper/65 text-[0.95rem] md:text-[1.05rem] max-w-[26ch]">
-                    de pechuga de pollo, carne de res o pescado
-                  </p>
-                </div>
-              ) : (
-                <div className="w-full flex flex-col md:items-end">
-                  <p className="sr-only">
-                    de pechuga de pollo, carne de res o pescado
-                  </p>
-
-                  <div aria-hidden>
-                    <span className="display text-paper block" style={numberStyle}>
-                      100
-                      <span
-                        className="text-paper/55"
-                        style={{ fontSize: "0.42em", marginLeft: "0.1em" }}
-                      >
-                        g
-                      </span>
-                    </span>
-
-                    {/* Alimento — crossfade con blur */}
-                    <span
-                      className="mt-5 block overflow-hidden whitespace-nowrap text-[1.25rem] md:text-[1.6rem]"
-                      style={{ height: "1.55em" }}
-                    >
-                      <AnimatePresence mode="popLayout" initial={false}>
-                        <motion.span
-                          key={idx}
-                          className="block"
-                          initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
-                          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                          exit={{ opacity: 0, y: -18, filter: "blur(8px)" }}
-                          transition={{ duration: 0.7, ease: EASE }}
-                        >
-                          <span className="text-paper/45">de </span>
-                          <span className="editorial text-paper text-[1.08em]">
-                            {FOODS[idx].label}
-                          </span>
-                        </motion.span>
-                      </AnimatePresence>
-                    </span>
-                  </div>
-
-                  {/* Selector — auto-avanza, un click reinicia el ciclo */}
-                  <div className="mt-10 flex gap-8 md:justify-end">
-                    {FOODS.map((f, i) => (
-                      <button
-                        key={f.short}
-                        type="button"
-                        onClick={() => setIdx(i)}
-                        aria-pressed={i === idx}
-                        aria-label={`Ver equivalencia: ${f.label}`}
-                        className={`relative pb-2.5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] transition-colors duration-500 ${
-                          i === idx
-                            ? "text-paper"
-                            : "text-paper/35 hover:text-paper/70"
-                        }`}
-                      >
-                        {f.short}
-                        <span
-                          aria-hidden
-                          className="absolute bottom-0 left-0 h-px w-full bg-paper/20"
-                        />
-                        {i === idx && inView && (
-                          <motion.span
-                            aria-hidden
-                            className="absolute bottom-0 left-0 h-px w-full bg-h2pro-glow origin-left"
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1 }}
-                            transition={{
-                              duration: CYCLE_MS / 1000,
-                              ease: "linear",
-                            }}
-                          />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
           </div>
         </motion.div>
-
-        {/* Nota de aproximación */}
-        <motion.p
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
-          className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-paper/35"
-        >
-          Equivalencia aproximada de aporte proteico
-        </motion.p>
       </div>
+
+      {reduce ? (
+        /* Reduced motion: ecuación completa, estática */
+        <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pb-28">
+          <div className="border-y border-paper/12 py-16 text-center">
+            <span
+              className="display text-paper block"
+              style={{
+                fontSize: "clamp(5rem, 16vw, 13rem)",
+                letterSpacing: "-0.05em",
+                lineHeight: 0.85,
+              }}
+            >
+              20<span className="text-h2pro-glow text-[0.4em]">g</span>
+              <span className="text-paper/45 text-[0.32em] mx-[0.5em]">≃</span>
+              100<span className="text-h2pro-glow text-[0.4em]">g</span>
+            </span>
+            <p className="mt-8 text-paper/65 text-[1rem] md:text-[1.1rem]">
+              de proteína real, el aporte de 100 g de pechuga de pollo, carne
+              de res o pescado
+            </p>
+          </div>
+          <p className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-paper/35">
+            Equivalencia aproximada de aporte proteico
+          </p>
+        </div>
+      ) : (
+        /* Escena fijada: 280vh de recorrido, viewport pegajoso */
+        <div ref={pinRef} className="relative h-[280vh]">
+          <div className="sticky top-0 h-[100svh] overflow-hidden">
+            {/* Atmósfera central */}
+            <motion.div
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[900px] max-h-[900px] rounded-full blur-3xl pointer-events-none"
+              style={{
+                opacity: haloOpacity,
+                background:
+                  "radial-gradient(circle, rgba(0,134,214,0.55) 0%, rgba(0,134,214,0) 65%)",
+              }}
+            />
+
+            {/* Nombre del alimento — gigante, outline, detrás del número */}
+            <motion.div
+              aria-hidden
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              style={{ x: wordDrift }}
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                {food && (
+                  <motion.span
+                    key={food.word}
+                    className="display whitespace-nowrap select-none"
+                    style={{
+                      fontSize: "clamp(7rem, 30vw, 26rem)",
+                      lineHeight: 1,
+                      letterSpacing: "-0.03em",
+                      color: "transparent",
+                      WebkitTextStroke: "1.5px rgba(245,247,248,0.13)",
+                    }}
+                    initial={{ opacity: 0, scale: 1.06, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
+                    transition={{ duration: 0.9, ease: EASE }}
+                  >
+                    {food.word}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Composición central */}
+            <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+              {/* Contexto superior */}
+              <div className="h-[1.2em] overflow-hidden" aria-hidden>
+                <AnimatePresence mode="popLayout" initial={false}>
+                  <motion.span
+                    key={phase === 0 ? "botella" : "plato"}
+                    className="block eyebrow text-paper/50"
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.6, ease: EASE }}
+                  >
+                    {phase === 0 ? "Una botella H2PRO" : "Aporte equivalente"}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              {/* Número gigante — rueda 20 → 100 con el scroll */}
+              <div
+                className="display text-paper mt-6 md:mt-8 tabular-nums"
+                style={{
+                  fontSize: "clamp(7rem, 24vw, 19rem)",
+                  letterSpacing: "-0.05em",
+                  lineHeight: 0.85,
+                }}
+                aria-hidden
+              >
+                <motion.span>{numText}</motion.span>
+                <span className="text-h2pro-glow" style={{ fontSize: "0.4em" }}>
+                  g
+                </span>
+              </div>
+
+              {/* Lectura — qué significa el número en esta fase */}
+              <div
+                className="mt-7 md:mt-9 h-[1.6em] overflow-hidden text-[1.15rem] md:text-[1.5rem]"
+                aria-hidden
+              >
+                <AnimatePresence mode="popLayout" initial={false}>
+                  <motion.span
+                    key={phase}
+                    className="block text-paper/75"
+                    initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+                    transition={{ duration: 0.7, ease: EASE }}
+                  >
+                    {food ? food.label : "de proteína real"}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              <p className="sr-only">
+                20 g de proteína real por botella: el aporte equivalente a 100
+                g de pechuga de pollo, carne de res o pescado.
+              </p>
+
+              {/* Rastro de fases */}
+              <div className="mt-12 md:mt-16 flex items-center gap-7" aria-hidden>
+                {FOODS.map((f, i) => (
+                  <span
+                    key={f.word}
+                    className={`text-[0.62rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-500 ${
+                      phase === i + 1 ? "text-paper" : "text-paper/30"
+                    }`}
+                  >
+                    {f.word}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Pie de escena */}
+            <p className="absolute bottom-6 left-6 right-20 md:right-auto md:left-10 text-[0.62rem] tracking-[0.28em] uppercase text-paper/35">
+              Equivalencia aproximada de aporte proteico
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
