@@ -91,9 +91,9 @@ export default function ProteinEquivalences() {
                 lineHeight: 0.85,
               }}
             >
-              20<span className="text-h2pro-glow text-[0.4em]">g</span>
+              20<span className="text-paper text-[0.4em]">g</span>
               <span className="text-paper/45 text-[0.32em] mx-[0.5em]">≃</span>
-              100<span className="text-h2pro-glow text-[0.4em]">g</span>
+              100<span className="text-paper text-[0.4em]">g</span>
             </span>
             <p className="mt-8 text-paper/65 text-[1rem] md:text-[1.1rem]">
               de proteína real, el aporte de 100 g de pechuga de pollo, carne
@@ -212,7 +212,7 @@ export default function ProteinEquivalences() {
                     >
                       <motion.span>{numText}</motion.span>
                       <span
-                        className="text-h2pro-glow"
+                        className="text-paper"
                         style={{ fontSize: "0.4em" }}
                       >
                         g
