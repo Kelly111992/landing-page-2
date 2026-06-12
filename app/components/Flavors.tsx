@@ -8,26 +8,27 @@ type Flavor = {
   id: string;
   name: string;
   spanish: string;
-  bottle: string;
-  // PROVISIONAL — composición gráfica de frutas reales (limones / moras)
-  // pendiente de entrega por Diego. Va de fondo en lugar de texto.
-  fruitBg?: string;
+  // Recorte de la foto del banner principal (hero-bottles.jpg): cada sabor
+  // muestra su mitad — limonada con limones, blueberry con moras.
+  photoPos: string;
   accent: string;
 };
+
+const HERO_PHOTO = "/lifestyle/hero-bottles.jpg";
 
 const flavors: Flavor[] = [
   {
     id: "limonada",
     name: "Limonada",
     spanish: "Cítrico fresco",
-    bottle: "/bottles/bottle-limonada.png",
+    photoPos: "0% 50%",
     accent: "#f4e04d",
   },
   {
     id: "blueberry",
     name: "Blueberry",
     spanish: "Mora silvestre",
-    bottle: "/bottles/bottle-blueberry.png",
+    photoPos: "100% 50%",
     accent: "#7d8fd6",
   },
 ];
@@ -90,37 +91,21 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
       transition={{ ...spring.gentle, delay: reduce ? 0 : 0.05 + index * 0.12 }}
       className="relative flex flex-col items-center text-center"
     >
-      {/* Halo de acento del sabor */}
-      <div
-        aria-hidden
-        className="absolute top-[18%] left-1/2 -translate-x-1/2 rounded-full blur-[120px] pointer-events-none"
-        style={{
-          width: "min(560px, 78vw)",
-          height: "min(560px, 78vw)",
-          background: `radial-gradient(circle, ${rgba(flavor.accent, 0.5)} 0%, ${rgba(flavor.accent, 0.16)} 40%, ${rgba(flavor.accent, 0)} 70%)`,
-        }}
-      />
-
-      {/* Botella — ampliada */}
-      <div className="relative w-[78%] max-w-[440px] aspect-[3/5]">
+      {/* Botella — recorte fotográfico del banner principal */}
+      <div className="relative w-full max-w-[520px] aspect-[2/3] overflow-hidden">
         <motion.div
-          animate={reduce ? { y: 0 } : { y: [0, -16, 0] }}
-          transition={
-            reduce
-              ? { duration: 0 }
-              : { duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: index * 0.6 }
-          }
           className="relative w-full h-full"
+          initial={reduce ? { scale: 1 } : { scale: 1.08 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src={flavor.bottle}
-            alt={`H2PRO ${flavor.name}`}
+            src={HERO_PHOTO}
+            alt={`Botella H2PRO sabor ${flavor.name}`}
             fill
-            sizes="(max-width: 768px) 78vw, 440px"
-            style={{
-              objectFit: "contain",
-              filter: `drop-shadow(0 60px 80px ${rgba(flavor.accent, 0.18)}) drop-shadow(0 18px 26px rgba(0,0,0,0.55)) drop-shadow(0 4px 8px rgba(0,0,0,0.4))`,
-            }}
+            sizes="(max-width: 768px) 100vw, 520px"
+            style={{ objectFit: "cover", objectPosition: flavor.photoPos }}
           />
         </motion.div>
       </div>
