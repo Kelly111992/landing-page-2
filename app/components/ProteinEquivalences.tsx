@@ -62,23 +62,20 @@ export default function ProteinEquivalences() {
       {/* Header — flujo normal, se desplaza antes de que fije la escena */}
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-24 md:pt-32 pb-10 md:pb-14">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-10"
+          className="text-center"
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={spring.gentle}
         >
-          <div className="md:col-span-4" />
-          <div className="md:col-span-8">
-            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[18ch]">
-              Una botella. La proteína de un plato completo
-            </h2>
-            <p className="mt-6 max-w-lg text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
-              20 g de proteína aislada de suero de leche por botella: el mismo
-              aporte que una porción de proteína animal de alta calidad, sin
-              preparación, sin calorías de más.
-            </p>
-          </div>
+          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
+            Una botella. La proteína de un plato completo
+          </h2>
+          <p className="mt-8 max-w-2xl mx-auto text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
+            20 g de proteína aislada de suero de leche por botella: el mismo
+            aporte que una porción de proteína animal de alta calidad, sin
+            preparación, sin calorías de más.
+          </p>
         </motion.div>
       </div>
 
