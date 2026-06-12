@@ -115,7 +115,7 @@ export default function Manifesto() {
                 H2PRO es agua con 20 gramos de proteína. Sin shakes pesados,
                 sin sabores artificiales, sin promesas de cuerpo de revista.
               </p>
-              <p className="mt-5 text-paper font-medium text-[1.2rem] md:text-[1.4rem] leading-snug">
+              <p className="mt-5 text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
                 El primer Protein Water hecho en México.
               </p>
             </motion.div>
