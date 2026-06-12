@@ -92,20 +92,13 @@ export default function Manifesto() {
                   tiene que ser
                 </motion.span>
               </span>
-              {/* Instrument Serif corre óptico más chico: se compensa con 1.14em */}
-              <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
-                <motion.span
-                  className="block editorial tracking-[-0.01em]"
-                  variants={line}
-                >
+              <span className="block overflow-hidden leading-[1.12]">
+                <motion.span className="block" variants={line}>
                   pesada, lenta
                 </motion.span>
               </span>
-              <span className="block overflow-hidden leading-[1.02] text-[1.14em]">
-                <motion.span
-                  className="block editorial tracking-[-0.01em]"
-                  variants={line}
-                >
+              <span className="block overflow-hidden leading-[1.12]">
+                <motion.span className="block" variants={line}>
                   ni complicada
                 </motion.span>
               </span>
@@ -122,7 +115,7 @@ export default function Manifesto() {
                 H2PRO es agua con 20 gramos de proteína. Sin shakes pesados,
                 sin sabores artificiales, sin promesas de cuerpo de revista.
               </p>
-              <p className="mt-5 editorial text-paper text-[1.35rem] md:text-[1.6rem] leading-snug">
+              <p className="mt-5 text-paper font-medium text-[1.2rem] md:text-[1.4rem] leading-snug">
                 El primer Protein Water hecho en México.
               </p>
             </motion.div>
