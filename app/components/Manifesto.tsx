@@ -71,16 +71,6 @@ export default function Manifesto() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
-        <motion.span
-          className="eyebrow text-paper/55 block mb-12 md:mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={spring.gentle}
-        >
-          Manifiesto
-        </motion.span>
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-14 md:gap-10 items-center">
           {/* Main statement — line-by-line reveal */}
           <div className="md:col-span-7">

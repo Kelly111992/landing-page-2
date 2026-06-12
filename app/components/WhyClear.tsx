@@ -30,9 +30,7 @@ export default function WhyClear() {
           viewport={{ once: true, margin: "-80px" }}
           transition={spring.gentle}
         >
-          <div className="md:col-span-4">
-            <span className="eyebrow text-paper/55">[ 01 ] Claridad</span>
-          </div>
+          <div className="md:col-span-4" />
 
           <div className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">

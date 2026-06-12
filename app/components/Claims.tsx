@@ -63,9 +63,7 @@ export default function Claims() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.div variants={item} className="md:col-span-4">
-            <span className="eyebrow text-paper/55">[ 02 ] Composición</span>
-          </motion.div>
+          <motion.div variants={item} className="md:col-span-4" />
           <motion.div variants={item} className="md:col-span-8">
             <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
               Lo esencial, cero compromisos
