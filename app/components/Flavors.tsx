@@ -16,19 +16,24 @@ type Flavor = {
 
 const HERO_PHOTO = "/lifestyle/hero-bottles.jpg";
 
+// Máscara elíptica tipo spotlight: la botella queda nítida al centro y el
+// fondo de la foto se funde con el bg-ink en todo el contorno
+const FEATHER_MASK =
+  "radial-gradient(ellipse 66% 60% at 50% 50%, #000 46%, rgba(0,0,0,0.55) 68%, transparent 90%)";
+
 const flavors: Flavor[] = [
   {
     id: "limonada",
     name: "Limonada",
     spanish: "Cítrico fresco",
-    photoPos: "0% 50%",
+    photoPos: "28% 50%",
     accent: "#f4e04d",
   },
   {
     id: "blueberry",
     name: "Blueberry",
     spanish: "Mora silvestre",
-    photoPos: "100% 50%",
+    photoPos: "76% 50%",
     accent: "#7d8fd6",
   },
 ];
@@ -91,8 +96,11 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
       transition={{ ...spring.gentle, delay: reduce ? 0 : 0.05 + index * 0.12 }}
       className="relative flex flex-col items-center text-center"
     >
-      {/* Botella — recorte fotográfico del banner principal */}
-      <div className="relative w-full max-w-[520px] aspect-[2/3] overflow-hidden">
+      {/* Botella — recorte fotográfico fundido con el fondo */}
+      <div
+        className="relative w-full max-w-[520px] aspect-[2/3] overflow-hidden"
+        style={{ WebkitMaskImage: FEATHER_MASK, maskImage: FEATHER_MASK }}
+      >
         <motion.div
           className="relative w-full h-full"
           initial={reduce ? { scale: 1 } : { scale: 1.08 }}
@@ -108,6 +116,15 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
             style={{ objectFit: "cover", objectPosition: flavor.photoPos }}
           />
         </motion.div>
+        {/* Viñeta de tinta: empuja los bordes claros de la foto hacia el negro */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 64% at 50% 50%, rgba(10,14,18,0) 44%, rgba(10,14,18,0.45) 75%, rgba(10,14,18,0.85) 100%)",
+          }}
+        />
       </div>
 
       {/* Nombre del sabor */}
