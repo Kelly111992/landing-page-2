@@ -24,32 +24,28 @@ export default function WhyClear() {
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-10"
+          className="text-center"
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={spring.gentle}
         >
-          <div className="md:col-span-4" />
+          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
+            ¿Por qué H2PRO es clara?
+          </h2>
 
-          <div className="md:col-span-8">
-            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
-              ¿Por qué H2PRO es clara?
-            </h2>
-
-            <motion.p
-              className="mt-10 max-w-2xl text-paper/75 text-[1rem] md:text-[1.1rem] leading-relaxed"
-              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ ...spring.gentle, delay: reduce ? 0 : 0.2 }}
-            >
-              H2PRO es clara porque su proteína aislada de suero de leche es
-              microfiltrada. Al eliminar grasas, lactosa y otras partículas que
-              dispersan la luz, el líquido permite su paso libremente, dando esa
-              apariencia cristalina.
-            </motion.p>
-          </div>
+          <motion.p
+            className="mt-10 max-w-2xl mx-auto text-paper/75 text-[1rem] md:text-[1.1rem] leading-relaxed"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.2 }}
+          >
+            H2PRO es clara porque su proteína aislada de suero de leche es
+            microfiltrada. Al eliminar grasas, lactosa y otras partículas que
+            dispersan la luz, el líquido permite su paso libremente, dando esa
+            apariencia cristalina.
+          </motion.p>
         </motion.div>
       </div>
     </section>

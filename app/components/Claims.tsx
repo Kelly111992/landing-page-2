@@ -57,18 +57,18 @@ export default function Claims() {
 
         {/* Section header */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 md:mb-28"
+          className="text-center mb-20 md:mb-28"
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.div variants={item} className="md:col-span-4" />
-          <motion.div variants={item} className="md:col-span-8">
-            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[14ch]">
-              Lo esencial, cero compromisos
-            </h2>
-          </motion.div>
+          <motion.h2
+            variants={item}
+            className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto"
+          >
+            Lo esencial, cero compromisos
+          </motion.h2>
         </motion.div>
 
         {/* Editorial spread */}

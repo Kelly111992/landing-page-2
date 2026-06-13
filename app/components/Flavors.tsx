@@ -54,13 +54,10 @@ export default function Flavors() {
   return (
     <section id="sabores" className="relative bg-ink grain overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10 pt-28 md:pt-40 pb-12 md:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-4" />
-          <div className="md:col-span-8">
-            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
-              Dos perfiles. Una promesa de claridad
-            </h2>
-          </div>
+        <div className="text-center">
+          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
+            Dos perfiles. Una promesa de claridad
+          </h2>
         </div>
       </div>
 
