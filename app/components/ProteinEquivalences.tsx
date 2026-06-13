@@ -112,7 +112,7 @@ export default function ProteinEquivalences() {
               de res o pescado
             </p>
           </div>
-          <p className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-paper/35">
+          <p className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-paper/55">
             Equivalencia aproximada de aporte proteico
           </p>
         </div>
@@ -258,7 +258,7 @@ export default function ProteinEquivalences() {
                 <span
                   key={f.word}
                   className={`text-[0.62rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-500 ${
-                    phase === i + 1 ? "text-paper" : "text-paper/30"
+                    phase === i + 1 ? "text-paper" : "text-paper/50"
                   }`}
                 >
                   {f.word}
@@ -268,7 +268,7 @@ export default function ProteinEquivalences() {
           </div>
 
           {/* Pie de escena */}
-          <p className="absolute bottom-6 left-6 right-20 md:right-auto md:left-10 text-[0.62rem] tracking-[0.28em] uppercase text-paper/35">
+          <p className="absolute bottom-6 left-6 right-20 md:right-auto md:left-10 text-[0.62rem] tracking-[0.28em] uppercase text-paper/55">
             Equivalencia aproximada de aporte proteico
           </p>
         </div>

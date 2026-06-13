@@ -85,7 +85,7 @@ export default function Nav() {
             <H2ProLogo className="h-9 md:h-11 w-auto" colorful={light} />
             <span
               className={`hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase mt-1 transition-colors duration-500 ${
-                light ? "text-ink/50" : "text-paper/55"
+                light ? "text-ink/65" : "text-paper/55"
               }`}
             >
               Protein&nbsp;Water
@@ -99,7 +99,7 @@ export default function Nav() {
                 <li key={l.href}>
                   <motion.a
                     href={l.href}
-                    aria-current={isActive ? "true" : undefined}
+                    aria-current={isActive ? "page" : undefined}
                     className={`relative text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase whitespace-nowrap inline-block transition-colors duration-500 ${
                       light
                         ? isActive
@@ -167,7 +167,7 @@ export default function Nav() {
             className="md:hidden fixed inset-0 z-40 bg-paper pt-20"
           >
             <div className="h-full overflow-y-auto px-6 pb-12 flex flex-col">
-              <span className="eyebrow text-ink/45 mt-6 mb-2">
+              <span className="eyebrow text-ink/60 mt-6 mb-2">
                 Navegación
               </span>
               <ul className="mt-2 divide-y divide-ink/10">
@@ -201,7 +201,7 @@ export default function Nav() {
               </ul>
 
               <div className="mt-auto pt-12">
-                <p className="text-[0.7rem] tracking-[0.18em] uppercase text-ink/45 text-center">
+                <p className="text-[0.7rem] tracking-[0.18em] uppercase text-ink/60 text-center">
                   info@h2pro.fit · @h2pro.fit
                 </p>
               </div>

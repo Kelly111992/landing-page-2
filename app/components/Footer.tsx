@@ -33,7 +33,7 @@ export default function Footer() {
                 />
               </div>
               <div className="border-l border-paper/15 pl-5 py-1">
-                <span className="block text-[0.6rem] tracking-[0.32em] uppercase text-paper/45">
+                <span className="block text-[0.6rem] tracking-[0.32em] uppercase text-paper/60">
                   Aviso de funcionamiento Cofepris
                 </span>
                 <span className="block text-[0.82rem] tracking-[0.16em] uppercase text-paper/75 font-medium mt-2">
@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* Producto column */}
           <div className="md:col-span-2">
-            <h4 className="eyebrow text-paper/40 mb-6">Producto</h4>
+            <h4 className="eyebrow text-paper/55 mb-6">Producto</h4>
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="/#sabores">Sabores</FooterLink>
               <FooterLink href="/#nutrimental">Etiqueta</FooterLink>
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Contacto column */}
           <div className="md:col-span-3">
-            <h4 className="eyebrow text-paper/40 mb-6">Contacto</h4>
+            <h4 className="eyebrow text-paper/55 mb-6">Contacto</h4>
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="mailto:info@h2pro.fit">info@h2pro.fit</FooterLink>
               <FooterLink href="https://instagram.com/h2pro.fit">@h2pro.fit</FooterLink>
@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Redes column */}
           <div className="md:col-span-2">
-            <h4 className="eyebrow text-paper/40 mb-6">Síguenos</h4>
+            <h4 className="eyebrow text-paper/55 mb-6">Síguenos</h4>
             <div className="flex items-center gap-3">
               <SocialIcon
                 href="https://instagram.com/h2pro.fit"
@@ -108,7 +108,7 @@ export default function Footer() {
               href="https://wa.me/523331470485?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s."
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-h2pro hover:bg-h2pro-deep text-paper text-[0.66rem] tracking-[0.22em] uppercase transition-colors"
+              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-h2pro-deep text-paper text-[0.66rem] tracking-[0.22em] uppercase transition-transform hover:-translate-y-0.5"
             >
               Hablemos
               <span aria-hidden>→</span>
@@ -119,15 +119,15 @@ export default function Footer() {
 
       {/* ============ Lower level — compact legal strip ============ */}
       <div className="border-t border-paper/10">
-        <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/45">
+        <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/60">
           <span>
             © {year} H2PRO — Protein Water. Todos los derechos reservados.
             {/* Manifiesto empresarial — sutil, junto a la razón social */}
-            <span className="block mt-1 text-paper/40">
+            <span className="block mt-1 text-paper/55">
               Lo tenemos claro: nutrir a México con productos disruptivos
               creciendo de forma responsable con el medio ambiente.
             </span>
-            <span className="block mt-1 text-paper/30">
+            <span className="block mt-1 text-paper/50">
               Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco
             </span>
           </span>
@@ -144,7 +144,7 @@ export default function Footer() {
             >
               Términos
             </a>
-            <span className="text-paper/30">Diseñado en Guadalajara · MX</span>
+            <span className="text-paper/50">Diseñado en Guadalajara · MX</span>
           </div>
         </div>
       </div>
@@ -189,7 +189,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener"
       aria-label={label}
-      className="w-10 h-10 rounded-full border border-paper/20 flex items-center justify-center text-paper/70 hover:bg-h2pro hover:border-h2pro hover:text-paper transition-all"
+      className="w-11 h-11 rounded-full border border-paper/20 flex items-center justify-center text-paper/70 hover:bg-h2pro hover:border-h2pro hover:text-paper transition-all"
     >
       {children}
     </a>

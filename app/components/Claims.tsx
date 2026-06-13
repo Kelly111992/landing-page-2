@@ -83,11 +83,11 @@ export default function Claims() {
             className="md:col-span-8 md:pr-12 lg:pr-20 relative"
           >
             <div className="flex items-baseline gap-4 mb-6">
-              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40">
+              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/55">
                 {hero.index}
               </span>
               <span className="h-px flex-1 max-w-[80px] bg-paper/20" />
-              <span className="text-[0.65rem] tracking-[0.28em] uppercase text-paper/40">
+              <span className="text-[0.65rem] tracking-[0.28em] uppercase text-paper/55">
                 por 500 ml
               </span>
             </div>
@@ -168,7 +168,7 @@ export default function Claims() {
                 className={`flex-1 py-5 md:py-7 ${i > 0 ? "border-t border-paper/15" : ""}`}
               >
                 <div className="flex items-baseline justify-between">
-                  <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/40">
+                  <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/55">
                     {it.index}
                   </span>
                   <span

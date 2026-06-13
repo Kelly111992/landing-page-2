@@ -58,7 +58,7 @@ export default function Hero() {
         <motion.a
           href="#sabores"
           className="px-7 py-3.5 rounded-full bg-ink text-paper text-[0.76rem] tracking-[0.22em] uppercase"
-          whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro)", color: "var(--color-paper)" }}
+          whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro-deep)", color: "var(--color-paper)" }}
           whileTap={reduce ? {} : { scale: 0.97 }}
           transition={spring.snappy}
         >

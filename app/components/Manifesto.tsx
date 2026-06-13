@@ -177,9 +177,12 @@ export default function Manifesto() {
         </div>
       </div>
 
-      {/* Marquee strip */}
-      <div className="relative z-10 border-t border-paper/10 py-6 overflow-hidden whitespace-nowrap">
-        <div className="flex gap-12 animate-[shimmer_30s_linear_infinite] text-paper/40 text-[0.78rem] tracking-[0.32em] uppercase">
+      {/* Marquee strip — decorativo, oculto a lectores de pantalla */}
+      <div
+        aria-hidden
+        className="relative z-10 border-t border-paper/10 py-6 overflow-hidden whitespace-nowrap"
+      >
+        <div className="flex gap-12 animate-[shimmer_30s_linear_infinite] text-paper/55 text-[0.78rem] tracking-[0.32em] uppercase">
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className="flex gap-12 shrink-0">
               <span>Protein Water</span>

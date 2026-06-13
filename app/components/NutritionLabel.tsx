@@ -99,7 +99,7 @@ export default function NutritionLabel() {
         </motion.div>
 
         {/* Disclaimer line */}
-        <p className="mt-10 text-[0.78rem] text-paper/45 leading-relaxed max-w-3xl">
+        <p className="mt-10 text-[0.78rem] text-paper/60 leading-relaxed max-w-3xl">
           No consumir durante el embarazo o lactancia. Almacenar en lugar
           fresco, seco y alejado de la luz solar directa. Una vez abierto,
           consérvese en refrigeración.
