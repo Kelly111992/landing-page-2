@@ -46,6 +46,16 @@ export default function WhyClear() {
             dispersan la luz, el líquido permite su paso libremente, dando esa
             apariencia cristalina.
           </motion.p>
+
+          <motion.p
+            className="mt-8 editorial text-h2pro text-[clamp(1.5rem,3vw,2.4rem)] leading-tight"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.35 }}
+          >
+            Mera mecánica cuántica.
+          </motion.p>
         </motion.div>
       </div>
     </section>
