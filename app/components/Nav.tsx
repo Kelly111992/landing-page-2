@@ -84,7 +84,7 @@ export default function Nav() {
           >
             <H2ProLogo className="h-9 md:h-11 w-auto" colorful={light} />
             <span
-              className={`hidden lg:inline-block text-[0.6rem] tracking-[0.32em] uppercase mt-1 transition-colors duration-500 ${
+              className={`hidden lg:inline-block text-[0.62rem] tracking-[0.28em] uppercase mt-1 transition-colors duration-500 ${
                 light ? "text-ink/65" : "text-paper/55"
               }`}
             >
@@ -100,7 +100,7 @@ export default function Nav() {
                   <motion.a
                     href={l.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`relative text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase whitespace-nowrap inline-block transition-colors duration-500 ${
+                    className={`relative text-[0.7rem] lg:text-[0.78rem] tracking-[0.18em] uppercase whitespace-nowrap inline-block transition-colors duration-500 ${
                       light
                         ? isActive
                           ? "text-ink"
@@ -132,7 +132,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            className={`md:hidden flex items-center gap-3 text-[0.74rem] tracking-[0.2em] uppercase transition-colors duration-500 ${
+            className={`md:hidden flex items-center gap-3 text-[0.78rem] tracking-[0.18em] uppercase transition-colors duration-500 ${
               light ? "text-ink" : "text-paper"
             }`}
           >
@@ -192,7 +192,7 @@ export default function Nav() {
                       <span className="display text-ink text-[2rem] leading-tight">
                         {l.label}
                       </span>
-                      <span className="text-[0.65rem] tracking-[0.28em] uppercase text-ink/40 group-hover:text-h2pro transition-colors">
+                      <span className="text-[0.7rem] tracking-[0.28em] uppercase text-ink/40 group-hover:text-h2pro transition-colors">
                         0{i + 1}
                       </span>
                     </a>
@@ -201,7 +201,7 @@ export default function Nav() {
               </ul>
 
               <div className="mt-auto pt-12">
-                <p className="text-[0.7rem] tracking-[0.18em] uppercase text-ink/60 text-center">
+                <p className="text-[0.7rem] tracking-[0.28em] uppercase text-ink/60 text-center">
                   info@h2pro.fit · @h2pro.fit
                 </p>
               </div>

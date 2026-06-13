@@ -189,7 +189,7 @@ function FlavorPanel({
             <path d="M21 3v4.5h-4.5" />
           </svg>
           <span
-            className="text-[0.6rem] font-semibold tracking-[0.26em] uppercase"
+            className="text-[0.62rem] font-semibold tracking-[0.28em] uppercase"
             style={{ color: flavor.accent }}
           >
             Girar 360°

@@ -19,11 +19,11 @@ export default function NutritionLabel() {
       className="relative bg-ink text-paper py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
+        <div className="mb-12 md:mb-16">
+          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]">
             Lo que ves es lo que hay
           </h2>
-          <p className="mt-6 max-w-md mx-auto text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
+          <p className="mt-6 max-w-md text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
             Sin letra chiquita. La declaración nutrimental oficial, tal cual
             aparece en la botella. Los valores cambian según el perfil del
             sabor.
@@ -49,13 +49,13 @@ export default function NutritionLabel() {
             </div>
 
             <div className="grid grid-cols-[1fr_auto_auto] gap-x-6 gap-y-0 text-[0.92rem]">
-              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20">
+              <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20">
                 Por porción
               </span>
-              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20 text-right">
+              <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20 text-right">
                 100 ml
               </span>
-              <span className="text-[0.68rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20 text-right">
+              <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20 text-right">
                 500 ml
               </span>
 

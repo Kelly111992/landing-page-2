@@ -257,7 +257,7 @@ export default function ProteinEquivalences() {
               {FOODS.map((f, i) => (
                 <span
                   key={f.word}
-                  className={`text-[0.62rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-500 ${
+                  className={`text-[0.62rem] font-semibold uppercase tracking-[0.28em] transition-colors duration-500 ${
                     phase === i + 1 ? "text-paper" : "text-paper/50"
                   }`}
                 >

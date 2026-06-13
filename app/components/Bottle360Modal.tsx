@@ -153,11 +153,11 @@ function ModalContent({
                 className="block h-px w-10 origin-left"
                 style={{ background: accent }}
               />
-              <span className="text-[0.57rem] tracking-[0.44em] uppercase text-white/55">
+              <span className="text-[0.62rem] tracking-[0.28em] uppercase text-white/55">
                 H2PRO · Protein Water
               </span>
               <span
-                className="text-[0.67rem] tracking-[0.26em] uppercase font-semibold"
+                className="text-[0.7rem] tracking-[0.28em] uppercase font-semibold"
                 style={{ color: accent }}
               >
                 {flavorName}
@@ -168,7 +168,7 @@ function ModalContent({
               type="button"
               onClick={onClose}
               aria-label="Cerrar vista 360°"
-              className="group flex items-center gap-3 text-[0.6rem] tracking-[0.38em] uppercase text-white/50 hover:text-white/85 transition-colors"
+              className="group flex items-center gap-3 text-[0.62rem] tracking-[0.28em] uppercase text-white/50 hover:text-white/85 transition-colors"
               whileHover={reduce ? {} : { x: -3 }}
               whileTap={reduce ? {} : { scale: 0.92 }}
               transition={spring.snappy}
@@ -272,7 +272,7 @@ function ModalContent({
             className="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 md:py-7"
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="text-[0.55rem] tracking-[0.42em] uppercase text-white/45">
+            <span className="text-[0.62rem] tracking-[0.28em] uppercase text-white/45">
               500 ml · 20 g proteína · PET tapa rosca 38 mm
             </span>
             <SpinningBadge accent={accent} circleId={circleId} />

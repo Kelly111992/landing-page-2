@@ -33,10 +33,10 @@ export default function Footer() {
                 />
               </div>
               <div className="border-l border-paper/15 pl-5 py-1">
-                <span className="block text-[0.6rem] tracking-[0.32em] uppercase text-paper/60">
+                <span className="block text-[0.62rem] tracking-[0.28em] uppercase text-paper/60">
                   Aviso de funcionamiento Cofepris
                 </span>
-                <span className="block text-[0.82rem] tracking-[0.16em] uppercase text-paper/75 font-medium mt-2">
+                <span className="block text-[0.78rem] tracking-[0.18em] uppercase text-paper/75 font-medium mt-2">
                   2614105019X00016
                 </span>
               </div>
@@ -108,7 +108,7 @@ export default function Footer() {
               href="https://wa.me/523331470485?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s."
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-h2pro-deep text-paper text-[0.66rem] tracking-[0.22em] uppercase transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-h2pro-deep text-paper text-[0.78rem] tracking-[0.18em] uppercase transition-transform hover:-translate-y-0.5"
             >
               Hablemos
               <span aria-hidden>→</span>

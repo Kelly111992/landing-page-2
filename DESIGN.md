@@ -1,11 +1,11 @@
 ---
 name: H2PRO Clear Protein
-description: El primer protein water mexicano — landing editorial, ligero, honesto.
+description: El primer protein water mexicano — landing editorial oscura, ligera, honesta.
 colors:
   ink: "#0a0e12"
   ink-soft: "#101820"
-  paper: "#f5f7f8"
-  paper-warm: "#fafbf8"
+  paper: "#f0ede8"
+  paper-warm: "#ece8e1"
   ice: "#d3d9dc"
   mist: "#e8edf0"
   h2pro: "#0086d6"
@@ -14,17 +14,24 @@ colors:
   limonada: "#f4e04d"
   limonada-deep: "#b89c1f"
   blueberry: "#5b6fb8"
+  blueberry-accent: "#7d8fd6"
   blueberry-deep: "#2c3a72"
 typography:
   display:
     fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.4rem, 7vw, 7.4rem)"
+    fontSize: "clamp(2.4rem, 5.4vw, 4.6rem)"
     fontWeight: 800
     lineHeight: 0.92
     letterSpacing: "-0.04em"
+  display-hero:
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.7rem, 6.2vw, 5.4rem)"
+    fontWeight: 800
+    lineHeight: 0.95
+    letterSpacing: "-0.04em"
   editorial:
     fontFamily: "Instrument Serif, ui-serif, Georgia, serif"
-    fontSize: "clamp(1.4rem, 2.4vw, 2.2rem)"
+    fontSize: "clamp(1.3rem, 2.4vw, 2.4rem)"
     fontWeight: 400
     lineHeight: 1.05
     letterSpacing: "normal"
@@ -34,20 +41,27 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
-  eyebrow:
-    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.7rem"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "0.22em"
   label:
     fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.78rem"
     fontWeight: 500
     lineHeight: 1.2
     letterSpacing: "0.18em"
+  eyebrow:
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.7rem"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "0.28em"
+  micro:
+    fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.62rem"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "0.28em"
 rounded:
   none: "0px"
+  card: "28px"
   pill: "9999px"
 spacing:
   xs: "0.5rem"
@@ -55,7 +69,7 @@ spacing:
   md: "1.25rem"
   lg: "2.5rem"
   xl: "5rem"
-  section: "clamp(7rem, 12vw, 11rem)"
+  section: "clamp(7rem, 12vw, 10rem)"
 components:
   button-primary:
     backgroundColor: "{colors.ink}"
@@ -64,181 +78,172 @@ components:
     padding: "0.875rem 1.75rem"
     typography: "{typography.label}"
   button-primary-hover:
-    backgroundColor: "{colors.h2pro}"
+    backgroundColor: "{colors.h2pro-deep}"
     textColor: "{colors.paper}"
+  button-accent:
+    backgroundColor: "{colors.h2pro-deep}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.pill}"
+    padding: "0.625rem 1.25rem"
+    typography: "{typography.label}"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
     rounded: "{rounded.none}"
     padding: "0 0"
     typography: "{typography.label}"
-  card-claim:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "2rem 2.5rem"
-  card-persona:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "2rem 3rem"
   nav-fixed:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     height: "5rem"
     padding: "0 2.5rem"
-  contact-tile:
+  nutrition-panel:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
     rounded: "{rounded.none}"
-    padding: "1.5rem"
-  contact-tile-hover:
-    backgroundColor: "{colors.h2pro-deep}"
-    textColor: "{colors.paper}"
-  input-line:
-    backgroundColor: "transparent"
+    padding: "2rem 3rem"
+  modal-lightbox:
+    backgroundColor: "{colors.paper-warm}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "0.75rem 0"
-  modal-panel:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
+    rounded: "{rounded.card}"
     padding: "0"
 ---
 
-# Design
+# Design System: H2PRO Clear Protein
 
-## 1. Overview: The Aquatic Editorial
+## 1. Overview
 
-H2PRO se diseña como una *revista editorial* sobre una bebida funcional, no como un panfleto de suplemento. La metáfora rectora es "agua que atraviesa una mesa de luz blanca" — claridad literal del producto convertida en lenguaje visual.
+**Creative North Star: "The Aquatic Editorial, Lights Down"**
 
-Tres tensiones definen el sistema:
+H2PRO se diseña como una *revista editorial* sobre una bebida funcional, no como un panfleto de suplemento. La metáfora rectora es "agua clara fotografiada en un estudio oscuro": la claridad literal del producto se vuelve protagonista al recortarse contra la tinta, no contra el papel.
 
-1. **Quietud / energía**: las superficies son mayormente claras y tipográficamente espaciosas (quietud editorial), pero los gradientes de los sabores, el dark manifesto y el azul `#0086d6` cortan con energía puntual. Nunca los dos al mismo tiempo en la misma sección.
-2. **Sans humanista / serif italic**: Manrope (sans, sustituto licencia-libre de Avenir del brandboard) carga el 95% del peso. Instrument Serif Italic aparece quirúrgicamente — palabras solas, *clara,*  *Mora silvestre.*, *cero compromisos.* — para evocar la cabeza de un artículo, no un blog post.
-3. **Blanco / tinta**: nunca `#fff` ni `#000`. Paper `#f5f7f8` está apenas tibio; ink `#0a0e12` está apenas azulado. Ambos arrastran un trazo del azul de marca para que paper y ink se sientan parte del mismo universo.
+A diferencia de versiones tempranas (claro por defecto), la página vive hoy **mayoritariamente en oscuro**: solo el hero y el nav respiran sobre `paper`; todo lo demás —WhyClear, Manifiesto, banner táctil, Claims, Equivalencias, Sabores, Nutrimental, Contacto— es `ink`. La transición clara→oscura justo después del hero es el primer gesto editorial: bajamos las luces y empieza el ensayo. El azul de marca, los gradientes cálidos de sabor y los halos atmosféricos cortan esa oscuridad con energía puntual.
 
-**Anti-feel**: GNC supplement aisle, wellness pastel blob, generic SaaS purple-gradient, gym bro before/after. Si una decisión visual cabría en cualquiera de esos cuatro mundos, hay que rehacerla.
+**Anti-feel**: pasillo de suplementos GNC, wellness pastel con blobs 3D, SaaS purple-gradient, gym bro before/after. Si una decisión visual cabría en cualquiera de esos cuatro mundos, hay que rehacerla.
 
-**Vibe en una frase**: *Cereal Magazine si publicara una bebida proteica clara.*
+**Key Characteristics:**
+- Oscuro-dominante con un único respiro claro (hero + nav).
+- Tipografía display enorme (Manrope 800) como estructura; serif italic como puntuación rara.
+- Jerarquía por escala + peso, nunca por color.
+- Tonal-first: las superficies no flotan; solo el producto físico y el modal proyectan sombra.
+- Editorial asimétrico: encabezados a la izquierda en las secciones de lectura, centrado reservado para los momentos de espectáculo.
 
-## 2. Colors: The Glass-and-Ink Palette
+## 2. Colors
 
-Estrategia: **Restrained con escapadas Drenched**. La superficie por defecto es paper sobre tinta (≤10% de acento azul). Pero las dos secciones de sabor son **Drenched** — el color del sabor es la sección entera, sin compromiso.
+Estrategia: **Committed-oscuro con escapadas de acento.** La superficie base es `ink`; el `paper` es el invitado raro (hero, nav, lightbox del modal). El azul `h2pro` y los colores de sabor entran como acento puntual, nunca como relleno. Todos los neutrales arrastran un trazo de hue azul para que `paper` e `ink` se sientan del mismo aire.
 
-Todos los neutrales arrastran un poco de hue azul (chroma ≈0.005) para que paper y ink se sientan parte del mismo aire.
+### Primary
+- **H2PRO Blue** (`#0086d6`): acento de marca. Italic display ("Mera mecánica cuántica."), barra de progreso de scroll, halos atmosféricos, dot de sabor.
+- **H2PRO Deep** (`#00609a`): estado de reposo de botones azules (CTA hero en hover, "Hablemos" del footer). Contraste `paper` sobre este azul = 5.73:1.
+- **H2PRO Glow** (`#4ab4f0`): acentos sobre fondo oscuro (signo ≃ de equivalencias, eyebrows en el manifiesto).
 
-| Token | Hex | OKLCH equivalente | Rol |
-|---|---|---|---|
-| `ink` | `#0a0e12` | `oklch(0.165 0.012 245)` | Fondo dark de manifiesto, nutrimental, contacto |
-| `ink-soft` | `#101820` | `oklch(0.205 0.014 245)` | Texto sobre paper |
-| `paper` | `#f5f7f8` | `oklch(0.965 0.004 230)` | Superficie por defecto |
-| `paper-warm` | `#fafbf8` | `oklch(0.978 0.005 100)` | Hover de cards (apenas perceptible) |
-| `ice` | `#d3d9dc` | `oklch(0.873 0.008 230)` | Borders y divisores |
-| `mist` | `#e8edf0` | `oklch(0.928 0.006 230)` | Backgrounds de secciones intermedias |
-| `h2pro` | `#0086d6` | `oklch(0.605 0.165 244)` | **Acento de marca**. Italic display, badges, hover de botón primario |
-| `h2pro-deep` | `#00609a` | `oklch(0.476 0.135 244)` | Estados pressed/hover de superficies dark |
-| `h2pro-glow` | `#4ab4f0` | `oklch(0.745 0.13 240)` | Acentos sobre fondo dark, eyebrows en manifiesto |
-| `limonada` | `#f4e04d` | `oklch(0.91 0.165 100)` | Drenched de sección Sabor 01 |
-| `limonada-deep` | `#b89c1f` | `oklch(0.7 0.135 95)` | Eyebrow y notes sobre limonada |
-| `blueberry` | `#5b6fb8` | `oklch(0.555 0.115 275)` | Drenched de sección Sabor 02 |
-| `blueberry-deep` | `#2c3a72` | `oklch(0.345 0.105 275)` | Texto sobre blueberry |
+### Secondary (sabores — Drenched local)
+- **Limonada** (`#f4e04d`) / **Limonada Deep** (`#b89c1f`): sección de sabor cítrico.
+- **Blueberry** (`#5b6fb8`) / **Blueberry Accent** (`#7d8fd6`, variante clara para dot y nombre sobre fondo oscuro) / **Blueberry Deep** (`#2c3a72`).
 
-**Reglas del color**:
+### Neutral
+- **Ink** (`#0a0e12`): fondo por defecto de casi toda la página; texto sobre paper.
+- **Ink Soft** (`#101820`): segundo tono oscuro en gradientes de estudio.
+- **Paper** (`#f0ede8`): superficie clara del hero, nav scrolled, overlay del menú móvil.
+- **Paper Warm** (`#ece8e1`): base del ciclorama del lightbox 360°.
+- **Ice** (`#d3d9dc`) / **Mist** (`#e8edf0`): borders y divisores cuando hacen falta.
 
-- Restrained es la línea base. Cuando uses azul `h2pro` sobre paper, mantenelo bajo 10% de la superficie visible.
-- Drenched está autorizado **sólo** en las dos secciones de sabor. No se aplica a hero, manifiesto, claims, nutrimental, personas o contacto.
-- El italic serif con `h2pro` es la firma de la marca — *clara,* / *cero compromisos.* / *lo que hay.* Tres apariciones por página máximo. Si quieres un cuarto, replantea el copy.
+### Named Rules
+**The Lights-Down Rule.** El `paper` aparece solo en hero, nav y el lightbox del modal. Cualquier otra sección clara rompe la narrativa oscura y debe justificarse.
+**The Color-Is-Punctuation Rule.** El azul y los sabores son acento, no superficie. Sobre `ink`, mantén el azul por debajo del ~10% del área visible salvo en las dos secciones de sabor.
 
-## 3. Typography: Sans Humanista + Italic Editorial
+## 3. Typography
 
-Dos familias, cinco roles. Manrope hace el 95% del trabajo; Instrument Serif italic aparece como puntuación tipográfica.
+**Display Font:** Manrope (con ui-sans-serif, system-ui, sans-serif)
+**Editorial Font:** Instrument Serif italic (con ui-serif, Georgia, serif)
 
-| Rol | Familia | Tamaño | Peso | LH | Tracking | Uso |
-|---|---|---|---|---|---|---|
-| `display` | Manrope | clamp(2.4rem, 7vw, 7.4rem) | 800 | 0.92 | -0.04em | Hero, manifiesto, headers de sección |
-| `editorial` | Instrument Serif italic | clamp(1.4rem, 2.4vw, 2.2rem) | 400 | 1.05 | normal | Acentos dentro del display, quotes de personas, descriptores de sabor |
-| `body` | Manrope | 1rem (1.05rem md+) | 400 | 1.6 | normal | Párrafos descriptivos |
-| `eyebrow` | Manrope | 0.7rem | 600 | 1 | 0.22em | `[ 01 ] Manifiesto`, `Sabor 01 · Limonada` |
-| `label` | Manrope | 0.78rem | 500 | 1.2 | 0.18em | Botones, nav links, footers de sección |
+**Character:** Manrope carga el 95% del peso —humanista, segura, con `font-feature-settings: "ss01","cv11"` global para personalidad en la `a`, `g` y números—. Instrument Serif italic entra como puntuación tipográfica: palabras sueltas que evocan la cabeza de un artículo, nunca un párrafo.
 
-**Reglas**:
+### Hierarchy
+- **Display / Hero** (800, `clamp(2.7rem, 6.2vw, 5.4rem)`, LH 0.95, −0.04em): el titular del hero. Domina por encima de cualquier header de sección en todos los anchos.
+- **Display / Sección** (800, `clamp(2.4rem, 5.4vw, 4.6rem)`, LH 0.92, −0.04em): headers de WhyClear, Claims, Equivalencias, Sabores, Nutrimental. El Manifiesto sube a `clamp(2.6rem, 5.8vw, 5.6rem)` por ser la declaración mayor.
+- **Editorial** (400, `clamp(1.3rem, 2.4vw, 2.4rem)`, LH 1.05, italic): acentos dentro del display, descriptores de sabor ("Cítrico fresco."), la firma "Mera mecánica cuántica." Máximo tres apariciones por página.
+- **Body** (400, ~1–1.1rem, LH 1.6): párrafos. Ancho máximo 65–75ch (`max-w-md`/`max-w-2xl`).
+- **Label** (500, `0.78rem`, `0.18em`, mayúsculas): botones, links de nav, CTAs, el código Cofepris.
+- **Eyebrow** (600, `0.7rem`, `0.28em`, mayúsculas): kickers, índices `01–05`, headers de columnas de la tabla.
+- **Micro** (600, `0.62rem`, `0.28em`, mayúsculas): pies de escena, captions de sello, especificaciones finas del modal.
 
-- Hierarchy por escala + peso, no por color. Display 800 vs body 400 ya genera contraste suficiente.
-- Italic serif **nunca** se usa para body. Solo para una palabra/frase corta dentro de un display, una quote, o un descriptor (≤4 palabras).
-- Anchos de párrafo nunca exceden 65-75ch. En la práctica: `max-w-md` o `max-w-xl` con padding generoso.
-- Mayúsculas con tracking `0.18-0.32em` solo en eyebrows y botones. **Nunca** en headers.
-- `font-feature-settings: "ss01", "cv11"` activado globalmente (Manrope) para los stylistic sets que dan personalidad a la `a`, `g`, y números.
+### Named Rules
+**The Three-Step Label Rule.** Los micro-textos en mayúscula viven en exactamente tres tamaños: `0.62 / 0.7 / 0.78rem`. Inventar tamaños intermedios (0.65, 0.68, 0.72…) es ruido, no jerarquía.
+**The Two-Track Rule.** El `letter-spacing` en mayúsculas usa dos valores: `0.18em` (acción: botones, nav) y `0.28em` (etiqueta: eyebrows, micro). Nada más.
+**The Italic-Is-Rare Rule.** El serif italic nunca es body. Solo una palabra/frase corta (≤4 palabras), siempre como acento.
 
-## 4. Elevation: Tonal antes que Shadow
+## 4. Elevation
 
-H2PRO es **tonal-first, shadow-only-on-product**. Las superficies de UI no flotan: se separan por contraste de tono y por borders de 1 px en `ice`. Sólo las botellas y los modales tienen shadow real.
+H2PRO es **tonal-first, shadow-only-on-product**. Las superficies de UI no flotan: se separan por contraste de tono (`ink` → `paper` → sabor) y por borders de 1px. La sombra real se reserva para lo que físicamente flota.
 
-| Nivel | Implementación | Uso |
-|---|---|---|
-| `flat` | Sin sombra. Border `1px solid {colors.ice}` cuando hace falta separar. | Cards, nav, formularios, contact tiles |
-| `tonal` | Cambio de fondo `paper → ink` o `paper → drenched`. Sin sombra. | Transición entre secciones |
-| `product` | `drop-shadow(0 40px 60px rgba(0,0,0,0.28)) drop-shadow(0 8px 14px rgba(0,0,0,0.18))` | Botellas en hero y flavors |
-| `modal` | `bg-ink/85 backdrop-blur-sm` (backdrop) + panel paper plano | Modal 360° |
-| `glow` | `radial-gradient blur-3xl opacity-40-50` detrás de elementos focales | Halos atrás de botellas, gradientes atmosféricos en manifiesto/contacto |
+### Shadow Vocabulary
+- **Product** (`drop-shadow(0 40px 60px rgba(0,0,0,0.28)) drop-shadow(0 8px 14px rgba(0,0,0,0.18))`): botellas.
+- **Lightbox** (`0 50px 90px -28px rgba(0,0,0,0.85)` + aro de 1px del color de sabor): la vitrina del video 360° dentro del modal.
+- **Glow** (`radial-gradient blur-3xl opacity-30–50`): halos fríos/azules detrás de botellas y como atmósfera en manifiesto, contacto y equivalencias. Es atmósfera, no profundidad: vive detrás del contenido, no debajo.
+- **Grain** (`feTurbulence` SVG `mix-blend-overlay opacity-0.55`): textura de película sobre las secciones oscuras.
 
-**Reglas**:
-
-- No usar `box-shadow` para "darle dimensión" a un card. Si el card no se distingue de su fondo, cámbialo de tono o agrégale un border de 1px en `ice`.
-- Sombras solo cuando la cosa flota *físicamente* (una botella sobre una mesa, un modal sobre la página). Nada más.
-- Los halos `radial-gradient blur-3xl` son atmósfera —no profundidad—. Vivien atrás del contenido, no debajo.
+### Named Rules
+**The Flat-By-Default Rule.** Ningún `box-shadow` para "darle dimensión" a un card. Si no se distingue del fondo, cámbialo de tono o ponle un border de 1px. La sombra solo cuando la cosa flota de verdad (botella, modal).
 
 ## 5. Components
 
 ### Nav (`Nav.tsx`)
-Fixed top, full width. Estado **transparent** sobre el hero; estado **scrolled** con `bg-paper/85 backdrop-blur-xl border-b border-ink/5` después de 24px de scroll. Logo wordmark `H2PRO` (display 1.6-1.8rem, letter-spacing -0.05em) con el "2" en `h2pro`. Links como `eyebrow` con hover a ink full. CTA "Pedidos" como `button-primary` pill.
+Fixed, full width. **Sobre el hero**: `bg-ink/85 backdrop-blur-xl` con logo blanco. **Tras 24px de scroll**: transiciona a `bg-paper/85 backdrop-blur-xl border-b border-ink/5` con el logo a dos tonos. Links estilo eyebrow con indicador de sección activa (subrayado `layoutId` animado, `aria-current="page"`) vía IntersectionObserver. Móvil: overlay `paper` a pantalla completa, items display 2rem con índice, cierre por Escape y bloqueo de scroll. Sin CTA de compra (la conversión es WhatsApp/IG/correo).
 
 ### Hero (`Hero.tsx`)
-Split-screen vertical (50/50). Lado izquierdo: gradient radial limonada centrado al 30/40%; derecho: gradient radial blueberry centrado al 70/40%. Línea divisoria `1px bg-ink/10` al centro. Dos botellas con parallax `useTransform` (left -120px, right -160px en scroll). Display central con tres líneas: `Proteína / clara, / sin pesadez.` — la segunda línea es `editorial` con `h2pro`. Stats ribbon `bg-paper/40 backdrop-blur-md` al fondo. Eyebrows en las dos esquinas superiores.
+La **única** sección `paper`. Móvil: foto completa (`hero-bottles.jpg`, contain) arriba con fundido vertical, texto debajo. Desktop: split asimétrico —texto a la izquierda (40–44%), foto a sangre a la derecha con fundido `paper` en el borde izquierdo y arriba/abajo—. Ken Burns lento (scale 1.1→1) al cargar. Titular en dos líneas, dos CTAs: "Conoce los sabores" (pill `ink`, hover `h2pro-deep` + scale) y "Quiénes somos" (ghost con línea).
+
+### WhyClear (`WhyClear.tsx`)
+`ink`, grain, halo frío azul. **Alineado a la izquierda** (`max-w-3xl`): h2 "¿Por qué H2PRO es clara?", body explicativo, y cierre editorial en `h2pro`: "Mera mecánica cuántica."
 
 ### Manifesto (`Manifesto.tsx`)
-Fondo `ink`, texturada con `grain` (SVG noise overlay). Dos halos azul radiales blur opuestos. Grid 12 cols: eyebrow al col 1-2, display al col 3-9, botella blueberry flotando col 10-12. Marquee inferior (`animate-shimmer`) con keywords.
+`ink`, grain, dos halos azules opuestos. Grid 7/5: izquierda, h2 con reveal línea por línea (clip-path) "La proteína no tiene que ser pesada, lenta ni complicada" + body; derecha, botella `manifesto-float.jpg` flotando con parallax y máscara radial. Marquee inferior (`animate-shimmer`, `aria-hidden`) con keywords.
 
-### Claims grid (`Claims.tsx`)
-4 cards en grid `grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/10 border border-ink/10`. Cada card: número display (3-3.6rem) arriba-izq, índice `01-04` arriba-der, título sm + body 0.88rem abajo. Hover sube background a `paper-warm`.
+### TactileBanner (`TactileBanner.tsx`)
+`ink`. Imagen a sangre `macro-hands.jpg` con parallax y overlay degradado oscuro. Texto editorial sobreimpreso: eyebrow "Solo destapa y disfruta" + display "Sin polvos que disolver, sin grumos, sin pretextos".
+
+### Claims (`Claims.tsx`)
+`ink`. **Header a la izquierda** "Lo esencial, cero compromisos". Spread editorial 8/4: a la izquierda el número héroe `20`g con CountUp y entrada en blur (clamp 8–22rem, "por 500 ml"); a la derecha un riel con border-l de cuatro claims numerados (BCAA · 0 azúcar · 0 lactosa · Clean Label), índices `01–05`.
+
+### ProteinEquivalences (`ProteinEquivalences.tsx`)
+`ink`, grain. **Centrado a propósito** (escena de espectáculo). Secuencia auto-reproducida en pantalla: el número rueda 20→100 y se re-proyecta por alimento (Pollo/Res/Pescado) con su nombre gigante en outline detrás; halo azul que pulsa. `prefers-reduced-motion` → ecuación estática `20g ≃ 100g`. Texto `sr-only` + `aria-label` describen la equivalencia para lectores de pantalla.
 
 ### Flavors (`Flavors.tsx`)
-Dos `<article>` Drenched. Layout 12-col asimétrico que alterna: limonada texto-derecha, blueberry texto-izquierda. Botella es un `<button>` con halo radial blur, con motion vertical (drift `y: [0,-14,0]` 6s loop). Click abre `Bottle360Modal`. CTA pill secundaria "Ver en 360° ↻" en color `flavor.text` con texto en color `flavor.bg`.
+`ink`, grain. Header centrado "Dos perfiles. Una promesa de claridad" + hairline central. Dos paneles (Limonada, Blueberry): cada botella es un `<button>` accesible (foto enmascarada con feather, Ken Burns ligado al scroll) con invitación premium **"Girar 360°"** (visible en móvil; hover/focus en desktop) que abre el modal. Dot del color de sabor + nombre display + descriptor editorial.
 
-### Nutrition Label (`NutritionLabel.tsx`)
-**El momento brutalist editorial**. Fondo `ink`, panel grande con border-2 paper. Grid 7/5 cols. Lado izq: tabla nutrimental tipográfica (label · 100ml · 500ml) con la fila Proteínas resaltada en display 1.2rem `h2pro-glow`. Lado der: 5 ingredientes numerados 01-05 en lista vertical. Pie con specs (vida de anaquel, presentación). Disclaimer pequeño debajo.
+### NutritionLabel (`NutritionLabel.tsx`)
+`ink`. **Header a la izquierda** "Lo que ves es lo que hay" + intro. Panel con `border-2 paper`: tabla nutrimental tipográfica (Por porción · 100ml · 500ml) con grid de 3 columnas, `tabular-nums` y la fila Proteínas resaltada. Etiqueta "NOM 051". Disclaimer legal debajo.
 
-### Personas (`Personas.tsx`)
-3 cards en grid 3-cols con `gap-px bg-ink/15 border border-ink/15`. Cada card: dot color (limonada/h2pro/blueberry) + perfil 01/02/03 + edad alineada-derecha; nombre display 2.4-2.8rem + rol body; quote en `editorial` 1.4-1.55rem con comillas tipográficas; "Su momento" abajo separado por border-t.
+### Contact + Footer (`Contact.tsx`, `Footer.tsx`)
+`ink`. Contact ya no tiene formulario: renderiza el Footer. Footer editorial: columna de marca con sello "Hecho en México" y aviso Cofepris; columnas Producto / Contacto / Síguenos; íconos sociales de 44px; pill "Hablemos" (`h2pro-deep`, hover por elevación) a WhatsApp. Tira legal inferior con la línea de manifiesto empresarial.
 
-### Contact (`Contact.tsx`)
-Fondo `ink` con halo h2pro al top. Grid 7/5: izquierda manifiesto + 4 contact-tiles en grid 2x2 `bg-paper/15 border border-paper/15`; derecha formulario en panel `bg-paper`. Submit usa `mailto:` armado dinámicamente con `formData`. Footer minimal abajo con border-t paper/10.
+### Bottle 360° Modal (`Bottle360Modal.tsx`) — componente firma
+Pantalla completa vía `createPortal`. Apertura con clip-path circular expansivo. Fondo de estudio oscuro con glow del color de sabor, rejilla técnica, línea de escaneo, ticks en las esquinas y una órbita girando. El video (grabado sobre blanco) vive en un **lightbox**: ciclorama cálido marfil (`paper-warm`) + `mix-blend-multiply`, así el blanco plano adopta el degradado de estudio y la botella se ve limpia. Sello "360° · VISTA COMPLETA" rotando. Cierre por ESC, click fuera o botón; bloquea el scroll del body.
 
-### Bottle 360° Modal (`Bottle360Modal.tsx`)
-Backdrop `bg-ink/85 backdrop-blur-sm`. Panel paper centrado con corner ticks decorativos en las 4 esquinas. Header con eyebrow + cerrar. Stage radial-gradient white→paper que disuelve el fondo blanco del video. Cierre por ESC, click fuera, o botón. Bloquea scroll del body mientras está abierto.
+### Floating (`ScrollProgress.tsx`, `WhatsAppFloat.tsx`)
+Barra de progreso `h2pro` de 2px arriba (oculta con reduced-motion). Botón flotante de WhatsApp `ink` abajo-derecha, consciente de `safe-area-inset`.
 
 ## 6. Do's and Don'ts
 
-### ✅ Do
+### Do:
+- **Do** mantener `ink` como superficie por defecto; `paper` solo en hero, nav y lightbox.
+- **Do** dejar respirar: padding vertical de sección `clamp(7rem, 12vw, 10rem)`.
+- **Do** alinear a la izquierda los encabezados de las secciones de lectura (WhyClear, Claims, Nutrimental) y reservar el centrado para el espectáculo (Equivalencias, Sabores).
+- **Do** usar el serif italic como puntuación, máximo tres veces por página, siempre con `h2pro` o un derivado.
+- **Do** respetar la escala de labels de tres pasos (`0.62 / 0.7 / 0.78rem`) y el tracking de dos vías (`0.18em` acción, `0.28em` etiqueta).
+- **Do** separar superficies por tono o border de 1px, no por sombra.
+- **Do** respetar `prefers-reduced-motion`: parallax, Ken Burns, shimmer y la escena de equivalencias se quedan estáticos.
+- **Do** mantener contraste WCAG AA (texto ≥4.5:1): botones azules sobre `h2pro-deep`, no `h2pro`.
 
-- **Dejar respirar.** El `padding-y` de sección es `clamp(7rem, 12vw, 11rem)`. No achiques.
-- **Usar italic serif como puntuación.** Tres apariciones por página máximo, siempre con `h2pro` o un derivado, siempre en una palabra/frase corta.
-- **Numerar las secciones.** `[ 01 ] Manifiesto`, `[ 02 ] Composición`. El número convierte la página en un índice editorial.
-- **Resaltar 20 g.** Es el dato que importa. Aparece en hero stats, en claims, y en la fila de Proteínas con `h2pro-glow display`.
-- **Botellas con halo radial atrás.** Limonada con halo cálido, blueberry con halo frío. Da volumen sin sombra.
-- **Border 1px ice** para separar cards en grids. No `gap-4 bg-paper`. Sí `gap-px bg-ink/10`.
-- **Respetar `prefers-reduced-motion`**. Parallax, drift y shimmer se quedan estáticos.
-
-### ❌ Don't
-
-- **No sombras box-shadow** en UI. Solo en producto físico (botellas) o modal.
-- **No `#000` ni `#fff`**. Usar `ink` y `paper`. Si necesitas blanco puro para algo (ej. radial-gradient stage del modal), justifícalo.
-- **No italic serif para body**. Solo para acentos.
-- **No mayúsculas en headers display**. Mayúsculas son territorio de eyebrows y botones.
-- **No glassmorphism universal**. El backdrop-blur sólo aparece en nav scrolled y modal backdrop. No lo apliques a cards ni botones.
-- **No gradient purple-to-pink** en ningún lado. Los gradientes permitidos son: limonada (amarillo cálido), blueberry (azul violáceo), h2pro halo (azul atmosférico). Cualquier otro requiere justificación.
-- **No genéricos AI-slop**: no rounded-2xl en todo, no shadow-lg por reflejo, no Inter, no Lucide-icons como decoración.
-- **No copy con signos de exclamación.** Excepción cero. Si el copy lo pide, el copy está mal.
-- **No "antes y después"**, no "transforma tu cuerpo", no "el suplemento #1". El brief lo veta.
-- **No esconder ingredientes ni tabla nutrimental**. La transparencia es el producto.
+### Don't:
+- **Don't** parecerse a un pasillo de suplementos GNC: tipografía agresiva, fotos de músculos, iconografía de pesas.
+- **Don't** caer en wellness pastel saturado (rosa/menta, blobs 3D, copy en lowercase juguetón).
+- **Don't** lifestyle aspiracional vacío sin información ni claims; la página educa, no contempla.
+- **Don't** usar "antes y después", "transforma tu cuerpo" ni "el suplemento #1".
+- **Don't** genérico AI-slop: gradientes purple-to-pink, glassmorphism por reflejo, Inter/Roboto, rounded-2xl universal, shadow-lg por defecto, Lucide como decoración.
+- **Don't** signos de exclamación en el copy. Excepción cero.
+- **Don't** `#000` ni `#fff`: usar `ink` y `paper`. (El blanco del video del modal se neutraliza con el ciclorama marfil + multiply.)
+- **Don't** italic serif para body, ni mayúsculas en headers display.
+- **Don't** box-shadow en UI: solo en producto físico (botellas) y modal.
+- **Don't** esconder ingredientes ni la tabla nutrimental. La transparencia es el producto.
