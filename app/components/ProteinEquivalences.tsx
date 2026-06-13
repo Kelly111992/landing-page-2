@@ -19,8 +19,8 @@ const FOODS = [
   { label: "de carne de res", word: "Res" },
   { label: "de pescado", word: "Pescado" },
 ];
-const INTRO_MS = 1500; // tiempo en "20 g" antes de rodar
-const CYCLE_MS = 3200; // tiempo por alimento
+const INTRO_MS = 1400; // tiempo en "20 g" antes de rodar
+const CYCLE_MS = 2200; // tiempo por alimento
 
 export default function ProteinEquivalences() {
   const reduce = useReducedMotion();
@@ -30,19 +30,17 @@ export default function ProteinEquivalences() {
   // Fase 0 = botella (20 g); fases 1-3 = alimentos (100 g, en bucle)
   const [phase, setPhase] = useState(0);
   const [num, setNum] = useState(20);
-  const [paused, setPaused] = useState(false);
   const rolled = useRef(false);
 
-  // Auto-avance mientras la escena está en pantalla (se detiene al pasar el
-  // cursor o al enfocar dentro, para que se pueda leer con calma)
+  // Auto-avance mientras la escena está en pantalla
   useEffect(() => {
-    if (reduce || !inView || paused) return;
+    if (reduce || !inView) return;
     const delay = phase === 0 ? INTRO_MS : CYCLE_MS;
     const t = setTimeout(() => {
       setPhase((p) => (p === 0 ? 1 : (p % 3) + 1));
     }, delay);
     return () => clearTimeout(t);
-  }, [reduce, inView, phase, paused]);
+  }, [reduce, inView, phase]);
 
   // Rodado 20 → 100 una sola vez, al salir de la botella
   useEffect(() => {
@@ -122,10 +120,6 @@ export default function ProteinEquivalences() {
         /* Escena auto-reproducida — altura normal, el scroll fluye */
         <div
           ref={sceneRef}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={() => setPaused(false)}
           className="relative h-[80svh] min-h-[560px] overflow-hidden"
         >
           {/* Atmósfera central */}
@@ -160,7 +154,7 @@ export default function ProteinEquivalences() {
                   initial={{ opacity: 0, scale: 1.06, filter: "blur(10px)" }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                   exit={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
-                  transition={{ duration: 0.9, ease: EASE }}
+                  transition={{ duration: 0.55, ease: EASE }}
                 >
                   {food.word}
                 </motion.span>
@@ -223,7 +217,7 @@ export default function ProteinEquivalences() {
                     initial={{ opacity: 0, y: "0.45em", filter: "blur(14px)" }}
                     animate={{ opacity: 1, y: "0em", filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: "-0.45em", filter: "blur(14px)" }}
-                    transition={{ duration: 0.7, ease: EASE }}
+                    transition={{ duration: 0.45, ease: EASE }}
                   >
                     {num}
                     <span className="text-paper" style={{ fontSize: "0.4em" }}>
@@ -246,7 +240,7 @@ export default function ProteinEquivalences() {
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-                  transition={{ duration: 0.7, ease: EASE }}
+                  transition={{ duration: 0.45, ease: EASE }}
                 >
                   {food ? food.label : "de proteína real"}
                 </motion.span>
