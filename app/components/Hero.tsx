@@ -90,15 +90,23 @@ export default function Hero() {
           transition={{ ...spring.gentle, delay: 0.1 }}
           className="relative w-full pt-14"
         >
-          <div className="relative w-full aspect-[1451/1084]">
-            <Image
-              src={slide.bg}
-              alt="Las dos botellas H2PRO — Limonada y Blueberry, con limones y moras"
-              fill
-              priority
-              sizes="100vw"
-              style={{ objectFit: "contain", objectPosition: "center" }}
-            />
+          <div className="relative w-full aspect-[1451/1084] overflow-hidden">
+            {/* Ken Burns: abre acercada y se aleja lentamente */}
+            <motion.div
+              className="absolute inset-0"
+              initial={reduce ? { scale: 1 } : { scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 9, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Image
+                src={slide.bg}
+                alt="Las dos botellas H2PRO — Limonada y Blueberry, con limones y moras"
+                fill
+                priority
+                sizes="100vw"
+                style={{ objectFit: "contain", objectPosition: "center" }}
+              />
+            </motion.div>
             <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: vignetteFull }} />
           </div>
         </motion.div>
@@ -109,19 +117,27 @@ export default function Hero() {
       <div className="hidden md:block relative min-h-[100svh]">
         {/* Panel de imagen a sangre (toca borde superior, derecho e inferior) */}
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ ...spring.gentle, delay: 0.1 }}
-          className="absolute inset-y-0 right-0 left-[40%] lg:left-[44%]"
+          className="absolute inset-y-0 right-0 left-[40%] lg:left-[44%] overflow-hidden"
         >
-          <Image
-            src={slide.bg}
-            alt="Las dos botellas H2PRO — Limonada y Blueberry, con limones y moras"
-            fill
-            priority
-            sizes="60vw"
-            style={{ objectFit: "cover", objectPosition: "55% center" }}
-          />
+          {/* Ken Burns: abre acercada y se aleja lentamente */}
+          <motion.div
+            className="absolute inset-0"
+            initial={reduce ? { scale: 1 } : { scale: 1.12 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Image
+              src={slide.bg}
+              alt="Las dos botellas H2PRO — Limonada y Blueberry, con limones y moras"
+              fill
+              priority
+              sizes="60vw"
+              style={{ objectFit: "cover", objectPosition: "55% center" }}
+            />
+          </motion.div>
           {/* Funde el borde izquierdo de la foto con el crema del texto */}
           <div
             aria-hidden
