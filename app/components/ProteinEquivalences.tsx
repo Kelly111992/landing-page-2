@@ -30,17 +30,19 @@ export default function ProteinEquivalences() {
   // Fase 0 = botella (20 g); fases 1-3 = alimentos (100 g, en bucle)
   const [phase, setPhase] = useState(0);
   const [num, setNum] = useState(20);
+  const [paused, setPaused] = useState(false);
   const rolled = useRef(false);
 
-  // Auto-avance mientras la escena está en pantalla
+  // Auto-avance mientras la escena está en pantalla (se detiene al pasar el
+  // cursor o al enfocar dentro, para que se pueda leer con calma)
   useEffect(() => {
-    if (reduce || !inView) return;
+    if (reduce || !inView || paused) return;
     const delay = phase === 0 ? INTRO_MS : CYCLE_MS;
     const t = setTimeout(() => {
       setPhase((p) => (p === 0 ? 1 : (p % 3) + 1));
     }, delay);
     return () => clearTimeout(t);
-  }, [reduce, inView, phase]);
+  }, [reduce, inView, phase, paused]);
 
   // Rodado 20 → 100 una sola vez, al salir de la botella
   useEffect(() => {
@@ -120,6 +122,10 @@ export default function ProteinEquivalences() {
         /* Escena auto-reproducida — altura normal, el scroll fluye */
         <div
           ref={sceneRef}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
           className="relative h-[80svh] min-h-[560px] overflow-hidden"
         >
           {/* Atmósfera central */}

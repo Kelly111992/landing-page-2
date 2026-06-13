@@ -81,7 +81,11 @@ export default function Hero() {
     "linear-gradient(to bottom, var(--color-paper) 0%, rgba(240,237,232,0) 16%, rgba(240,237,232,0) 80%, var(--color-paper) 100%)";
 
   return (
-    <section id="top" className="relative w-full overflow-hidden bg-paper">
+    <section
+      id="top"
+      tabIndex={-1}
+      className="relative w-full overflow-hidden bg-paper outline-none"
+    >
       {/* ─── MÓVIL: foto completa arriba, texto debajo ─── */}
       <div className="md:hidden relative">
         <motion.div
