@@ -100,19 +100,6 @@ function ModalContent({
             }}
           />
 
-          {/* Stage hairline — bottle "stands on" a thin accent line */}
-          <div
-            aria-hidden
-            className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-10"
-            style={{
-              top: "75%",
-              width: "min(46vw, 520px)",
-              height: "1px",
-              background: `linear-gradient(to right, transparent 0%, ${accent}66 50%, transparent 100%)`,
-              boxShadow: `0 0 24px ${accent}40`,
-            }}
-          />
-
           {/* Scan line */}
           <motion.div
             aria-hidden
@@ -229,7 +216,10 @@ function ModalContent({
               </svg>
             </motion.div>
 
-            {/* Video — bottle plays inside; the donut overlay below erases its white backdrop */}
+            {/* Lightbox — el video se grabó sobre fondo blanco, así que en lugar
+                de recortarlo lo presentamos limpio dentro de una vitrina blanca
+                redondeada, flotando en el estudio oscuro. La botella se ve
+                completa, sin máscaras ni óvalos. */}
             <motion.div
               initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.88, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -239,9 +229,14 @@ function ModalContent({
                 ease: [0.22, 1, 0.36, 1],
                 delay: reduce ? 0 : 0.18,
               }}
-              className="relative"
+              className="relative overflow-hidden rounded-[28px]"
               style={{
-                filter: `drop-shadow(0 30px 50px ${accent}33) drop-shadow(0 10px 18px rgba(0,0,0,0.5))`,
+                // Ciclorama cálido: el centro es luz, los bordes caen a marfil
+                // más profundo. El video se funde encima con multiply, así su
+                // blanco plano adopta este degradado de estudio.
+                background:
+                  "radial-gradient(ellipse 78% 72% at 50% 36%, #f1ede7 0%, #e6dfd4 54%, #d3ccc0 100%)",
+                boxShadow: `0 50px 90px -28px rgba(0,0,0,0.85), 0 0 0 1px ${accent}33`,
               }}
             >
               <video
@@ -252,38 +247,17 @@ function ModalContent({
                 loop
                 playsInline
                 preload="auto"
-                className="max-h-[62vh] w-auto object-contain block"
+                className="block max-h-[68vh] w-auto object-contain mix-blend-multiply"
               />
 
-              {/* Donut eraser — transparent over the bottle silhouette, opaque
-                  ink over the video's white backdrop. Center hole is sized to the
-                  widest bottle profile. */}
+              {/* Viñeta cálida: hunde los bordes hacia el ciclorama y deja un
+                  dejo del color del sabor en las esquinas. */}
               <div
                 aria-hidden
-                className="absolute inset-0 pointer-events-none"
+                className="pointer-events-none absolute inset-0"
                 style={{
-                  background: `radial-gradient(
-                    ellipse 19% 50% at 50% 50%,
-                    transparent 0%,
-                    transparent 72%,
-                    rgba(10,14,18,0.6) 84%,
-                    #0a0e12 95%,
-                    #0a0e12 100%
-                  )`,
-                }}
-              />
-
-              {/* Soft inner rim of flavor color — implies studio rim-light on the bottle */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none mix-blend-screen"
-                style={{
-                  background: `radial-gradient(
-                    ellipse 22% 56% at 50% 50%,
-                    transparent 60%,
-                    ${accent}26 78%,
-                    transparent 92%
-                  )`,
+                  boxShadow: "inset 0 0 110px rgba(60,50,38,0.16)",
+                  background: `radial-gradient(ellipse 92% 92% at 50% 42%, transparent 56%, ${accent}1a 100%)`,
                 }}
               />
             </motion.div>

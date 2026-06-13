@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { spring } from "../lib/springs";
+import Bottle360Modal from "./Bottle360Modal";
 
 type Flavor = {
   id: string;
@@ -17,6 +18,8 @@ type Flavor = {
   // Foto de producto sobre fondo negro (generada a partir del banner
   // principal): botella centrada, glow del color del sabor y fruta en la base.
   photo: string;
+  // Video de la botella girando 360°, se abre en el modal a pantalla completa.
+  video: string;
   accent: string;
 };
 
@@ -30,6 +33,7 @@ const flavors: Flavor[] = [
     name: "Limonada",
     spanish: "Cítrico fresco",
     photo: "/flavors/limonada-dark.jpg",
+    video: "/videos/limonada-360.mp4",
     accent: "#f4e04d",
   },
   {
@@ -37,6 +41,7 @@ const flavors: Flavor[] = [
     name: "Blueberry",
     spanish: "Mora silvestre",
     photo: "/flavors/blueberry-dark.jpg",
+    video: "/videos/blueberry-360.mp4",
     accent: "#7d8fd6",
   },
 ];
@@ -51,6 +56,11 @@ const rgba = (hex: string, a: number) => {
 };
 
 export default function Flavors() {
+  // Sabor activo en el modal 360°. Se mantiene durante la animación de salida
+  // (controlada por `open`) para que el video no parpadee al cerrar.
+  const [active, setActive] = useState<Flavor | null>(null);
+  const [open, setOpen] = useState(false);
+
   return (
     <section id="sabores" className="relative bg-ink grain overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10 pt-28 md:pt-40 pb-12 md:pb-16">
@@ -74,15 +84,39 @@ export default function Flavors() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8">
           {flavors.map((f, i) => (
-            <FlavorPanel key={f.id} flavor={f} index={i} />
+            <FlavorPanel
+              key={f.id}
+              flavor={f}
+              index={i}
+              onOpen={(fl) => {
+                setActive(fl);
+                setOpen(true);
+              }}
+            />
           ))}
         </div>
       </div>
+
+      <Bottle360Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        video={active?.video ?? ""}
+        flavorName={active?.name ?? ""}
+        accent={active?.accent ?? "#0086d6"}
+      />
     </section>
   );
 }
 
-function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
+function FlavorPanel({
+  flavor,
+  index,
+  onOpen,
+}: {
+  flavor: Flavor;
+  index: number;
+  onOpen: (flavor: Flavor) => void;
+}) {
   const reduce = useReducedMotion();
   const frameRef = useRef<HTMLDivElement>(null);
 
@@ -105,25 +139,63 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
       transition={{ ...spring.gentle, delay: reduce ? 0 : 0.05 + index * 0.12 }}
       className="relative flex flex-col items-center text-center"
     >
-      {/* Botella — foto de producto fundida con el fondo */}
-      <div
-        ref={frameRef}
-        className="relative w-full max-w-[520px] aspect-[2/3] overflow-hidden"
-        style={{ WebkitMaskImage: FEATHER_MASK, maskImage: FEATHER_MASK }}
+      {/* Botella — clickeable, abre la vista 360° a pantalla completa */}
+      <button
+        type="button"
+        onClick={() => onOpen(flavor)}
+        aria-label={`Ver la botella de ${flavor.name} girando en 360 grados`}
+        className="group relative w-full max-w-[520px] aspect-[2/3] cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+        style={{ ["--tw-ring-color" as string]: flavor.accent }}
       >
-        <motion.div
-          className="relative w-full h-full"
-          style={{ scale: reduce ? 1 : scrollScale }}
+        {/* Foto de producto fundida con el fondo */}
+        <div
+          ref={frameRef}
+          className="absolute inset-0 overflow-hidden transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          style={{ WebkitMaskImage: FEATHER_MASK, maskImage: FEATHER_MASK }}
         >
-          <Image
-            src={flavor.photo}
-            alt={`Botella H2PRO sabor ${flavor.name}`}
-            fill
-            sizes="(max-width: 768px) 100vw, 520px"
-            style={{ objectFit: "cover" }}
-          />
-        </motion.div>
-      </div>
+          <motion.div
+            className="relative w-full h-full"
+            style={{ scale: reduce ? 1 : scrollScale }}
+          >
+            <Image
+              src={flavor.photo}
+              alt={`Botella H2PRO sabor ${flavor.name}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 520px"
+              style={{ objectFit: "cover" }}
+            />
+          </motion.div>
+        </div>
+
+        {/* Invitación "Girar 360°" — visible en móvil, aparece al hover/focus en desktop */}
+        <span
+          className="pointer-events-none absolute left-1/2 bottom-[7%] flex -translate-x-1/2 items-center gap-2.5 rounded-full border px-4 py-2 backdrop-blur-md transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-visible:translate-y-0 md:group-focus-visible:opacity-100"
+          style={{
+            borderColor: rgba(flavor.accent, 0.5),
+            background: "rgba(10,14,18,0.55)",
+          }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke={flavor.accent}
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-3.5 w-3.5 transition-transform duration-700 group-hover:rotate-180"
+            aria-hidden
+          >
+            <path d="M21 12a9 9 0 1 1-3-6.7" />
+            <path d="M21 3v4.5h-4.5" />
+          </svg>
+          <span
+            className="text-[0.6rem] font-semibold tracking-[0.26em] uppercase"
+            style={{ color: flavor.accent }}
+          >
+            Girar 360°
+          </span>
+        </span>
+      </button>
 
       {/* Nombre del sabor */}
       <div className="relative mt-8 flex flex-col items-center">
