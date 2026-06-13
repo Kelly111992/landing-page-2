@@ -18,7 +18,7 @@ export default function Hero() {
   const headline = (
     <h1
       className="display text-ink leading-[0.95] mb-6 text-balance"
-      style={{ fontSize: "clamp(1.9rem, 5.2vw, 5.2rem)" }}
+      style={{ fontSize: "clamp(2.7rem, 6.2vw, 5.4rem)" }}
     >
       {slide.headline.map((line, i) => (
         <motion.span
