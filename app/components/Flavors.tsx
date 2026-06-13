@@ -1,7 +1,13 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { spring } from "../lib/springs";
 
 type Flavor = {
@@ -81,6 +87,17 @@ export default function Flavors() {
 
 function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
   const reduce = useReducedMotion();
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  // Ken Burns ligado al scroll: la foto entra acercada y se aleja despacio
+  // conforme el panel atraviesa el viewport (1.12x → 1x).
+  const { scrollYProgress } = useScroll({
+    target: frameRef,
+    offset: ["start end", "end start"],
+  });
+  const scrollScale = useTransform(scrollYProgress, [0, 0.6], [1.12, 1], {
+    clamp: true,
+  });
 
   return (
     <motion.article
@@ -93,15 +110,13 @@ function FlavorPanel({ flavor, index }: { flavor: Flavor; index: number }) {
     >
       {/* Botella — foto de producto fundida con el fondo */}
       <div
+        ref={frameRef}
         className="relative w-full max-w-[520px] aspect-[2/3] overflow-hidden"
         style={{ WebkitMaskImage: FEATHER_MASK, maskImage: FEATHER_MASK }}
       >
         <motion.div
           className="relative w-full h-full"
-          initial={reduce ? { scale: 1 } : { scale: 1.08 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          style={{ scale: reduce ? 1 : scrollScale }}
         >
           <Image
             src={flavor.photo}
