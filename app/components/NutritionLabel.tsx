@@ -19,18 +19,15 @@ export default function NutritionLabel() {
       className="relative bg-ink text-paper py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 md:mb-16">
-          <div className="md:col-span-4" />
-          <div className="md:col-span-8">
-            <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] max-w-[16ch]">
-              Lo que ves es lo que hay
-            </h2>
-            <p className="mt-6 max-w-md text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
-              Sin letra chiquita. La declaración nutrimental oficial, tal cual
-              aparece en la botella. Los valores cambian según el perfil del
-              sabor.
-            </p>
-          </div>
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
+            Lo que ves es lo que hay
+          </h2>
+          <p className="mt-6 max-w-md mx-auto text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
+            Sin letra chiquita. La declaración nutrimental oficial, tal cual
+            aparece en la botella. Los valores cambian según el perfil del
+            sabor.
+          </p>
         </div>
 
         <motion.div
