@@ -104,13 +104,15 @@ export default function Footer() {
               </SocialIcon>
             </div>
 
-            <Link
-              href="/#contacto"
+            <a
+              href="https://wa.me/523331470485?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s."
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-h2pro hover:bg-h2pro-deep text-paper text-[0.66rem] tracking-[0.22em] uppercase transition-colors"
             >
               Hablemos
               <span aria-hidden>→</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
