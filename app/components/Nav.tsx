@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
 import H2ProLogo from "./H2ProLogo";
@@ -14,6 +14,7 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
@@ -21,6 +22,29 @@ export default function Nav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Indicador de sección activa: una banda fina al centro del viewport marca
+  // cuál de las secciones del nav está en pantalla.
+  const visible = useRef(new Set<string>());
+  useEffect(() => {
+    const ids = links.map((l) => l.href.slice(1));
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!els.length) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) visible.current.add(e.target.id);
+          else visible.current.delete(e.target.id);
+        });
+        setActive(ids.find((id) => visible.current.has(id)) ?? null);
+      },
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
   useEffect(() => {
@@ -69,22 +93,37 @@ export default function Nav() {
           </a>
 
           <ul className="hidden md:flex items-center gap-4 lg:gap-7">
-            {links.map((l) => (
-              <li key={l.href}>
-                <motion.a
-                  href={l.href}
-                  className={`text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase whitespace-nowrap inline-block transition-colors duration-500 ${
-                    light
-                      ? "text-ink/65 hover:text-ink"
-                      : "text-paper/70 hover:text-paper"
-                  }`}
-                  whileHover={{ x: 2 }}
-                  transition={spring.snappy}
-                >
-                  {l.label}
-                </motion.a>
-              </li>
-            ))}
+            {links.map((l) => {
+              const isActive = active === l.href.slice(1);
+              return (
+                <li key={l.href}>
+                  <motion.a
+                    href={l.href}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`relative text-[0.66rem] lg:text-[0.78rem] tracking-[0.1em] lg:tracking-[0.18em] uppercase whitespace-nowrap inline-block transition-colors duration-500 ${
+                      light
+                        ? isActive
+                          ? "text-ink"
+                          : "text-ink/65 hover:text-ink"
+                        : isActive
+                          ? "text-paper"
+                          : "text-paper/70 hover:text-paper"
+                    }`}
+                    whileHover={{ x: 2 }}
+                    transition={spring.snappy}
+                  >
+                    {l.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute -bottom-1.5 left-0 right-0 h-px bg-h2pro"
+                        transition={spring.snappy}
+                      />
+                    )}
+                  </motion.a>
+                </li>
+              );
+            })}
           </ul>
 
           <button
@@ -129,7 +168,7 @@ export default function Nav() {
           >
             <div className="h-full overflow-y-auto px-6 pb-12 flex flex-col">
               <span className="eyebrow text-ink/45 mt-6 mb-2">
-                [ ] Navegación
+                Navegación
               </span>
               <ul className="mt-2 divide-y divide-ink/10">
                 {links.map((l, i) => (
