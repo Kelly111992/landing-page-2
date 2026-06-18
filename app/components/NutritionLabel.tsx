@@ -19,7 +19,7 @@ export default function NutritionLabel() {
       className="relative bg-ink text-paper py-24 md:py-32"
     >
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="mb-12 md:mb-16">
+        <div className="mb-7 md:mb-9">
           <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]">
             Tan clara como su etiqueta
           </h2>
