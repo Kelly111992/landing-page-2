@@ -127,16 +127,6 @@ export default function Manifesto() {
               className="relative overflow-hidden"
               style={{ aspectRatio: "4/5" }}
             >
-              {/* Respaldo negro que iguala el fondo de la foto y se funde con el
-                  bg-ink, para que no se vea la costura entre foto y sección */}
-              <div
-                aria-hidden
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 78% 72% at 50% 50%, #000 60%, rgba(0,0,0,0) 96%)",
-                }}
-              />
               <motion.div
                 className="parallax-img"
                 style={{
