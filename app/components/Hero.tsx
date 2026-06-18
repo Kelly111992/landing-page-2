@@ -65,7 +65,7 @@ export default function Hero() {
           Conoce los sabores
         </motion.a>
         <motion.a
-          href="#manifiesto"
+          href="#quienes-somos"
           className="text-[0.78rem] tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors flex items-center gap-2.5"
           whileHover={reduce ? {} : { x: 4 }}
           transition={spring.snappy}

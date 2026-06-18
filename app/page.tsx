@@ -7,6 +7,7 @@ import Claims from "./components/Claims";
 import ProteinEquivalences from "./components/ProteinEquivalences";
 import Flavors from "./components/Flavors";
 import NutritionLabel from "./components/NutritionLabel";
+import QuienesSomos from "./components/QuienesSomos";
 import Contact from "./components/Contact";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <ProteinEquivalences />
       <Flavors />
       <NutritionLabel />
+      <QuienesSomos />
       <Contact />
     </main>
   );

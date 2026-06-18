@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="/#sabores">Sabores</FooterLink>
               <FooterLink href="/#nutrimental">Etiqueta</FooterLink>
-              <FooterLink href="/#manifiesto">Quiénes somos</FooterLink>
+              <FooterLink href="/#quienes-somos">Quiénes somos</FooterLink>
             </ul>
           </div>
 
