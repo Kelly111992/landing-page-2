@@ -233,7 +233,7 @@ function FlavorPanel({
           className="text-[clamp(1.1rem,2vw,1.5rem)] mt-2 font-medium tracking-wide"
           style={{ color: flavor.accent }}
         >
-          {flavor.spanish}.
+          {flavor.spanish}
         </p>
       </div>
     </motion.article>

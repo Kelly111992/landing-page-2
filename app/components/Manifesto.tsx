@@ -99,7 +99,7 @@ export default function Manifesto() {
               </span>
               <span className="block overflow-hidden leading-[1.12]">
                 <motion.span className="block" variants={line}>
-                  ya la mezclamos por ti.
+                  ya la mezclamos por ti
                 </motion.span>
               </span>
             </motion.h2>

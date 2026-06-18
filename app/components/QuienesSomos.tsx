@@ -36,7 +36,7 @@ export default function QuienesSomos() {
           <span className="eyebrow text-paper/55 block mb-7">Quiénes somos</span>
 
           <h2 className="display text-paper text-[clamp(2.6rem,5.8vw,5rem)] leading-[0.95]">
-            Lo tenemos claro.
+            Lo tenemos claro
           </h2>
 
           <motion.p
