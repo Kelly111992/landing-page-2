@@ -15,9 +15,9 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 // botella rueda hasta el 100 del plato y cada alimento se re-proyecta con su
 // nombre gigante en outline detrás. Avanza sola mientras está en pantalla.
 const FOODS = [
-  { label: "de pechuga de pollo", word: "Pollo" },
-  { label: "de carne de res", word: "Res" },
-  { label: "de pescado", word: "Pescado" },
+  { label: "de pechuga de pollo", word: "Pollo", grams: 65 },
+  { label: "de carne de res", word: "Res", grams: 70 },
+  { label: "de pescado", word: "Pescado", grams: 80 },
 ];
 const INTRO_MS = 1400; // tiempo en "20 g" antes de rodar
 const CYCLE_MS = 2200; // tiempo por alimento
@@ -30,7 +30,7 @@ export default function ProteinEquivalences() {
   // Fase 0 = botella (20 g); fases 1-3 = alimentos (100 g, en bucle)
   const [phase, setPhase] = useState(0);
   const [num, setNum] = useState(20);
-  const rolled = useRef(false);
+  const numRef = useRef(20);
 
   // Auto-avance mientras la escena está en pantalla
   useEffect(() => {
@@ -42,22 +42,27 @@ export default function ProteinEquivalences() {
     return () => clearTimeout(t);
   }, [reduce, inView, phase]);
 
-  // Rodado 20 → 100 una sola vez, al salir de la botella
+  // El número rueda hacia el valor de cada fase: 20 g (botella) → los gramos
+  // de cada alimento (65 / 70 / 80). Anima desde el valor actual en cada paso.
   useEffect(() => {
+    const target = phase === 0 ? 20 : FOODS[phase - 1].grams;
     if (reduce) {
-      setNum(phase === 0 ? 20 : 100);
+      numRef.current = target;
+      setNum(target);
       return;
     }
-    if (phase === 0 || rolled.current) return;
-    rolled.current = true;
+    const from = numRef.current;
+    if (from === target) return;
     let raf = 0;
     let start: number | null = null;
-    const dur = 850;
+    const dur = 700;
     const step = (ts: number) => {
       if (start === null) start = ts;
       const p = Math.min((ts - start) / dur, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      setNum(Math.round(20 + eased * 80));
+      const v = Math.round(from + (target - from) * eased);
+      numRef.current = v;
+      setNum(v);
       if (p < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
@@ -69,7 +74,7 @@ export default function ProteinEquivalences() {
   return (
     <section
       className="relative bg-ink border-t border-paper/10 grain"
-      aria-label="20 gramos de proteína real por botella: el aporte equivalente a 100 gramos de pechuga de pollo, carne de res o pescado"
+      aria-label="20 gramos de proteína real por botella: el aporte equivalente a 65 gramos de pechuga de pollo, 70 gramos de carne de res u 80 gramos de pescado"
     >
       {/* Header */}
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-24 md:pt-32 pb-6 md:pb-10">
@@ -104,12 +109,10 @@ export default function ProteinEquivalences() {
               }}
             >
               20<span className="text-paper text-[0.4em]">g</span>
-              <span className="text-paper/45 text-[0.32em] mx-[0.5em]">≃</span>
-              100<span className="text-paper text-[0.4em]">g</span>
             </span>
             <p className="mt-8 text-paper/65 text-[1rem] md:text-[1.1rem]">
-              de proteína real, el aporte de 100 g de pechuga de pollo, carne
-              de res o pescado
+              de proteína real, el aporte de 65 g de pechuga de pollo, 70 g de
+              carne de res u 80 g de pescado
             </p>
           </div>
           <p className="mt-6 text-[0.62rem] tracking-[0.28em] uppercase text-paper/55">
@@ -210,21 +213,12 @@ export default function ProteinEquivalences() {
               </span>
 
               <div className="display text-paper tabular-nums overflow-hidden">
-                <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.span
-                    key={phase <= 1 ? "base" : `food-${phase}`}
-                    className="inline-block"
-                    initial={{ opacity: 0, y: "0.45em", filter: "blur(14px)" }}
-                    animate={{ opacity: 1, y: "0em", filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: "-0.45em", filter: "blur(14px)" }}
-                    transition={{ duration: 0.45, ease: EASE }}
-                  >
-                    {num}
-                    <span className="text-paper" style={{ fontSize: "0.4em" }}>
-                      g
-                    </span>
-                  </motion.span>
-                </AnimatePresence>
+                <span className="inline-block">
+                  {num}
+                  <span className="text-paper" style={{ fontSize: "0.4em" }}>
+                    g
+                  </span>
+                </span>
               </div>
             </div>
 
@@ -248,8 +242,8 @@ export default function ProteinEquivalences() {
             </div>
 
             <p className="sr-only">
-              20 g de proteína real por botella: el aporte equivalente a 100 g
-              de pechuga de pollo, carne de res o pescado.
+              20 g de proteína real por botella: el aporte equivalente a 65 g de
+              pechuga de pollo, 70 g de carne de res u 80 g de pescado.
             </p>
 
             {/* Rastro de fases */}

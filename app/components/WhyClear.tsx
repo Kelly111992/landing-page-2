@@ -44,17 +44,8 @@ export default function WhyClear() {
             H2PRO es clara porque su proteína aislada de suero de leche es
             microfiltrada. Al eliminar grasas, lactosa y otras partículas que
             dispersan la luz, el líquido permite su paso libremente, dando esa
-            apariencia cristalina.
-          </motion.p>
-
-          <motion.p
-            className="mt-8 editorial text-h2pro text-[clamp(1.5rem,3vw,2.4rem)] leading-tight"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.35 }}
-          >
-            Mera mecánica cuántica.
+            apariencia cristalina. Así interactúan la luz y la materia a escala
+            cuántica.
           </motion.p>
         </motion.div>
       </div>

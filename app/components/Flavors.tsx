@@ -39,7 +39,7 @@ const flavors: Flavor[] = [
   {
     id: "blueberry",
     name: "Blueberry",
-    spanish: "Mora silvestre",
+    spanish: "Frutal silvestre",
     photo: "/flavors/blueberry-dark.jpg",
     video: "/videos/blueberry-360.mp4",
     accent: "#7d8fd6",
@@ -147,6 +147,17 @@ function FlavorPanel({
         className="group relative w-full max-w-[520px] aspect-[2/3] cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         style={{ ["--tw-ring-color" as string]: flavor.accent }}
       >
+        {/* Respaldo negro que iguala el fondo de la foto y se funde con el
+            bg-ink, para que no se vea la costura entre foto y sección */}
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 76% 70% at 50% 50%, #000 62%, rgba(0,0,0,0) 98%)",
+          }}
+        />
+
         {/* Foto de producto fundida con el fondo */}
         <div
           ref={frameRef}
@@ -219,7 +230,7 @@ function FlavorPanel({
           {flavor.name}
         </motion.h3>
         <p
-          className="editorial text-[clamp(1.3rem,2.4vw,2rem)] mt-2 font-normal"
+          className="text-[clamp(1.1rem,2vw,1.5rem)] mt-2 font-medium tracking-wide"
           style={{ color: flavor.accent }}
         >
           {flavor.spanish}.

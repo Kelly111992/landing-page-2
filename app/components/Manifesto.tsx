@@ -80,45 +80,29 @@ export default function Manifesto() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
-              aria-label="La proteína no tiene que ser pesada, lenta ni complicada"
+              aria-label="La proteína no tiene que ser pesada ni quitarte tiempo. Guarda tu shaker, nosotros ya la mezclamos por ti."
             >
               <span className="block overflow-hidden leading-[1.12]">
                 <motion.span className="block" variants={line}>
-                  La proteína no
+                  La proteína no tiene que
                 </motion.span>
               </span>
               <span className="block overflow-hidden leading-[1.12]">
                 <motion.span className="block" variants={line}>
-                  tiene que ser
+                  ser pesada ni quitarte tiempo.
                 </motion.span>
               </span>
               <span className="block overflow-hidden leading-[1.12]">
                 <motion.span className="block" variants={line}>
-                  pesada, lenta
+                  Guarda tu shaker, nosotros
                 </motion.span>
               </span>
               <span className="block overflow-hidden leading-[1.12]">
                 <motion.span className="block" variants={line}>
-                  ni complicada
+                  ya la mezclamos por ti.
                 </motion.span>
               </span>
             </motion.h2>
-
-            <motion.div
-              className="mt-12 md:mt-16 max-w-xl border-t border-paper/12 pt-8"
-              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ ...spring.gentle, delay: reduce ? 0 : 0.4 }}
-            >
-              <p className="text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
-                H2PRO es agua con 20 gramos de proteína. Sin shakes pesados,
-                sin sabores artificiales, sin promesas de cuerpo de revista.
-              </p>
-              <p className="mt-5 text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed">
-                El primer Protein Water hecho en México.
-              </p>
-            </motion.div>
           </div>
 
           {/* Botella — parallax con halo, ocupa el lado derecho */}
@@ -143,6 +127,16 @@ export default function Manifesto() {
               className="relative overflow-hidden"
               style={{ aspectRatio: "4/5" }}
             >
+              {/* Respaldo negro que iguala el fondo de la foto y se funde con el
+                  bg-ink, para que no se vea la costura entre foto y sección */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 78% 72% at 50% 50%, #000 60%, rgba(0,0,0,0) 96%)",
+                }}
+              />
               <motion.div
                 className="parallax-img"
                 style={{

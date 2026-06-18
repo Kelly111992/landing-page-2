@@ -21,13 +21,8 @@ export default function NutritionLabel() {
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         <div className="mb-12 md:mb-16">
           <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]">
-            Lo que ves es lo que hay
+            Tan clara como su etiqueta
           </h2>
-          <p className="mt-6 max-w-md text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
-            Sin letra chiquita. La declaración nutrimental oficial, tal cual
-            aparece en la botella. Los valores cambian según el perfil del
-            sabor.
-          </p>
         </div>
 
         <motion.div
@@ -43,9 +38,6 @@ export default function NutritionLabel() {
               <h3 className="display text-paper text-[1.6rem]">
                 Declaración nutrimental
               </h3>
-              <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/55">
-                NOM 051
-              </span>
             </div>
 
             <div className="grid grid-cols-[1fr_auto_auto] gap-x-6 gap-y-0 text-[0.92rem]">
@@ -90,11 +82,6 @@ export default function NutritionLabel() {
                 </div>
               ))}
             </div>
-
-            <p className="mt-6 text-[0.78rem] text-paper/50 leading-relaxed">
-              Tamaño de la porción: 500 ml · Una bebida al día. No exceder la
-              porción diaria recomendada.
-            </p>
           </div>
         </motion.div>
 

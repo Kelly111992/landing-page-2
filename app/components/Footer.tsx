@@ -86,22 +86,6 @@ export default function Footer() {
                   <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
                 </svg>
               </SocialIcon>
-              <SocialIcon href="https://www.h2pro.fit" label="Sitio web">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-[18px] h-[18px]"
-                  aria-hidden
-                >
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                  <path d="M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" />
-                </svg>
-              </SocialIcon>
             </div>
 
             <a
@@ -121,14 +105,14 @@ export default function Footer() {
       <div className="border-t border-paper/10">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/60">
           <span>
-            © {year} H2PRO — Protein Water. Todos los derechos reservados.
-            {/* Manifiesto empresarial — sutil, junto a la razón social */}
-            <span className="block mt-1 text-paper/55">
-              Lo tenemos claro: nutrir a México con productos disruptivos
-              creciendo de forma responsable con el medio ambiente.
-            </span>
+            © {year} H2PRO Protein Water. Todos los derechos reservados.
             <span className="block mt-1 text-paper/50">
               Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco
+            </span>
+            {/* Manifiesto empresarial — sutil, al cierre */}
+            <span className="block mt-1 text-paper/55">
+              Manifiesto. Lo tenemos claro: nutrir a México con productos
+              disruptivos creciendo de forma responsable con el medio ambiente.
             </span>
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">

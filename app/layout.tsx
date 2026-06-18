@@ -20,12 +20,12 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "H2Pro protein water",
+  title: "H2PRO Protein Water",
   description:
     "El primer protein water mexicano. 20 g de proteína, sin azúcar, sin lactosa, sin espesantes. Lista para tomar.",
   metadataBase: new URL("https://landing-propuesta-2.vercel.app"),
   openGraph: {
-    title: "H2Pro protein water",
+    title: "H2PRO Protein Water",
     description:
       "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
     type: "website",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
         url: "/brand/og-image.png",
         width: 1200,
         height: 630,
-        alt: "H2Pro protein water",
+        alt: "H2PRO Protein Water",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "H2Pro protein water",
+    title: "H2PRO Protein Water",
     description:
       "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
     images: ["/brand/og-image.png"],

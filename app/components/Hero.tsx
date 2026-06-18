@@ -139,7 +139,7 @@ export default function Hero() {
               fill
               priority
               sizes="60vw"
-              style={{ objectFit: "cover", objectPosition: "55% center" }}
+              style={{ objectFit: "contain", objectPosition: "center" }}
             />
           </motion.div>
           {/* Funde el borde izquierdo de la foto con el crema del texto */}
