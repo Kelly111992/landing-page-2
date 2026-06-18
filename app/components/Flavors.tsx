@@ -178,6 +178,17 @@ function FlavorPanel({
           </motion.div>
         </div>
 
+        {/* Viñeta que pinta el color de la sección sobre los bordes de la foto:
+            disuelve el recuadro sin importar el fondo de la imagen */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 82% 78% at 50% 50%, transparent 40%, var(--color-ink) 84%)",
+          }}
+        />
+
         {/* Invitación "Girar 360°" — visible en móvil, aparece al hover/focus en desktop */}
         <span
           className="pointer-events-none absolute left-1/2 bottom-[7%] flex -translate-x-1/2 items-center gap-2.5 rounded-full border px-4 py-2 backdrop-blur-md transition-all duration-500 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-visible:translate-y-0 md:group-focus-visible:opacity-100"

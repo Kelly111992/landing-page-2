@@ -166,6 +166,17 @@ export default function Manifesto() {
                   />
                 </div>
               </motion.div>
+
+              {/* Viñeta que pinta el color de la sección sobre los bordes de la
+                  foto: disuelve el recuadro sin importar el fondo de la imagen */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 84% 80% at 50% 50%, transparent 36%, var(--color-ink) 82%)",
+                }}
+              />
             </div>
           </motion.figure>
         </div>
