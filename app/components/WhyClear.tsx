@@ -23,19 +23,19 @@ export default function WhyClear() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
-        <motion.div
-          className="max-w-3xl"
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={spring.gentle}
-        >
-          <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-12 items-end">
+          <motion.h2
+            className="md:col-span-7 display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={spring.gentle}
+          >
             ¿Por qué H2PRO es clara?
-          </h2>
+          </motion.h2>
 
           <motion.p
-            className="mt-10 max-w-2xl text-paper/75 text-[1rem] md:text-[1.1rem] leading-relaxed"
+            className="md:col-span-5 text-paper/75 text-[1rem] md:text-[1.15rem] leading-relaxed"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -47,7 +47,7 @@ export default function WhyClear() {
             apariencia cristalina. Así interactúan la luz y la materia a escala
             cuántica.
           </motion.p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

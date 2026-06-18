@@ -26,43 +26,39 @@ export default function QuienesSomos() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
-        <motion.div
-          className="max-w-3xl"
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={spring.gentle}
-        >
-          <span className="eyebrow text-paper/55 block mb-7">Quiénes somos</span>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-12 items-start">
+          <motion.div
+            className="md:col-span-5"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={spring.gentle}
+          >
+            <span className="eyebrow text-paper/55 block mb-7">Quiénes somos</span>
+            <h2 className="display text-paper text-[clamp(2.6rem,5.8vw,5rem)] leading-[0.95]">
+              Lo tenemos claro
+            </h2>
+          </motion.div>
 
-          <h2 className="display text-paper text-[clamp(2.6rem,5.8vw,5rem)] leading-[0.95]">
-            Lo tenemos claro
-          </h2>
-
-          <motion.p
-            className="mt-8 max-w-2xl text-paper text-[clamp(1.3rem,2.8vw,2.1rem)] font-medium leading-snug"
+          <motion.div
+            className="md:col-span-7 md:pt-1"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...spring.gentle, delay: reduce ? 0 : 0.15 }}
           >
-            Nutrir a México con productos disruptivos, creciendo de forma
-            responsable con el medio ambiente.
-          </motion.p>
-
-          <motion.p
-            className="mt-8 max-w-2xl text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed"
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.25 }}
-          >
-            Somos Suplementos Disruptivos, desde Zapopan, Jalisco. Creemos que
-            cuidarte debería ser claro y honesto: sin letra chiquita, sin
-            promesas de revista. H2PRO es nuestro primer paso. Proteína clara,
-            fresca y honesta, hecha en México.
-          </motion.p>
-        </motion.div>
+            <p className="text-paper text-[clamp(1.3rem,2.4vw,1.9rem)] font-medium leading-snug">
+              Nutrir a México con productos disruptivos, creciendo de forma
+              responsable con el medio ambiente.
+            </p>
+            <p className="mt-7 text-paper/70 text-[1rem] md:text-[1.05rem] leading-relaxed max-w-2xl">
+              Somos Suplementos Disruptivos, desde Zapopan, Jalisco. Creemos que
+              cuidarte debería ser claro y honesto: sin letra chiquita, sin
+              promesas de revista. H2PRO es nuestro primer paso. Proteína clara,
+              fresca y honesta, hecha en México.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Franja de identidad — sello + datos, con regla superior */}
         <motion.div
