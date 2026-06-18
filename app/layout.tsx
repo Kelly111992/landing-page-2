@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Instrument_Serif } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import ScrollProgress from "./components/ScrollProgress";
 import WhatsAppFloat from "./components/WhatsAppFloat";
@@ -8,14 +8,6 @@ const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
   weight: ["400", "500", "600", "800"],
-  display: "swap",
-});
-
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
-  weight: "400",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -56,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="es-MX"
-      className={`${manrope.variable} ${instrument.variable} h-full`}
+      className={`${manrope.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <ScrollProgress />

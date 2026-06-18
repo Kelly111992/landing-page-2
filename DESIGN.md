@@ -29,12 +29,6 @@ typography:
     fontWeight: 800
     lineHeight: 0.95
     letterSpacing: "-0.04em"
-  editorial:
-    fontFamily: "Instrument Serif, ui-serif, Georgia, serif"
-    fontSize: "clamp(1.3rem, 2.4vw, 2.4rem)"
-    fontWeight: 400
-    lineHeight: 1.05
-    letterSpacing: "normal"
   body:
     fontFamily: "Manrope, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
@@ -123,7 +117,7 @@ A diferencia de versiones tempranas (claro por defecto), la página vive hoy **m
 
 **Key Characteristics:**
 - Oscuro-dominante con un único respiro claro (hero + nav).
-- Tipografía display enorme (Manrope 800) como estructura; serif italic como puntuación rara.
+- Tipografía display enorme (Manrope 800) como estructura; una sola familia, jerarquía por escala y peso.
 - Jerarquía por escala + peso, nunca por color.
 - Tonal-first: las superficies no flotan; solo el producto físico y el modal proyectan sombra.
 - Editorial asimétrico: encabezados a la izquierda en las secciones de lectura, centrado reservado para los momentos de espectáculo.
@@ -133,7 +127,7 @@ A diferencia de versiones tempranas (claro por defecto), la página vive hoy **m
 Estrategia: **Committed-oscuro con escapadas de acento.** La superficie base es `ink`; el `paper` es el invitado raro (hero, nav, lightbox del modal). El azul `h2pro` y los colores de sabor entran como acento puntual, nunca como relleno. Todos los neutrales arrastran un trazo de hue azul para que `paper` e `ink` se sientan del mismo aire.
 
 ### Primary
-- **H2PRO Blue** (`#0086d6`): acento de marca. Italic display ("Mera mecánica cuántica."), barra de progreso de scroll, halos atmosféricos, dot de sabor.
+- **H2PRO Blue** (`#0086d6`): acento de marca. Barra de progreso de scroll, halos atmosféricos, dot de sabor.
 - **H2PRO Deep** (`#00609a`): estado de reposo de botones azules (CTA hero en hover, "Hablemos" del footer). Contraste `paper` sobre este azul = 5.73:1.
 - **H2PRO Glow** (`#4ab4f0`): acentos sobre fondo oscuro (signo ≃ de equivalencias, eyebrows en el manifiesto).
 
@@ -154,15 +148,13 @@ Estrategia: **Committed-oscuro con escapadas de acento.** La superficie base es 
 
 ## 3. Typography
 
-**Display Font:** Manrope (con ui-sans-serif, system-ui, sans-serif)
-**Editorial Font:** Instrument Serif italic (con ui-serif, Georgia, serif)
+**Única familia:** Manrope (con ui-sans-serif, system-ui, sans-serif)
 
-**Character:** Manrope carga el 95% del peso —humanista, segura, con `font-feature-settings: "ss01","cv11"` global para personalidad en la `a`, `g` y números—. Instrument Serif italic entra como puntuación tipográfica: palabras sueltas que evocan la cabeza de un artículo, nunca un párrafo.
+**Character:** Manrope carga el 100% del peso —humanista, segura, con `font-feature-settings: "ss01","cv11"` global para personalidad en la `a`, `g` y números—. Una sola familia: la jerarquía nace de la escala y el peso (400→800), no de un segundo tipo. (Antes había un serif italic de acento; se retiró para una tipografía consistente.)
 
 ### Hierarchy
 - **Display / Hero** (800, `clamp(2.7rem, 6.2vw, 5.4rem)`, LH 0.95, −0.04em): el titular del hero. Domina por encima de cualquier header de sección en todos los anchos.
 - **Display / Sección** (800, `clamp(2.4rem, 5.4vw, 4.6rem)`, LH 0.92, −0.04em): headers de WhyClear, Claims, Equivalencias, Sabores, Nutrimental. El Manifiesto sube a `clamp(2.6rem, 5.8vw, 5.6rem)` por ser la declaración mayor.
-- **Editorial** (400, `clamp(1.3rem, 2.4vw, 2.4rem)`, LH 1.05, italic): acentos dentro del display, descriptores de sabor ("Cítrico fresco."), la firma "Mera mecánica cuántica." Máximo tres apariciones por página.
 - **Body** (400, ~1–1.1rem, LH 1.6): párrafos. Ancho máximo 65–75ch (`max-w-md`/`max-w-2xl`).
 - **Label** (500, `0.78rem`, `0.18em`, mayúsculas): botones, links de nav, CTAs, el código Cofepris.
 - **Eyebrow** (600, `0.7rem`, `0.28em`, mayúsculas): kickers, índices `01–05`, headers de columnas de la tabla.
@@ -171,7 +163,7 @@ Estrategia: **Committed-oscuro con escapadas de acento.** La superficie base es 
 ### Named Rules
 **The Three-Step Label Rule.** Los micro-textos en mayúscula viven en exactamente tres tamaños: `0.62 / 0.7 / 0.78rem`. Inventar tamaños intermedios (0.65, 0.68, 0.72…) es ruido, no jerarquía.
 **The Two-Track Rule.** El `letter-spacing` en mayúsculas usa dos valores: `0.18em` (acción: botones, nav) y `0.28em` (etiqueta: eyebrows, micro). Nada más.
-**The Italic-Is-Rare Rule.** El serif italic nunca es body. Solo una palabra/frase corta (≤4 palabras), siempre como acento.
+**The Single-Family Rule.** Toda la página es Manrope. El contraste se logra con peso y escala; no se introduce un segundo tipo "para dar variedad".
 
 ## 4. Elevation
 
@@ -195,7 +187,7 @@ Fixed, full width. **Sobre el hero**: `bg-ink/85 backdrop-blur-xl` con logo blan
 La **única** sección `paper`. Móvil: foto completa (`hero-bottles.jpg`, contain) arriba con fundido vertical, texto debajo. Desktop: split asimétrico —texto a la izquierda (40–44%), foto a sangre a la derecha con fundido `paper` en el borde izquierdo y arriba/abajo—. Ken Burns lento (scale 1.1→1) al cargar. Titular en dos líneas, dos CTAs: "Conoce los sabores" (pill `ink`, hover `h2pro-deep` + scale) y "Quiénes somos" (ghost con línea).
 
 ### WhyClear (`WhyClear.tsx`)
-`ink`, grain, halo frío azul. **Alineado a la izquierda** (`max-w-3xl`): h2 "¿Por qué H2PRO es clara?", body explicativo, y cierre editorial en `h2pro`: "Mera mecánica cuántica."
+`ink`, grain, halo frío azul. **Alineado a la izquierda** (`max-w-3xl`): h2 "¿Por qué H2PRO es clara?" y body explicativo que cierra sobre cómo interactúan la luz y la materia a escala cuántica.
 
 ### Manifesto (`Manifesto.tsx`)
 `ink`, grain, dos halos azules opuestos. Grid 7/5: izquierda, h2 con reveal línea por línea (clip-path) "La proteína no tiene que ser pesada, lenta ni complicada" + body; derecha, botella `manifesto-float.jpg` flotando con parallax y máscara radial. Marquee inferior (`animate-shimmer`, `aria-hidden`) con keywords.
@@ -210,7 +202,7 @@ La **única** sección `paper`. Móvil: foto completa (`hero-bottles.jpg`, conta
 `ink`, grain. **Centrado a propósito** (escena de espectáculo). Secuencia auto-reproducida en pantalla: el número rueda 20→100 y se re-proyecta por alimento (Pollo/Res/Pescado) con su nombre gigante en outline detrás; halo azul que pulsa. `prefers-reduced-motion` → ecuación estática `20g ≃ 100g`. Texto `sr-only` + `aria-label` describen la equivalencia para lectores de pantalla.
 
 ### Flavors (`Flavors.tsx`)
-`ink`, grain. Header centrado "Dos perfiles. Una promesa de claridad" + hairline central. Dos paneles (Limonada, Blueberry): cada botella es un `<button>` accesible (foto enmascarada con feather, Ken Burns ligado al scroll) con invitación premium **"Girar 360°"** (visible en móvil; hover/focus en desktop) que abre el modal. Dot del color de sabor + nombre display + descriptor editorial.
+`ink`, grain. Header centrado "Dos perfiles. Una promesa de claridad" + hairline central. Dos paneles (Limonada, Blueberry): cada botella es un `<button>` accesible (foto enmascarada con feather, Ken Burns ligado al scroll) con invitación premium **"Girar 360°"** (visible en móvil; hover/focus en desktop) que abre el modal. Dot del color de sabor + nombre display + descriptor en sans (color de sabor).
 
 ### NutritionLabel (`NutritionLabel.tsx`)
 `ink`. **Header a la izquierda** "Lo que ves es lo que hay" + intro. Panel con `border-2 paper`: tabla nutrimental tipográfica (Por porción · 100ml · 500ml) con grid de 3 columnas, `tabular-nums` y la fila Proteínas resaltada. Etiqueta "NOM 051". Disclaimer legal debajo.
@@ -230,7 +222,7 @@ Barra de progreso `h2pro` de 2px arriba (oculta con reduced-motion). Botón flot
 - **Do** mantener `ink` como superficie por defecto; `paper` solo en hero, nav y lightbox.
 - **Do** dejar respirar: padding vertical de sección `clamp(7rem, 12vw, 10rem)`.
 - **Do** alinear a la izquierda los encabezados de las secciones de lectura (WhyClear, Claims, Nutrimental) y reservar el centrado para el espectáculo (Equivalencias, Sabores).
-- **Do** usar el serif italic como puntuación, máximo tres veces por página, siempre con `h2pro` o un derivado.
+- **Do** mantener una sola familia (Manrope) en toda la página; el contraste nace del peso y la escala.
 - **Do** respetar la escala de labels de tres pasos (`0.62 / 0.7 / 0.78rem`) y el tracking de dos vías (`0.18em` acción, `0.28em` etiqueta).
 - **Do** separar superficies por tono o border de 1px, no por sombra.
 - **Do** respetar `prefers-reduced-motion`: parallax, Ken Burns, shimmer y la escena de equivalencias se quedan estáticos.
@@ -244,6 +236,6 @@ Barra de progreso `h2pro` de 2px arriba (oculta con reduced-motion). Botón flot
 - **Don't** genérico AI-slop: gradientes purple-to-pink, glassmorphism por reflejo, Inter/Roboto, rounded-2xl universal, shadow-lg por defecto, Lucide como decoración.
 - **Don't** signos de exclamación en el copy. Excepción cero.
 - **Don't** `#000` ni `#fff`: usar `ink` y `paper`. (El blanco del video del modal se neutraliza con el ciclorama marfil + multiply.)
-- **Don't** italic serif para body, ni mayúsculas en headers display.
+- **Don't** introducir una segunda fuente "para dar variedad", ni mayúsculas en headers display.
 - **Don't** box-shadow en UI: solo en producto físico (botellas) y modal.
 - **Don't** esconder ingredientes ni la tabla nutrimental. La transparencia es el producto.
