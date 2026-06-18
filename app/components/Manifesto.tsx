@@ -36,14 +36,11 @@ export default function Manifesto() {
   };
 
   const line = {
-    hidden: reduce
-      ? { opacity: 0 }
-      : { opacity: 0, y: "60%", clipPath: "inset(0 0 100% 0)" },
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 22 },
     show: {
       opacity: 1,
-      y: "0%",
-      clipPath: "inset(0 0 0% 0)",
-      transition: { duration: reduce ? 0.4 : 0.8, ease: EASE },
+      y: 0,
+      transition: { duration: reduce ? 0.4 : 0.7, ease: EASE },
     },
   };
 
@@ -75,33 +72,19 @@ export default function Manifesto() {
           {/* Main statement — line-by-line reveal */}
           <div className="md:col-span-7">
             <motion.h2
-              className="display text-paper text-[clamp(2.6rem,5.8vw,5.6rem)]"
+              className="display text-paper text-[clamp(1.9rem,4.4vw,3.6rem)] leading-[1.1] text-balance"
               variants={container}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
               aria-label="La proteína no tiene que ser pesada ni quitarte tiempo. Guarda tu shaker, nosotros ya la mezclamos por ti."
             >
-              <span className="block overflow-hidden leading-[1.12]">
-                <motion.span className="block" variants={line}>
-                  La proteína no tiene que
-                </motion.span>
-              </span>
-              <span className="block overflow-hidden leading-[1.12]">
-                <motion.span className="block" variants={line}>
-                  ser pesada ni quitarte tiempo.
-                </motion.span>
-              </span>
-              <span className="block overflow-hidden leading-[1.12]">
-                <motion.span className="block" variants={line}>
-                  Guarda tu shaker, nosotros
-                </motion.span>
-              </span>
-              <span className="block overflow-hidden leading-[1.12]">
-                <motion.span className="block" variants={line}>
-                  ya la mezclamos por ti
-                </motion.span>
-              </span>
+              <motion.span className="block" variants={line}>
+                La proteína no tiene que ser pesada ni quitarte tiempo.
+              </motion.span>
+              <motion.span className="block mt-3" variants={line}>
+                Guarda tu shaker, nosotros ya la mezclamos por ti
+              </motion.span>
             </motion.h2>
           </div>
 
