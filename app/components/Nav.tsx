@@ -8,6 +8,7 @@ import H2ProLogo from "./H2ProLogo";
 const links = [
   { href: "#sabores", label: "Sabores" },
   { href: "#nutrimental", label: "Etiqueta" },
+  { href: "#quienes-somos", label: "Quiénes somos" },
   { href: "#contacto", label: "Contacto" },
 ];
 
