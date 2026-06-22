@@ -67,7 +67,7 @@ export default function Manifesto() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
+      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-16 md:pt-20 pb-28 md:pb-40">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-14 md:gap-10 items-center">
           {/* Main statement — line-by-line reveal */}
           <div className="md:col-span-7">

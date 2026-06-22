@@ -22,7 +22,7 @@ export default function WhyClear() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 py-28 md:py-40">
+      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-28 md:pt-40 pb-16 md:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-12 items-end">
           <motion.h2
             className="md:col-span-7 display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]"
