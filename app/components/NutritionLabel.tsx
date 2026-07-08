@@ -21,7 +21,7 @@ export default function NutritionLabel() {
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         <div className="mb-7 md:mb-9">
           <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]">
-            Tan clara como su etiqueta
+            Tan clara como su etiqueta.
           </h2>
         </div>
 

@@ -52,7 +52,7 @@ export default function Manifesto() {
       {/* Atmospheric blue gradient blob */}
       <div
         aria-hidden
-        className="absolute -top-40 -right-40 w-[60vw] h-[60vw] max-w-[820px] max-h-[820px] rounded-full opacity-50 blur-3xl"
+        className="absolute -top-56 -right-56 w-[60vw] h-[60vw] max-w-[820px] max-h-[820px] rounded-full opacity-30 blur-3xl"
         style={{
           background:
             "radial-gradient(circle, rgba(0,134,214,0.6) 0%, rgba(0,134,214,0) 65%)",
@@ -83,7 +83,7 @@ export default function Manifesto() {
                 La proteína no tiene que ser pesada ni quitarte tiempo.
               </motion.span>
               <motion.span className="block mt-3" variants={line}>
-                Guarda tu shaker, nosotros ya la mezclamos por ti
+                Guarda tu shaker, nosotros ya la mezclamos por ti.
               </motion.span>
             </motion.h2>
           </div>
@@ -125,9 +125,9 @@ export default function Manifesto() {
                   className="relative w-full h-full"
                   style={{
                     WebkitMaskImage:
-                      "radial-gradient(ellipse 76% 70% at 50% 50%, black 46%, rgba(0,0,0,0.65) 70%, transparent 94%)",
+                      "radial-gradient(ellipse 74% 68% at 50% 50%, black 38%, rgba(0,0,0,0.6) 66%, transparent 99%)",
                     maskImage:
-                      "radial-gradient(ellipse 76% 70% at 50% 50%, black 46%, rgba(0,0,0,0.65) 70%, transparent 94%)",
+                      "radial-gradient(ellipse 74% 68% at 50% 50%, black 38%, rgba(0,0,0,0.6) 66%, transparent 99%)",
                   }}
                 >
                   <Image
@@ -140,16 +140,6 @@ export default function Manifesto() {
                 </div>
               </motion.div>
 
-              {/* Viñeta que pinta el color de la sección sobre los bordes de la
-                  foto: disuelve el recuadro sin importar el fondo de la imagen */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 84% 80% at 50% 50%, transparent 36%, var(--color-ink) 82%)",
-                }}
-              />
             </div>
           </motion.figure>
         </div>

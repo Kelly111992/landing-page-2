@@ -67,7 +67,7 @@ export default function Claims() {
             variants={item}
             className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]"
           >
-            Lo esencial, cero compromisos
+            La claridad no solo se ve. También se formula.
           </motion.h2>
         </motion.div>
 

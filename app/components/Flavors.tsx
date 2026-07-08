@@ -66,7 +66,7 @@ export default function Flavors() {
       <div className="mx-auto max-w-[1480px] px-6 md:px-10 pt-28 md:pt-40 pb-12 md:pb-16">
         <div className="text-center">
           <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
-            Dos perfiles. Una promesa de claridad
+            Dos sabores. Esto apenas comienza.
           </h2>
         </div>
       </div>
@@ -147,6 +147,17 @@ function FlavorPanel({
         className="group relative w-full max-w-[520px] aspect-[2/3] cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         style={{ ["--tw-ring-color" as string]: flavor.accent }}
       >
+        {/* Respaldo negro: iguala el fondo #000 de la foto y funde suavemente
+            hacia el color de la sección, sin marco visible */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 86% 80% at 50% 50%, #000 34%, rgba(0,0,0,0) 92%)",
+          }}
+        />
+
         {/* Foto de producto fundida con el fondo */}
         <div
           ref={frameRef}
@@ -166,17 +177,6 @@ function FlavorPanel({
             />
           </motion.div>
         </div>
-
-        {/* Viñeta que pinta el color de la sección sobre los bordes de la foto:
-            disuelve el recuadro sin importar el fondo de la imagen */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 82% 78% at 50% 50%, transparent 40%, var(--color-ink) 84%)",
-          }}
-        />
 
         {/* Invitación "Girar 360°" — visible en móvil, aparece al hover/focus en desktop */}
         <span

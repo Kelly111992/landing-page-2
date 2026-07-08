@@ -49,7 +49,6 @@ export default function Footer() {
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="/#sabores">Sabores</FooterLink>
               <FooterLink href="/#nutrimental">Etiqueta</FooterLink>
-              <FooterLink href="/#quienes-somos">Quiénes somos</FooterLink>
             </ul>
           </div>
 
@@ -106,13 +105,14 @@ export default function Footer() {
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/60">
           <span>
             © {year} H2PRO Protein Water. Todos los derechos reservados.
-            <span className="block mt-1 text-paper/50">
-              Suplementos Disruptivos S.A. de C.V. · Zapopan, Jalisco
+            <span className="block mt-1 text-paper/50 uppercase tracking-[0.04em]">
+              SUPLEMENTOS DISRUPTIVOS S.A. DE C.V. · Zapopan, Jalisco
             </span>
             {/* Manifiesto empresarial — sutil, al cierre */}
-            <span className="block mt-1 text-paper/55">
-              Manifiesto. Lo tenemos claro: nutrir a México con productos
-              disruptivos creciendo de forma responsable con el medio ambiente.
+            <span className="block mt-2 text-paper/55">
+              <span className="block text-paper/70">Manifiesto</span>
+              Lo tenemos claro: nutrir a México con productos disruptivos
+              creciendo de forma responsable con el medio ambiente.
             </span>
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">

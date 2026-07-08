@@ -8,7 +8,7 @@ const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 
 const slide = {
   bg: "/lifestyle/hero-bottles.jpg",
-  headline: ["Proteína refrescante", "y lista para tomar"],
+  headline: ["Proteína refrescante", "y lista para tomar."],
   sub: "20 g de proteína · 500 ml · Sin azúcar ni espesantes.",
 };
 
@@ -65,12 +65,12 @@ export default function Hero() {
           Conoce los sabores
         </motion.a>
         <motion.a
-          href="#quienes-somos"
+          href="#nutrimental"
           className="text-[0.78rem] tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors flex items-center gap-2.5"
           whileHover={reduce ? {} : { x: 4 }}
           transition={spring.snappy}
         >
-          <span className="w-7 h-px bg-current" /> Quiénes somos
+          <span className="w-7 h-px bg-current" /> Ver la etiqueta
         </motion.a>
       </motion.div>
     </div>

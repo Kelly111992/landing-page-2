@@ -86,7 +86,7 @@ export default function ProteinEquivalences() {
           transition={spring.gentle}
         >
           <h2 className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)] mx-auto">
-            Una botella. La proteína de un plato completo
+            Una botella con proteína de alta calidad.
           </h2>
           <p className="mt-8 max-w-2xl mx-auto text-paper/65 text-[0.95rem] md:text-[1rem] leading-relaxed">
             20 g de proteína aislada de suero de leche por botella: el mismo
