@@ -1,6 +1,5 @@
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
-import WhyClear from "./components/WhyClear";
 import Manifesto from "./components/Manifesto";
 import TactileBanner from "./components/TactileBanner";
 import Claims from "./components/Claims";
@@ -20,7 +19,6 @@ export default function Home() {
       </a>
       <Nav />
       <Hero />
-      <WhyClear />
       <Manifesto />
       <TactileBanner />
       <Claims />
