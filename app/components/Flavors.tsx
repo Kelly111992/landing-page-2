@@ -23,10 +23,6 @@ type Flavor = {
   accent: string;
 };
 
-// Desvanecido suave del contorno: el negro de la foto empalma con el bg-ink
-const FEATHER_MASK =
-  "radial-gradient(ellipse 74% 68% at 50% 50%, #000 58%, rgba(0,0,0,0.6) 80%, transparent 98%)";
-
 const flavors: Flavor[] = [
   {
     id: "limonada",
@@ -147,14 +143,15 @@ function FlavorPanel({
         className="group relative w-full max-w-[520px] aspect-[2/3] cursor-pointer rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         style={{ ["--tw-ring-color" as string]: flavor.accent }}
       >
-        {/* Respaldo negro: iguala el fondo #000 de la foto y funde suavemente
-            hacia el color de la sección, sin marco visible */}
+        {/* Respaldo negro: la foto tiene fondo #000 y la sección es #0a0e12.
+            Se extiende FUERA de la foto y se difumina, para que el borde quede
+            negro contra negro y no se recorte contra el fondo de la sección. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute -inset-8 md:-inset-12 blur-3xl"
           style={{
             background:
-              "radial-gradient(ellipse 86% 80% at 50% 50%, #000 34%, rgba(0,0,0,0) 92%)",
+              "radial-gradient(ellipse 72% 72% at 50% 50%, #000 0%, #000 78%, rgba(0,0,0,0) 100%)",
           }}
         />
 
@@ -162,7 +159,6 @@ function FlavorPanel({
         <div
           ref={frameRef}
           className="absolute inset-0 overflow-hidden transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          style={{ WebkitMaskImage: FEATHER_MASK, maskImage: FEATHER_MASK }}
         >
           <motion.div
             className="relative w-full h-full"

@@ -12,25 +12,6 @@ import { spring } from "../lib/springs";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// "¿Por qué es clara?" — la explicación de Diego, desglosada en el riel editorial
-const whySteps = [
-  {
-    index: "01",
-    label: "Aislada",
-    body: "Su proteína es aislada de suero de leche.",
-  },
-  {
-    index: "02",
-    label: "Microfiltrada",
-    body: "Se eliminan grasas, lactosa y otras partículas que dispersan la luz.",
-  },
-  {
-    index: "03",
-    label: "Cristalina",
-    body: "El líquido permite el paso libre de la luz. Así interactúan la luz y la materia a escala cuántica.",
-  },
-];
-
 export default function Manifesto() {
   const reduce = useReducedMotion();
   const bottleRef = useRef<HTMLDivElement>(null);
@@ -82,34 +63,19 @@ export default function Manifesto() {
             ¿Por qué es clara?
           </motion.h2>
 
-          <motion.div
-            className="md:col-span-5 flex flex-col border-t md:border-t-0 md:border-l border-paper/15 md:pl-10 pt-6 md:pt-0"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
+          <motion.p
+            className="md:col-span-5 text-paper/75 text-[1rem] md:text-[1.15rem] leading-relaxed"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
+            transition={{ ...spring.gentle, delay: reduce ? 0 : 0.2 }}
           >
-            {whySteps.map((step, i) => (
-              <motion.article
-                key={step.label}
-                variants={line}
-                className={`py-5 md:py-6 ${i > 0 ? "border-t border-paper/15" : ""}`}
-              >
-                <div className="flex items-baseline gap-4">
-                  <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/55">
-                    {step.index}
-                  </span>
-                  <span className="h-px flex-1 max-w-[60px] bg-paper/20" />
-                  <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/55">
-                    {step.label}
-                  </span>
-                </div>
-                <p className="mt-3 text-[0.95rem] md:text-[1.05rem] leading-relaxed text-paper/75">
-                  {step.body}
-                </p>
-              </motion.article>
-            ))}
-          </motion.div>
+            H2PRO es clara porque su proteína aislada de suero de leche es
+            microfiltrada. Al eliminar grasas, lactosa y otras partículas que
+            dispersan la luz, el líquido permite su paso libremente, dando esa
+            apariencia cristalina. Así interactúan la luz y la materia a escala
+            cuántica.
+          </motion.p>
         </div>
 
         {/* Bloque 2 — Manifiesto */}
@@ -141,13 +107,15 @@ export default function Manifesto() {
             viewport={{ once: true, margin: "-80px" }}
             transition={spring.gentle}
           >
-            {/* Halo frío detrás de la botella */}
+            {/* Respaldo negro: la foto tiene fondo negro puro y la sección es #0a0e12.
+                Este halo sale FUERA del overflow-hidden y funde ese negro con el
+                fondo, para que el borde de la foto no se recorte contra la sección. */}
             <div
               aria-hidden
-              className="absolute inset-0 m-auto w-[80%] h-[80%] rounded-full opacity-35 blur-3xl"
+              className="absolute -inset-10 md:-inset-16 blur-3xl"
               style={{
                 background:
-                  "radial-gradient(circle, rgba(74,180,240,0.55) 0%, rgba(74,180,240,0) 70%)",
+                  "radial-gradient(ellipse 72% 72% at 50% 50%, #000 0%, #000 78%, rgba(0,0,0,0) 100%)",
               }}
             />
             <div
@@ -166,15 +134,7 @@ export default function Manifesto() {
                   right: 0,
                 }}
               >
-                <div
-                  className="relative w-full h-full"
-                  style={{
-                    WebkitMaskImage:
-                      "radial-gradient(ellipse 74% 68% at 50% 50%, black 38%, rgba(0,0,0,0.6) 66%, transparent 99%)",
-                    maskImage:
-                      "radial-gradient(ellipse 74% 68% at 50% 50%, black 38%, rgba(0,0,0,0.6) 66%, transparent 99%)",
-                  }}
-                >
+                <div className="relative w-full h-full">
                   <Image
                     src="/lifestyle/manifesto-float.jpg"
                     alt="Botella H2PRO Blueberry flotando ingrávida entre agua suspendida sobre fondo negro"
