@@ -124,7 +124,8 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ ...spring.gentle, delay: 0.1 }}
-          className="absolute inset-y-0 right-0 left-[40%] lg:left-[44%] overflow-hidden"
+          className="absolute inset-y-0 right-0 overflow-hidden"
+          style={{ aspectRatio: "1451 / 1084" }}
         >
           {/* Ken Burns: abre acercada y se aleja lentamente */}
           <motion.div
@@ -139,7 +140,7 @@ export default function Hero() {
               fill
               priority
               sizes="60vw"
-              style={{ objectFit: "contain", objectPosition: "center bottom" }}
+              style={{ objectFit: "cover", objectPosition: "center bottom" }}
             />
           </motion.div>
           {/* Funde el borde izquierdo de la foto con el crema del texto */}
