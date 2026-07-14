@@ -139,7 +139,7 @@ export default function Hero() {
               fill
               priority
               sizes="60vw"
-              style={{ objectFit: "contain", objectPosition: "center" }}
+              style={{ objectFit: "contain", objectPosition: "center bottom" }}
             />
           </motion.div>
           {/* Funde el borde izquierdo de la foto con el crema del texto */}
@@ -156,11 +156,6 @@ export default function Hero() {
             aria-hidden
             className="absolute inset-x-0 top-0 h-24 pointer-events-none"
             style={{ background: "linear-gradient(to bottom, var(--color-paper) 0%, rgba(240,237,232,0) 100%)" }}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-            style={{ background: "linear-gradient(to top, var(--color-paper) 0%, rgba(240,237,232,0) 100%)" }}
           />
         </motion.div>
 
