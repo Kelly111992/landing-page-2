@@ -67,7 +67,7 @@ export default function Claims() {
             variants={item}
             className="display text-paper text-[clamp(2.4rem,5.4vw,4.6rem)]"
           >
-            No solo se ve. También se formula.
+            Nuestros claims son tan claros como nuestra fórmula.
           </motion.h2>
         </motion.div>
 
