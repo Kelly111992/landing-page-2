@@ -68,7 +68,6 @@ export default function Footer() {
             <ul className="space-y-3 text-[0.92rem]">
               <FooterLink href="mailto:info@h2pro.fit">info@h2pro.fit</FooterLink>
               <FooterLink href="https://instagram.com/h2pro.fit">@h2pro.fit</FooterLink>
-              <li className="text-paper/55">Zapopan, Jalisco · México</li>
             </ul>
           </div>
 
@@ -116,7 +115,7 @@ export default function Footer() {
           <span>
             © {year} H2PRO Protein Water. Todos los derechos reservados.
             <span className="block mt-1 text-paper/50 tracking-[0.04em]">
-              SUPLEMENTOS DISRUPTIVOS S.A. DE C.V. · Zapopan, Jalisco
+              SUPLEMENTOS DISRUPTIVOS S.A. DE C.V.
             </span>
             {/* Manifiesto empresarial — sutil, al cierre */}
             <span className="block mt-2 text-paper/55">
