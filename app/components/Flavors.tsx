@@ -25,14 +25,14 @@ const flavors: Flavor[] = [
     id: "limonada",
     name: "Limonada",
     spanish: "Cítrico fresco",
-    photo: "/flavors/limonada-sutil.jpg",
+    photo: "/flavors/limonada-frio.jpg",
     accent: "#f4e04d",
   },
   {
     id: "blueberry",
     name: "Blueberry",
     spanish: "Frutal silvestre",
-    photo: "/flavors/blueberry-sutil.jpg",
+    photo: "/flavors/blueberry-frio.jpg",
     accent: "#7d8fd6",
   },
 ];
