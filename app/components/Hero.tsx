@@ -7,7 +7,7 @@ import { spring } from "../lib/springs";
 const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 
 const slide = {
-  bg: "/lifestyle/hero-bottles-negro.jpg",
+  bg: "/lifestyle/hero-bottles-sutil.jpg",
   headline: ["Proteína refrescante", "lista para tomar."],
   sub: "10 g de proteína aislada de suero de leche en 355 ml de agua · Sin colágeno.",
 };

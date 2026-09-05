@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "H2PRO Protein Water",
     description:
-      "10 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
+      "Proteína refrescante lista para tomar.",
     type: "website",
     locale: "es_MX",
     url: "https://landing-propuesta-2.vercel.app",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "H2PRO Protein Water",
     description:
-      "10 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
+      "Proteína refrescante lista para tomar.",
     images: ["/brand/og-image.png"],
   },
 };

@@ -8,7 +8,7 @@ export const contentType = "image/png";
 
 export default async function Image() {
   const logoData = readFileSync(
-    join(process.cwd(), "public/brand/logo.png")
+    join(process.cwd(), "public/brand/logo-blanco.png")
   );
   const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
 
@@ -16,7 +16,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "#f0ede8",
+          background: "#0a0e12",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -34,7 +34,7 @@ export default async function Image() {
         />
         <p
           style={{
-            color: "#0086d6",
+            color: "#f0ede8",
             fontSize: 28,
             fontFamily: "sans-serif",
             fontWeight: 600,
@@ -43,7 +43,7 @@ export default async function Image() {
             textAlign: "center",
           }}
         >
-          10 g de proteína en agua clara · Sin azúcar · Sin lactosa
+          Proteína refrescante lista para tomar.
         </p>
       </div>
     ),
