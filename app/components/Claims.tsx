@@ -12,7 +12,7 @@ const hero = {
 
 const secondary = [
   {
-    n: "4.5 g",
+    n: "2.3 g",
     index: "02",
     title: "BCAA",
     body: "Leucina, isoleucina y valina, que ayudan a formar proteína muscular.",
@@ -88,7 +88,7 @@ export default function Claims() {
               </span>
               <span className="h-px flex-1 max-w-[80px] bg-paper/20" />
               <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/55">
-                por 500 ml
+                por 355 ml
               </span>
             </div>
 
@@ -112,7 +112,7 @@ export default function Claims() {
                   lineHeight: 0.82,
                 }}
               >
-                <CountUp to={20} duration={1.6} />
+                <CountUp to={10} duration={1.6} />
                 <motion.span
                   className="display text-paper inline-block"
                   style={{

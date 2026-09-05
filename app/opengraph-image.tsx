@@ -43,7 +43,7 @@ export default async function Image() {
             textAlign: "center",
           }}
         >
-          20 g de proteína en agua clara · Sin azúcar · Sin lactosa
+          10 g de proteína en agua clara · Sin azúcar · Sin lactosa
         </p>
       </div>
     ),

@@ -273,7 +273,7 @@ function ModalContent({
             onClick={(e) => e.stopPropagation()}
           >
             <span className="text-[0.62rem] tracking-[0.28em] uppercase text-white/45">
-              500 ml · 20 g proteína · PET tapa rosca 38 mm
+              355 ml · 10 g proteína · PET tapa rosca 38 mm
             </span>
             <SpinningBadge accent={accent} circleId={circleId} />
           </motion.footer>

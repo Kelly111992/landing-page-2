@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 // Botón flotante de WhatsApp — siempre visible, abre el chat directo al número de H2PRO.
 const WA_HREF =
-  "https://wa.me/523331470485?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s.";
+  "https://wa.me/523315337020?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s.";
 
 export default function WhatsAppFloat() {
   const reduce = useReducedMotion();

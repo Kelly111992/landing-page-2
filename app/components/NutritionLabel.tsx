@@ -1,14 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { spring } from "../lib/springs";
 
+// Valores de la etiqueta vigente (355 ml). Las filas `sub` son los desgloses
+// que en la etiqueta impresa van indentados bajo su renglón padre.
 const rows = [
-  { label: "Contenido energético", per100: "16 kcal", per500: "80 kcal" },
-  { label: "Proteínas", per100: "4 g", per500: "20 g", emphasis: true },
-  { label: "Grasas", per100: "0 g", per500: "0 g" },
-  { label: "Carbohidratos", per100: "0 g", per500: "0 g" },
-  { label: "Sodio", per100: "7.6 mg", per500: "38 mg" },
+  { label: "Contenido energético", per100: "16.4 kcal", per355: "58.4 kcal" },
+  { label: "Proteínas", per100: "3.1 g", per355: "10.9 g", emphasis: true },
+  { label: "Grasas totales", per100: "0.4 g", per355: "1.6 g" },
+  { label: "Grasas saturadas", per100: "0.2 g", per355: "0.6 g", sub: true },
+  { label: "Grasas trans", per100: "0 mg", per355: "0 mg", sub: true },
+  { label: "Hidratos de carbono disponibles", per100: "0.0 g", per355: "0.1 g" },
+  { label: "Azúcares", per100: "0.0 g", per355: "0.0 g", sub: true },
+  { label: "Azúcares añadidos", per100: "0.0 g", per355: "0.0 g", sub: true },
+  { label: "Fibra dietética", per100: "0.0 g", per355: "0.0 g", sub: true },
+  { label: "Sodio", per100: "5 mg", per355: "19 mg" },
 ];
 
 export default function NutritionLabel() {
@@ -48,7 +56,7 @@ export default function NutritionLabel() {
                 100 ml
               </span>
               <span className="text-[0.7rem] tracking-[0.28em] uppercase text-paper/50 pb-3 border-b border-paper/20 text-right">
-                500 ml
+                355 ml
               </span>
 
               {rows.map((r) => (
@@ -59,7 +67,7 @@ export default function NutritionLabel() {
                   <span
                     className={`py-4 border-b border-paper/15 ${
                       r.emphasis ? "text-paper font-semibold" : "text-paper/85"
-                    }`}
+                    } ${r.sub ? "pl-5 text-paper/65" : ""}`}
                   >
                     {r.label}
                   </span>
@@ -77,7 +85,7 @@ export default function NutritionLabel() {
                         : "text-paper/70"
                     }`}
                   >
-                    {r.per500}
+                    {r.per355}
                   </span>
                 </div>
               ))}
@@ -87,10 +95,20 @@ export default function NutritionLabel() {
 
         {/* Disclaimer line */}
         <p className="mt-10 text-[0.78rem] text-paper/60 leading-relaxed max-w-3xl">
-          No consumir durante el embarazo o lactancia. Almacenar en lugar
-          fresco, seco y alejado de la luz solar directa. Una vez abierto,
-          consérvese en refrigeración.
+          Una vez abierto, consérvese en refrigeración.
         </p>
+
+        {/* Punto de venta */}
+        <div className="mt-14 md:mt-16 flex flex-col items-center gap-5">
+          <span className="eyebrow text-paper/55">Disponible en Jalisco en</span>
+          <Image
+            src="/brand/7eleven.png"
+            alt="7-Eleven"
+            width={1500}
+            height={260}
+            className="h-9 md:h-11 w-auto"
+          />
+        </div>
       </div>
     </section>
   );

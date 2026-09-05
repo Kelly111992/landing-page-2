@@ -14,12 +14,12 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "H2PRO Protein Water",
   description:
-    "El primer protein water mexicano. 20 g de proteína, sin azúcar, sin lactosa, sin espesantes. Lista para tomar.",
+    "El primer protein water mexicano. 10 g de proteína, sin azúcar, sin lactosa, sin espesantes. Lista para tomar.",
   metadataBase: new URL("https://landing-propuesta-2.vercel.app"),
   openGraph: {
     title: "H2PRO Protein Water",
     description:
-      "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
+      "10 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
     type: "website",
     locale: "es_MX",
     url: "https://landing-propuesta-2.vercel.app",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "H2PRO Protein Water",
     description:
-      "20 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
+      "10 g de proteína en agua clara. Sin pesadez. Lista para tomar.",
     images: ["/brand/og-image.png"],
   },
 };

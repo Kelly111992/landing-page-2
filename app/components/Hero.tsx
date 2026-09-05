@@ -9,7 +9,7 @@ const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 const slide = {
   bg: "/lifestyle/hero-bottles.jpg",
   headline: ["Proteína refrescante", "y lista para tomar."],
-  sub: "20 g de proteína · 500 ml · Sin azúcar ni espesantes.",
+  sub: "10 g de proteína aislada de suero de leche en 355 ml de agua · Sin colágeno.",
 };
 
 export default function Hero() {

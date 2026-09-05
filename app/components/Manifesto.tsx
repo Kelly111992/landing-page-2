@@ -166,7 +166,7 @@ export default function Manifesto() {
               <span>·</span>
               <span>Lista para tomar</span>
               <span>·</span>
-              <span>20 g de proteína</span>
+              <span>10 g de proteína</span>
               <span>·</span>
               <span>Sin azúcar</span>
               <span>·</span>

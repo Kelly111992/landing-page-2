@@ -22,7 +22,7 @@ export default function Footer() {
 
             {/* Sellos */}
             <div className="mt-8 flex items-start gap-6">
-              <div className="shrink-0">
+              <div className="shrink-0 flex items-center gap-4">
                 <Image
                   src="/brand/hecho-en-mexico.png"
                   alt="Hecho en México — sello oficial"
@@ -31,13 +31,23 @@ export default function Footer() {
                   className="w-14 h-14"
                   style={{ filter: "brightness(0) invert(1)" }}
                 />
+                {/* El distintivo va en su naranja original: su texto es blanco
+                    calado, así que blanquearlo como el sello de México lo
+                    dejaría como una silueta sólida ilegible. */}
+                <Image
+                  src="/brand/hecho-en-zapopan.png"
+                  alt="Hecho en Zapopan — distintivo oficial"
+                  width={64}
+                  height={64}
+                  className="w-14 h-14"
+                />
               </div>
               <div className="border-l border-paper/15 pl-5 py-1">
                 <span className="block text-[0.62rem] tracking-[0.28em] uppercase text-paper/60">
                   Aviso de funcionamiento Cofepris
                 </span>
                 <span className="block text-[0.78rem] tracking-[0.18em] uppercase text-paper/75 font-medium mt-2">
-                  2614105019X00016
+                  2614105018B00228
                 </span>
               </div>
             </div>
@@ -88,7 +98,7 @@ export default function Footer() {
             </div>
 
             <a
-              href="https://wa.me/523331470485?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s."
+              href="https://wa.me/523315337020?text=Hola%20H2PRO%2C%20me%20interesa%20saber%20m%C3%A1s."
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-h2pro-deep text-paper text-[0.78rem] tracking-[0.18em] uppercase transition-transform hover:-translate-y-0.5"
@@ -105,7 +115,7 @@ export default function Footer() {
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[0.72rem] text-paper/60">
           <span>
             © {year} H2PRO Protein Water. Todos los derechos reservados.
-            <span className="block mt-1 text-paper/50 uppercase tracking-[0.04em]">
+            <span className="block mt-1 text-paper/50 tracking-[0.04em]">
               SUPLEMENTOS DISRUPTIVOS S.A. DE C.V. · Zapopan, Jalisco
             </span>
             {/* Manifiesto empresarial — sutil, al cierre */}
