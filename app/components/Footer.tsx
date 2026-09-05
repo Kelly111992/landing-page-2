@@ -37,9 +37,9 @@ export default function Footer() {
                 <Image
                   src="/brand/hecho-en-zapopan.png"
                   alt="Hecho en Zapopan — distintivo oficial"
-                  width={64}
-                  height={64}
-                  className="w-14 h-14"
+                  width={74}
+                  height={74}
+                  className="w-16 h-16"
                 />
               </div>
               <div className="border-l border-paper/15 pl-5 py-1">

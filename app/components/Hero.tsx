@@ -7,8 +7,8 @@ import { spring } from "../lib/springs";
 const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 
 const slide = {
-  bg: "/lifestyle/hero-bottles-10g.jpg",
-  headline: ["Proteína refrescante", "y lista para tomar."],
+  bg: "/lifestyle/hero-bottles-negro.jpg",
+  headline: ["Proteína refrescante", "lista para tomar."],
   sub: "10 g de proteína aislada de suero de leche en 355 ml de agua · Sin colágeno.",
 };
 
@@ -17,7 +17,7 @@ export default function Hero() {
 
   const headline = (
     <h1
-      className="display text-ink leading-[0.95] mb-6 text-balance"
+      className="display text-paper leading-[0.95] mb-6 text-balance"
       style={{ fontSize: "clamp(2.7rem, 6.2vw, 5.4rem)" }}
     >
       {slide.headline.map((line, i) => (
@@ -42,7 +42,7 @@ export default function Hero() {
     <div className="max-w-xl">
       {headline}
       <motion.p
-        className="text-ink/70 text-[0.95rem] md:text-[1.05rem] leading-relaxed max-w-md"
+        className="text-paper/70 text-[0.95rem] md:text-[1.05rem] leading-relaxed max-w-md"
         initial={reduce ? {} : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reduce ? 0 : 0.7, duration: 0.7 }}
@@ -57,7 +57,7 @@ export default function Hero() {
       >
         <motion.a
           href="#sabores"
-          className="px-7 py-3.5 rounded-full bg-ink text-paper text-[0.78rem] tracking-[0.18em] uppercase"
+          className="px-7 py-3.5 rounded-full bg-paper text-ink text-[0.78rem] tracking-[0.18em] uppercase"
           whileHover={reduce ? {} : { scale: 1.03, backgroundColor: "var(--color-h2pro-deep)", color: "var(--color-paper)" }}
           whileTap={reduce ? {} : { scale: 0.97 }}
           transition={spring.snappy}
@@ -66,7 +66,7 @@ export default function Hero() {
         </motion.a>
         <motion.a
           href="#nutrimental"
-          className="text-[0.78rem] tracking-[0.18em] uppercase text-ink/65 hover:text-ink transition-colors flex items-center gap-2.5"
+          className="text-[0.78rem] tracking-[0.18em] uppercase text-paper/65 hover:text-paper transition-colors flex items-center gap-2.5"
           whileHover={reduce ? {} : { x: 4 }}
           transition={spring.snappy}
         >
@@ -78,13 +78,13 @@ export default function Hero() {
 
   // Difuminado vertical para la foto a todo ancho en móvil (funde arriba/abajo)
   const vignetteFull =
-    "linear-gradient(to bottom, var(--color-paper) 0%, rgba(240,237,232,0) 16%, rgba(240,237,232,0) 80%, var(--color-paper) 100%)";
+    "linear-gradient(to bottom, var(--color-ink) 0%, rgba(10,14,18,0) 16%, rgba(10,14,18,0) 80%, var(--color-ink) 100%)";
 
   return (
     <section
       id="top"
       tabIndex={-1}
-      className="relative w-full overflow-hidden bg-paper outline-none"
+      className="relative w-full overflow-hidden bg-ink outline-none"
     >
       {/* ─── MÓVIL: foto completa arriba, texto debajo ─── */}
       <div className="md:hidden relative">
@@ -149,14 +149,14 @@ export default function Hero() {
             className="absolute inset-y-0 left-0 w-[55%] pointer-events-none"
             style={{
               background:
-                "linear-gradient(to right, var(--color-paper) 0%, rgba(240,237,232,0.85) 30%, rgba(240,237,232,0) 100%)",
+                "linear-gradient(to right, var(--color-ink) 0%, rgba(10,14,18,0.85) 30%, rgba(10,14,18,0) 100%)",
             }}
           />
           {/* Funde sutilmente arriba y abajo para integrar con la página */}
           <div
             aria-hidden
             className="absolute inset-x-0 top-0 h-24 pointer-events-none"
-            style={{ background: "linear-gradient(to bottom, var(--color-paper) 0%, rgba(240,237,232,0) 100%)" }}
+            style={{ background: "linear-gradient(to bottom, var(--color-ink) 0%, rgba(10,14,18,0) 100%)" }}
           />
         </motion.div>
 
