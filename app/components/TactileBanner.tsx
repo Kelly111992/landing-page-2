@@ -36,7 +36,7 @@ export default function TactileBanner() {
           >
             <div className="relative w-full h-full">
               <Image
-                src="/lifestyle/macro-hands.jpg"
+                src="/lifestyle/macro-hands-10g.jpg"
                 alt="Manos abriendo la tapa de una botella H2PRO — una vuelta y lista para tomar"
                 fill
                 sizes="100vw"

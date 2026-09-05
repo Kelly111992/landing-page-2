@@ -7,7 +7,7 @@ import { spring } from "../lib/springs";
 const EASE_CINEMA = [0.76, 0, 0.24, 1] as const;
 
 const slide = {
-  bg: "/lifestyle/hero-bottles.jpg",
+  bg: "/lifestyle/hero-bottles-10g.jpg",
   headline: ["Proteína refrescante", "y lista para tomar."],
   sub: "10 g de proteína aislada de suero de leche en 355 ml de agua · Sin colágeno.",
 };
@@ -94,7 +94,7 @@ export default function Hero() {
           transition={{ ...spring.gentle, delay: 0.1 }}
           className="relative w-full pt-14"
         >
-          <div className="relative w-full aspect-[1451/1084] overflow-hidden">
+          <div className="relative w-full aspect-[1448/1086] overflow-hidden">
             {/* Ken Burns: abre acercada y se aleja lentamente */}
             <motion.div
               className="absolute inset-0"
@@ -125,7 +125,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ ...spring.gentle, delay: 0.1 }}
           className="absolute inset-y-0 right-0 overflow-hidden"
-          style={{ aspectRatio: "1451 / 1084" }}
+          style={{ aspectRatio: "1448 / 1086" }}
         >
           {/* Ken Burns: abre acercada y se aleja lentamente */}
           <motion.div

@@ -136,7 +136,7 @@ export default function Manifesto() {
               >
                 <div className="relative w-full h-full">
                   <Image
-                    src="/lifestyle/manifesto-float.jpg"
+                    src="/lifestyle/manifesto-10g.jpg"
                     alt="Botella H2PRO Blueberry flotando ingrávida entre agua suspendida sobre fondo negro"
                     fill
                     sizes="(max-width: 768px) 100vw, 42vw"
