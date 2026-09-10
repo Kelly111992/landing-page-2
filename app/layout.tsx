@@ -18,27 +18,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://landing-propuesta-2.vercel.app"),
   openGraph: {
     title: "H2PRO Protein Water",
-    description:
-      "Proteína refrescante lista para tomar.",
+    description: "PROTEIN WATER",
     type: "website",
     locale: "es_MX",
     url: "https://landing-propuesta-2.vercel.app",
     siteName: "H2PRO",
-    images: [
-      {
-        url: "/brand/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "H2PRO Protein Water",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "H2PRO Protein Water",
-    description:
-      "Proteína refrescante lista para tomar.",
-    images: ["/brand/og-image.png"],
+    description: "PROTEIN WATER",
   },
 };
 

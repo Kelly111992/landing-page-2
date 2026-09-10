@@ -35,15 +35,16 @@ export default async function Image() {
         <p
           style={{
             color: "#f0ede8",
-            fontSize: 28,
+            fontSize: 30,
             fontFamily: "sans-serif",
             fontWeight: 600,
-            letterSpacing: "0.04em",
+            // Mismo tracking que el lockup del nav, que también va en versalitas.
+            letterSpacing: "0.28em",
             margin: 0,
             textAlign: "center",
           }}
         >
-          Proteína refrescante lista para tomar.
+          PROTEIN WATER
         </p>
       </div>
     ),

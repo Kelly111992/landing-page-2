@@ -101,13 +101,21 @@ export default function NutritionLabel() {
         {/* Punto de venta */}
         <div className="mt-14 md:mt-16 flex flex-col items-center gap-5">
           <span className="eyebrow text-paper/55">Disponible en Jalisco en</span>
-          <Image
-            src="/brand/7eleven.png"
-            alt="7-Eleven"
-            width={1500}
-            height={260}
-            className="h-9 md:h-11 w-auto"
-          />
+          <a
+            href="https://7-eleven.com.mx/buscador-de-tiendas/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Buscar una tienda 7-Eleven cercana"
+            className="transition-opacity hover:opacity-70"
+          >
+            <Image
+              src="/brand/7eleven.png"
+              alt="7-Eleven"
+              width={1500}
+              height={260}
+              className="h-9 md:h-11 w-auto"
+            />
+          </a>
         </div>
       </div>
     </section>

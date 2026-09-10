@@ -21,35 +21,25 @@ export default function Footer() {
             </Link>
 
             {/* Sellos */}
-            <div className="mt-8 flex items-start gap-6">
-              <div className="shrink-0 flex items-center gap-4">
-                <Image
-                  src="/brand/hecho-en-mexico.png"
-                  alt="Hecho en México — sello oficial"
-                  width={64}
-                  height={64}
-                  className="w-14 h-14"
-                  style={{ filter: "brightness(0) invert(1)" }}
-                />
-                {/* El distintivo va en su naranja original: su texto es blanco
-                    calado, así que blanquearlo como el sello de México lo
-                    dejaría como una silueta sólida ilegible. */}
-                <Image
-                  src="/brand/hecho-en-zapopan.png"
-                  alt="Hecho en Zapopan — distintivo oficial"
-                  width={74}
-                  height={74}
-                  className="w-16 h-16"
-                />
-              </div>
-              <div className="border-l border-paper/15 pl-5 py-1">
-                <span className="block text-[0.62rem] tracking-[0.28em] uppercase text-paper/60">
-                  Aviso de funcionamiento Cofepris
-                </span>
-                <span className="block text-[0.78rem] tracking-[0.18em] uppercase text-paper/75 font-medium mt-2">
-                  2614105018B00228
-                </span>
-              </div>
+            <div className="mt-8 flex items-center gap-4">
+              <Image
+                src="/brand/hecho-en-mexico.png"
+                alt="Hecho en México — sello oficial"
+                width={64}
+                height={64}
+                className="w-14 h-14"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
+              {/* El distintivo va en su naranja original: su texto es blanco
+                  calado, así que blanquearlo como el sello de México lo
+                  dejaría como una silueta sólida ilegible. */}
+              <Image
+                src="/brand/hecho-en-zapopan.png"
+                alt="Hecho en Zapopan — distintivo oficial"
+                width={74}
+                height={74}
+                className="w-16 h-16"
+              />
             </div>
           </div>
 
