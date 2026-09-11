@@ -105,8 +105,7 @@ export default function NutritionLabel() {
             href="https://7-eleven.com.mx/buscador-de-tiendas/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Buscar una tienda 7-Eleven cercana"
-            className="transition-opacity hover:opacity-70"
+            className="flex flex-col items-center gap-3 transition-opacity hover:opacity-70"
           >
             <Image
               src="/brand/7eleven.png"
@@ -115,6 +114,10 @@ export default function NutritionLabel() {
               height={260}
               className="h-9 md:h-11 w-auto"
             />
+            {/* En el azul de la marca: es lo que delata que el logo es un enlace. */}
+            <span className="eyebrow text-h2pro">
+              Encuentra tu tienda dando clic
+            </span>
           </a>
         </div>
       </div>

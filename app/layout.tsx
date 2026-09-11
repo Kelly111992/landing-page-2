@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://landing-propuesta-2.vercel.app"),
   openGraph: {
     title: "H2PRO Protein Water",
-    description: "PROTEIN WATER",
+    description: "Proteína refrescante lista para tomar.",
     type: "website",
     locale: "es_MX",
     url: "https://landing-propuesta-2.vercel.app",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "H2PRO Protein Water",
-    description: "PROTEIN WATER",
+    description: "Proteína refrescante lista para tomar.",
   },
 };
 
